@@ -55,7 +55,6 @@ if __name__ == "__main__":
         json_array = []
         for entry in range(ENTRIES):
             json_data = {}
-            json_data.update({"id": "s" + str(entry)})
             trips_number = random.randint(MINTRIP, MAXTRIP)
             route = []
             last = None
@@ -72,6 +71,17 @@ if __name__ == "__main__":
                 merchandise = cp.merch_maker(MINPRODUCTS, MAXPRODUCTS)
                 json_trip.update({"from": start, "to": end, "merchandise": merchandise})
                 route.append(json_trip)
+                length = 0
+                for e in route:
+                    length += 1
+                for r in route:
+                    print(r, "\n")
+                print("len is ", length, "\n")
+                print("length of route: " + str(len(route)))
+                # print length of route
+
+            json_data.update({"id": "s" + str(entry)})
             json_data.update({"route": route})
+
             json_array.append(json_data)
         f.write(json.dumps(json_array, indent=4))
