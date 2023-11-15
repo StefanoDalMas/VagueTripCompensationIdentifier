@@ -48,8 +48,10 @@ def config() -> Tuple[int, int, int, int, int, str]:
 
 
 if __name__ == "__main__":
-    config()
     ENTRIES, MINTRIP, MAXTRIP, MINPRODUCTS, MAXPRODUCTS, FILENAME = config()
+    if (MINTRIP > MAXTRIP or MINPRODUCTS > MAXPRODUCTS):
+        exit("wrong argument: make sure to pass correct values for min and max arguments")
+
     # open "data/standard.json, if it's not there, create it"
     with open("data/" + FILENAME, "w") as f:
         json_array = []
