@@ -46,18 +46,13 @@ def config() -> Tuple[int, int, int, int, int, str]:
         args.filename + ".json",
     )
 
-
-if __name__ == "__main__":
-    ENTRIES, MINTRIP, MAXTRIP, MINPRODUCTS, MAXPRODUCTS, FILENAME = config()
-    if (MINTRIP > MAXTRIP or MINPRODUCTS > MAXPRODUCTS):
-        exit("wrong argument: make sure to pass correct values for min and max arguments")
-
+def standardRouteGenerator(entries:int, minTrip:int, maxTrip:int, minProducts:int, maxProducts:int, fileName:int):
     # open "data/standard.json, if it's not there, create it"
-    with open("data/" + FILENAME, "w") as f:
+    with open("data/" + fileName, "w") as f:
         json_array = []
-        for entry in range(ENTRIES):
+        for entry in range(entries):
             json_data = {}
-            trips_number = random.randint(MINTRIP, MAXTRIP)
+            trips_number = random.randint(minTrip, maxTrip)
             route = []
             last = None
             for trip in range(trips_number):
@@ -70,7 +65,7 @@ if __name__ == "__main__":
                 while start == end:
                     end = cp.random_city()
                 last = end
-                merchandise = cp.merch_maker(MINPRODUCTS, MAXPRODUCTS)
+                merchandise = cp.merch_maker(minProducts, maxProducts)
                 json_trip.update({"from": start, "to": end, "merchandise": merchandise})
                 route.append(json_trip)
                 length = 0
@@ -87,3 +82,11 @@ if __name__ == "__main__":
 
             json_array.append(json_data)
         f.write(json.dumps(json_array, indent=4))
+
+
+if __name__ == "__main__":
+    ENTRIES, MINTRIP, MAXTRIP, MINPRODUCTS, MAXPRODUCTS, FILENAME = config()
+    if (MINTRIP > MAXTRIP or MINPRODUCTS > MAXPRODUCTS):
+        exit("wrong argument: make sure to pass correct values for min and max arguments")
+    standardRouteGenerator(ENTRIES, MINTRIP, MAXTRIP, MINPRODUCTS, MAXPRODUCTS, FILENAME)
+    
