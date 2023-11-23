@@ -8,21 +8,17 @@ from tools import cities_products as cp
 from tools.parameters import Parameters as p
 
 
+# def load_config() -> Tuple[int, int, int, int, int, str]:
+#     ENTRIES = int(p.ENTRIES)
+#     MINTRIP = int(p.MINTRIP)
+#     MAXTRIP = int(p.MAXTRIP)
+#     MINPRODUCTS = int(p.MINPRODUCTS)
+#     MAXPRODUCTS = int(p.MAXPRODUCTS)
+#     FILENAME = str(p.FILENAME)
+#     return ENTRIES, MINTRIP, MAXTRIP, MINPRODUCTS, MAXPRODUCTS, FILENAME
 
 
-def load_config() -> Tuple[int, int, int, int, int, str]:
-    ENTRIES = int(p.ENTRIES)
-    MINTRIP = int(p.MINTRIP)
-    MAXTRIP = int(p.MAXTRIP)
-    MINPRODUCTS = int(p.MINPRODUCTS)
-    MAXPRODUCTS = int(p.MAXPRODUCTS)
-    FILENAME = str(p.FILENAME)
-    return ENTRIES, MINTRIP, MAXTRIP, MINPRODUCTS, MAXPRODUCTS, FILENAME
-
-
-
-
-def standardRouteGenerator(entries:int, minTrip:int, maxTrip:int, minProducts:int, maxProducts:int, fileName:str):
+def stdRoute_generator(entries:int, minTrip:int, maxTrip:int, minProducts:int, maxProducts:int, fileName:str):
     # open "data/standard.json, if it's not there, create it"
     with open("data/" + fileName, "w") as f:
         json_array = []
@@ -57,9 +53,10 @@ def standardRouteGenerator(entries:int, minTrip:int, maxTrip:int, minProducts:in
 
 
 if __name__ == "__main__":
-    ENTRIES, MINTRIP, MAXTRIP, MINPRODUCTS, MAXPRODUCTS, FILENAME = load_config()
+    # ENTRIES, MINTRIP, MAXTRIP, MINPRODUCTS, MAXPRODUCTS, FILENAME = load_config()
 
-    if (MINTRIP > MAXTRIP or MINPRODUCTS > MAXPRODUCTS):
-        exit("wrong argument: make sure to pass correct values for min and max arguments")
-    standardRouteGenerator(ENTRIES, MINTRIP, MAXTRIP, MINPRODUCTS, MAXPRODUCTS, FILENAME)
+    # if (MINTRIP > MAXTRIP or MINPRODUCTS > MAXPRODUCTS):
+    #     exit("wrong parameters: make sure to set correct values for min and max parameters")
+
+    stdRoute_generator(p.ENTRIES, p.MINTRIP, p.MAXTRIP, p.MINPRODUCTS, p.MAXPRODUCTS, p.SROUTES_FILENAME)
     

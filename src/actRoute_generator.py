@@ -1,11 +1,13 @@
 import json
+from typing import List, Dict, Tuple
+
 from classes.Driver import Driver
+from classes.Trip import Trip
+from classes.StdRoute import StdRoute
+from tools.parameters import Parameters as p
 
-DRIVERS_FILENAME = "drivers.json"
-
-# reading stdRoutes
-with open("./data/" + DRIVERS_FILENAME, "r") as driversFile:
-    # Read the JSON data
+# reading drivers from json
+with open("./data/" + p.DRIVERS_FILENAME, "r") as driversFile:
     driversJson = json.load(driversFile)
 
 # Create objects from the data
@@ -14,7 +16,7 @@ for driverJson in driversJson:
     driver = Driver(
         driverJson["id"],
         driverJson["citiesCrazyness"],
-        driverJson["productCrazyness"],
+        driverJson["productsCrazyness"],
         driverJson["likedCities"],
         driverJson["likedProducts"],
         driverJson["dislikedCities"],
@@ -24,9 +26,35 @@ for driverJson in driversJson:
 )
     drivers.append(driver)
 
-for i in range(len(drivers)):
-    print(drivers[i])
+# print
+# for i in range(len(drivers)):
+#     print(drivers[i])
 
 
-# reading drivers
+# reading sRoutes from json
+with open("./data/" + p.SROUTES_FILENAME, "r") as driversFile:
+    sRoutesJson = json.load(driversFile)
 
+
+sRoutes: List[StdRoute] = []
+for sRouteJson in sRoutesJson:
+    trips: List[Trip] = []
+    # create list of Trip
+    for tripJson in sRouteJson["route"]:
+        trips.append(Trip(tripJson["from"],
+                          tripJson["to"],
+                          tripJson["merchandise"]))
+    
+    # create list of StdRoute
+    sRoutes.append(StdRoute(
+        sRouteJson["id"],
+        trips
+    ))
+
+# print
+for i in range(len(sRoutes)):
+    print(sRoutes[i])
+
+
+# ----------
+# here drivers and sRoutes ready to be used!

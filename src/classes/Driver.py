@@ -1,15 +1,6 @@
 from typing import List, Dict, Tuple 
 
 class Driver():
-    id: int
-    citiesCrazyness: int
-    productsCrazyness: int
-    likedCities: List[str]
-    likedProducts: List[str]
-    dislikedCities: List[str]
-    dislikedProducts: List[str]
-    cities: List[str]
-    products: List[str]
 
     def __init__(self, id:int, citiesCrazyness:int, productsCrazyness:int, likedCities:List[str], likedProducts:List[str], dislikedCities:List[str], dislikedProducts:List[str], cities:List[str], products:List[str]) -> None:
         self.id = id
