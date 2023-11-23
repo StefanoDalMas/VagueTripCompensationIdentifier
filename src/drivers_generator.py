@@ -3,52 +3,14 @@ import numpy as np
 from tools.cities_products import italian_cities as ic
 from tools.cities_products import shopping_list as sl
 import json
+from classes.Driver import Driver
 
-
+# used to cast ndarrays in lists
 class NumpyEncoder(json.JSONEncoder):
     def default(self, obj):
         if isinstance(obj, np.ndarray):
             return obj.tolist()
         return json.JSONEncoder.default(self, obj)
-
-
-class Driver():
-    id: int
-    citiesCrazyness: int
-    productCrazyness: int
-    likedCities: List[str]
-    likedProducts: List[str]
-    dislikedCities: List[str]
-    dislikedProducts: List[str]
-    cities: List[str]
-    products: List[str]
-
-    def __init__(self, id:int, productCrazyness:int, citiesCrazyness:int, likedCities:List[str], likedProducts:List[str], dislikedCities:List[str], dislikedProducts:List[str], cities:List[str], products:List[str]) -> None:
-        self.id = id
-        self.productCrazyness = productCrazyness
-        self.citiesCrazyness = citiesCrazyness
-        self.likedCities = likedCities
-        self.likedProducts = likedProducts
-        self.dislikedCities = dislikedCities
-        self.dislikedProducts = dislikedProducts
-        self.cities = cities
-        self.products = products
-
-    def __str__(self):
-        return f"{self.id}\n{self.productCrazyness}\n{self.citiesCrazyness}\n{self.likedCities}\n{self.likedProducts}\n{self.dislikedCities}\n{self.dislikedProducts}\n{self.cities}\n{self.products}\n"
-
-    def to_dict(self):
-        return {
-            "id": self.id,
-            "productCrazyness": self.productCrazyness,
-            "citiesCrazyness": self.citiesCrazyness,
-            "likedCities": self.likedCities,
-            "likedProducts": self.likedProducts,
-            "dislikedCities": self.dislikedCities,
-            "dislikedProducts": self.dislikedProducts,
-            "cities": self.cities,
-            "products": self.products
-        }
 
 N_DRIVERS = 5
 DRIVERS_FILENAME = "drivers.json"
@@ -84,7 +46,8 @@ if __name__ == "__main__":
         products = list(products_set)
 
         # driver creation
-        driver = Driver(id, productCrazyness, citiesCrazyness, likedCities, likedProducts, dislikedCities, dislikedProducts, cities, products)
+        driver = Driver(id, citiesCrazyness, productCrazyness, likedCities, likedProducts,
+                        dislikedCities, dislikedProducts, cities, products)
         drivers.append(driver)
 
         print(f"-DRIVER {n}-")
