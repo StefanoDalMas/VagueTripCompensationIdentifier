@@ -66,7 +66,7 @@ def generateActualRoute(std_route: StdRoute, driver: Driver) -> StdRoute:
     for i, stdTrip in enumerate(std_route.route):
         actualTrip = {}
 
-        #Cities (NEED TO CHECK)
+        # Cities (NEED TO CHECK)
         if (np.random.randint(0, 101) <= driver.citiesCrazyness):
             #if the city is liked
             if (stdTrip._from in driver.likedCities):
@@ -74,12 +74,15 @@ def generateActualRoute(std_route: StdRoute, driver: Driver) -> StdRoute:
             #it's the same if the city is disliked or not
             else:
                 new_city = np.random.choice(driver.cities)
+                while (new_city == stdTrip._from or new_city == stdTrip.to or new_city in driver.dislikedCities):
+                    new_city = np.random.choice(driver.cities)
+                new_city = np.random.choice(driver.cities)
                 actualTrip.update({"from": new_city})
                 std_route.route[i]._from = new_city
         else:
             actualTrip.update({"from": stdTrip._from})
 
-        #Products (NEED TO CHECK)
+        # Products (NEED TO CHECK) 
         if (np.random.randint(0, 101) <= driver.productsCrazyness):
             #if the product is liked
             if (stdTrip.merchandise in driver.likedProducts):
@@ -87,6 +90,8 @@ def generateActualRoute(std_route: StdRoute, driver: Driver) -> StdRoute:
             #it's the same if the product is disliked or not
             else:
                 new_product = np.random.choice(driver.products)
+                while (new_product == stdTrip.merchandise or new_product in driver.dislikedProducts):
+                    new_product = np.random.choice(driver.products)
                 actualTrip.update({"merchandise": new_product})
                 std_route.route[i].merchandise = new_product
         else:
