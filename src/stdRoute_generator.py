@@ -5,7 +5,7 @@ from typing import List, Dict, Tuple
 
 # custom imports
 from tools import cities_products as cp
-from tools.parameters import Parameters as p
+from tools.parameters import Parameters as params
 
 
 # def load_config() -> Tuple[int, int, int, int, int, str]:
@@ -58,5 +58,5 @@ if __name__ == "__main__":
     # if (MINTRIP > MAXTRIP or MINPRODUCTS > MAXPRODUCTS):
     #     exit("wrong parameters: make sure to set correct values for min and max parameters")
 
-    stdRoute_generator(p.ENTRIES, p.MINTRIP, p.MAXTRIP, p.MINPRODUCTS, p.MAXPRODUCTS, p.SROUTES_FILENAME)
+    stdRoute_generator(params.ENTRIES, params.MINTRIP, params.MAXTRIP, params.MINPRODUCTS, params.MAXPRODUCTS, params.SROUTES_FILENAME)
     
