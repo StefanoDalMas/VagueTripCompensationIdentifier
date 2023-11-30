@@ -12,7 +12,7 @@ class StdRoute():
 
     def __str__(self):
         route_str = "["+" ".join(map(str, self.route))+"]"
-        return f"id: {self.id}\nroute:\n{route_str}\n"
+        return f"id: {self.id}\nsRoute: \n{route_str}\n"
 
     def to_dict(self):
         return {

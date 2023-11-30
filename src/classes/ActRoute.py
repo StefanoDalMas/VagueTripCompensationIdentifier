@@ -12,10 +12,14 @@ class StdRoute():
         self.sRoute_id: sRoute_id
         self.aRoute = aRoute
 
+    # def __str__(self):
+    #     aRoute_str = "["+" ".join(map(str, self.aRoute))+"]"
+    #     # return f"id: {self.id}\nroute:\n{route_str}\n"
+    #     return f"id: {self.id}\ndriver_id: {self.driver_id}\nsRoute: {self.sRoute_id}\nsRoute: {aRoute_str}\n"
+
     def __str__(self):
         aRoute_str = "["+" ".join(map(str, self.aRoute))+"]"
-        # return f"id: {self.id}\nroute:\n{route_str}\n"
-        return f"id: {self.id}\ndriver_id: {self.driver_id}\nsRoute: {self.sRoute_id}\nsRoute: {aRoute_str}\n"
+        return f"id: {self.id}\ndriver_id: {self.driver_id}\nsRoute: {self.sRoute_id}\nroute:\n{aRoute_str}\n"
 
     def to_dict(self):
         return {

@@ -74,20 +74,37 @@ def generateActualRoute(std_route: StdRoute, driver: Driver) -> StdRoute:
             # if the city is liked
             if stdTrip._from in driver.likedCities:
                 actualTrip.update({"from": stdTrip._from})
+                actualTrip.update({"to": stdTrip.to})
             # it's the same if the city is disliked or not
+            elif stdTrip._from in driver.dislikedCities:
+                actualRoute[i - 1].to = stdTrip.to
+                continue
             else:
-                new_city = np.random.choice(driver.cities)
-                while (
-                    new_city == stdTrip._from
-                    or new_city == stdTrip.to
-                    or new_city in driver.dislikedCities
-                ):
-                    new_city = np.random.choice(driver.cities)
-                new_city = np.random.choice(driver.cities)
-                actualTrip.update({"from": new_city})
-                std_route.route[i - 1]._from = new_city
+                # da mettere cap su file
+                if np.random.randint(0, 101) <= 80:
+                    new_city = np.random.choice(driver.likedCities)
+                    while (
+                        new_city == stdTrip._from
+                        or new_city == stdTrip.to
+                    ):
+                        new_city = np.random.choice(driver.cities)
+                else:
+
+
+                # new_city = np.random.choice(driver.cities)
+                # while (
+                #     new_city == stdTrip._from
+                #     or new_city == stdTrip.to
+                #     or new_city in driver.dislikedCities
+                # ):
+                #     new_city = np.random.choice(driver.cities)
+                # new_city = np.random.choice(driver.cities)
+                # actualTrip.update({"from": new_city})
+                # actualTrip.update({"to": stdTrip.to})
+                # std_route.route[i - 1]._from = new_city
         else:
             actualTrip.update({"from": stdTrip._from})
+            actualTrip.update({"to": stdTrip.to})
 
         # Products (NEED TO CHECK)
         if np.random.randint(0, 101) <= driver.productsCrazyness:
@@ -124,7 +141,7 @@ def actRoute_generator():
             selected_route: StdRoute = np.random.choice(stdRoutes)
             # Create actual route
             actualRoute = generateActualRoute(selected_route, driver)
-            # print(actualRoute)
+            print(actualRoute)
 
 
 if __name__ == "__main__":
