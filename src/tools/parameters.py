@@ -4,9 +4,9 @@ from tools.cities_products import shopping_list as sl
 
 class Parameters:
     # Standard routes
-    ENTRIES=10
-    MINTRIP=10
-    MAXTRIP=30
+    ENTRIES=20
+    MINTRIP=100
+    MAXTRIP=300
     MINPRODUCTS=1
     MAXPRODUCTS=2
 

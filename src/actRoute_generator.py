@@ -85,12 +85,14 @@ def generateActualRoute(std_route: StdRoute, driver: Driver) -> ActRoute:
             if stdTrip._from in driver.likedCities:
                 actualTrip.update({"from": stdTrip._from})
                 actualTrip.update({"to": stdTrip.to})
-            # # if it's disliked we remove it
+            # if it's disliked we remove it
             elif stdTrip._from in driver.dislikedCities: 
                 if i > 0:
                     actualRoute.get("route")[i - 1].update({"to": stdTrip.to})
                     i-=1
                     changed = True
+                else:
+                    i-=1
             #otherwise, add a new city
             else:
                 # da mettere cap su file
