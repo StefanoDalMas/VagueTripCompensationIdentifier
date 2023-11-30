@@ -7,8 +7,8 @@ class Parameters:
     ENTRIES=10
     MINTRIP=10
     MAXTRIP=30
-    MINPRODUCTS=5
-    MAXPRODUCTS=50
+    MINPRODUCTS=1
+    MAXPRODUCTS=2
 
     # Paths
     SROUTES_FILENAME="standard.json"
