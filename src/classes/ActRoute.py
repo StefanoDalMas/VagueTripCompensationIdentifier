@@ -4,7 +4,7 @@ from typing import List, Dict, Tuple
 # custom imports
 from classes.Trip import Trip
 
-class StdRoute():
+class ActRoute():
 
     def __init__(self, id:str, driver_id:str, sRoute_id:str, aRoute:List[Trip]) -> None:
         self.id = id

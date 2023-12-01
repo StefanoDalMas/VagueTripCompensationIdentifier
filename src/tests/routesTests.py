@@ -4,7 +4,7 @@ import os
 from pprint import pprint
 from typing import List
 from actRoute_generator import actRoute_generator
-from classes.ActRoute import StdRoute as ActRoute 
+from classes.ActRoute import ActRoute 
 
 class TestRoutesGenerator(unittest.TestCase):
     
