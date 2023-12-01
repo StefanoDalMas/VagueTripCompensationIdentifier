@@ -68,57 +68,54 @@ def generateActualRoute(std_route: StdRoute, driver: Driver) -> ActRoute:
     actualRoute.update({"driver": driver.id})
     actualRoute.update({"sroute:": std_route.id})
     actualRoute.update({"route": []})
-    changed = False # ricordarsi di capire cosa accade se ne cambia 2 di fila
+    
     i = 0
-
     for stdTrip in std_route.route:
         actualTrip = {}
-        if changed:
-            changed = False
-            actualTrip.update({"from": stdTrip._from})
-            actualTrip.update({"to": stdTrip.to})
+
         # CITIES
-        elif (
-            np.random.randint(0, 101) <= driver.citiesCrazyness
-        ):  # we want to change the city
-            # if the city is liked, we keep it
+        if (np.random.randint(0, 101) <= driver.citiesCrazyness): #We want to change the city
+            
+            #If the city is liked, we keep it
             if stdTrip._from in driver.likedCities:
                 actualTrip.update({"from": stdTrip._from})
                 actualTrip.update({"to": stdTrip.to})
-            # if it's disliked we remove it
-            elif stdTrip._from in driver.dislikedCities: 
+
+            #If it's disliked we remove it
+            elif stdTrip._from in driver.dislikedCities:
                 if i > 0:
                     actualRoute.get("route")[i - 1].update({"to": stdTrip.to})
-                    i-=1
-                    changed = True
-                else:
-                    i-=1
-            #otherwise, add a new city
+
+            #Otherwise, add a new city
             else:
-                # da mettere cap su file
-                # global cap
-                # if (
-                #     np.random.randint(0, 101) <= cap
-                # ):  # check if we want to create a liked city or not
-                #     # create a liked city
-                #     new_city = np.random.choice(driver.likedCities)
-                #     while new_city == stdTrip._from or new_city == stdTrip.to:
-                #         new_city = np.random.choice(driver.cities)
-                #     if i > 0:
-                #         actualRoute.get("route")[i - 1].update({"to": new_city})
-                #         actualTrip.update({"from": new_city})
-                #         actualTrip.update({"to": stdTrip.to})
-                #     else:
-                #         actualTrip.update({"from": new_city})
-                #         actualTrip.update({"to": stdTrip._from})
-                actualTrip.update({"from": stdTrip._from})
-                actualTrip.update({"to": stdTrip.to})
+                #Da mettere cap su file
+                global cap
+                if (np.random.randint(0, 101) <= cap): #Check if we want to create a liked city or not
+                    
+                    #Create a liked city
+                    new_city = np.random.choice(driver.likedCities)
+                    while new_city == stdTrip._from or new_city == stdTrip.to:
+                        new_city = np.random.choice(driver.cities)
+                    
+                    if i > 0:
+                        actualRoute.get("route")[i - 1].update({"to": new_city})
+                        actualTrip.update({"from": new_city})
+                        actualTrip.update({"to": stdTrip.to})
+                    else:
+                        actualTrip.update({"from": new_city})
+                        actualTrip.update({"to": stdTrip.to})
+                
+                #Don't change anything
+                else:
+                    actualTrip.update({"from": stdTrip._from})
+                    actualTrip.update({"to": stdTrip.to})
+
+        #We don't have to change anything :P
         else:
-            # we don't have to change anything :P
             actualTrip.update({"from": stdTrip._from})
             actualTrip.update({"to": stdTrip.to})
 
-        # Products (NEED TO COCK)
+        # Products (NEED TO CHECK)
         # if np.random.randint(0, 101) <= driver.productsCrazyness:
         #     # if the product is liked
         #     if stdTrip.merchandise in driver.likedProducts:
@@ -134,9 +131,11 @@ def generateActualRoute(std_route: StdRoute, driver: Driver) -> ActRoute:
         #         actualTrip.update({"merchandise": new_product})
         # else:
         #     actualTrip.update({"merchandise": stdTrip.merchandise})
+
+        #actualTrip=={} only if we remove the city
         if actualTrip != {}:
             actualRoute["route"].append(actualTrip)
-        i+=1
+            i+=1
 
     return actualRoute
 

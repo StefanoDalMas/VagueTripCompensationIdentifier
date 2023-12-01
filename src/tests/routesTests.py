@@ -20,13 +20,10 @@ class TestRoutesGenerator(unittest.TestCase):
         for route in actual_routes:
             last = None
             trips = route.get("route")
-            print(trips)
             if trips == None:
                 assert(1==0)
             for trip in trips:
                 if last != None:
-                    print(last)
-                    print(trip.get("from"))
                     assert(trip.get("from") == last) 
                 last = trip.get("to")
 
