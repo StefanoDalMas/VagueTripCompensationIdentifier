@@ -93,8 +93,9 @@ def generateActualRoute(std_route: StdRoute, driver: Driver) -> ActRoute:
                 # If it's disliked we remove it
                 elif stdTrip._from in driver.dislikedCities:
                     file.write("I come from a city that sucks! Remove it!\n")
-                    if i > 0:
+                    if i > 0 and actualRoute.get("route")[i - 1]["from"] != stdTrip.to:
                         actualRoute.get("route")[i - 1].update({"to": stdTrip.to})
+                    # TODO se non si può eliminare lasciamo così o sostituiamo?
 
                 # Otherwise, add a new city
                 else:
@@ -133,6 +134,7 @@ def generateActualRoute(std_route: StdRoute, driver: Driver) -> ActRoute:
 
             # If we removed the city skip products
             if actualTrip == {}:
+                file.write("\n\n")
                 continue
 
             """ PRODUCTS """  # TODO it's not complete
