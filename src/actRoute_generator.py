@@ -1,12 +1,14 @@
 import json
 from typing import List, Dict, Tuple
 import numpy as np
+import os
 
 from classes.Driver import Driver
 from classes.Trip import Trip
 from classes.StdRoute import StdRoute
 from classes.ActRoute import ActRoute
 from tools.parameters import Parameters as params
+from tools.utils import delete_folder
 
 act_route_counter: int = 0  # For the id of the actual routes
 
@@ -69,80 +71,99 @@ def generateActualRoute(std_route: StdRoute, driver: Driver) -> ActRoute:
     actualRoute.update({"sroute:": std_route.id})
     actualRoute.update({"route": []})
 
-    i = 0
-    for stdTrip in std_route.route:
-        actualTrip = {}
+    if not os.path.exists("./tests/operations/driver_" + str(driver.id)):
+        os.makedirs("./tests/operations/driver_" + str(driver.id))
+    with open(f'./tests/operations/driver_{driver.id}/{std_route.id}.txt', 'w') as file:
+        i = 0
+        for stdTrip in std_route.route:
+            file.write(f"ciclo numero {i}, driver numero {driver.id}\n")
+            actualTrip = {}
 
-        """ CITIES """
-        if (
-            np.random.randint(0, 101) <= driver.citiesCrazyness
-        ):  # We want to change the city
-            # If the city is liked, we keep it
-            if stdTrip._from in driver.likedCities:
-                actualTrip.update({"from": stdTrip._from})
-                actualTrip.update({"to": stdTrip.to})
-
-            # If it's disliked we remove it
-            elif stdTrip._from in driver.dislikedCities:
-                if i > 0:
-                    actualRoute.get("route")[i - 1].update({"to": stdTrip.to})
-
-            # Otherwise, add a new city
-            else:
-                # Da mettere cap su file
-                if (
-                    np.random.randint(0, 101) <= params.CAP_ADD_NEW_CITY
-                ):  # Check if we want to create a liked city or not
-                    # Create a liked city
-                    new_city = np.random.choice(driver.likedCities)
-                    while new_city == stdTrip._from or new_city == stdTrip.to:
-                        new_city = np.random.choice(driver.cities)
-
-                    if i > 0:
-                        actualRoute.get("route")[i - 1].update({"to": new_city})
-                    actualTrip.update({"from": new_city})
-                    actualTrip.update({"to": stdTrip.to})
-
-                # Don't change anything
-                else:
+            """ CITIES """
+            if (
+                np.random.randint(0, 101) <= driver.citiesCrazyness
+            ):  # We want to change the city
+                file.write("first dice is TRUE -> let's modify!\n")
+                # If the city is liked, we keep it
+                if stdTrip._from in driver.likedCities:
+                    file.write("but I like the city I come from! I won't change anything\n")
                     actualTrip.update({"from": stdTrip._from})
                     actualTrip.update({"to": stdTrip.to})
 
-        # We don't have to change anything :P
-        else:
-            actualTrip.update({"from": stdTrip._from})
-            actualTrip.update({"to": stdTrip.to})
+                # If it's disliked we remove it
+                elif stdTrip._from in driver.dislikedCities:
+                    file.write("I come from a city that sucks! Remove it!\n")
+                    if i > 0:
+                        actualRoute.get("route")[i - 1].update({"to": stdTrip.to})
 
-        # If we removed the city skip products
-        if actualTrip == {}:
-            continue
+                # Otherwise, add a new city
+                else:
+                    file.write("let's add a city\n")
+                    if (
+                        np.random.randint(0, 101) <= params.CAP_ADD_NEW_CITY
+                    ):  # Check if we want to create a liked city or a normal one
+                        # Create a liked city
+                        new_city = np.random.choice(driver.likedCities)
+                        while new_city == stdTrip._from or new_city == stdTrip.to:
+                            new_city = np.random.choice(driver.likedCities)
 
-        """ PRODUCTS """  # TODO it's not complete
-        # We want to change the products
-        if np.random.randint(0, 101) <= driver.productsCrazyness:
-            # If the product is liked
-            if stdTrip.merchandise in driver.likedProducts:
-                actualTrip.update({"merchandise": stdTrip.merchandise})
-            # It's the same if the product is disliked or not
+                        if i > 0:
+                            actualRoute.get("route")[i - 1].update({"to": new_city})
+                        actualTrip.update({"from": new_city})
+                        actualTrip.update({"to": stdTrip.to})
+                        file.write(f"second dice is TRUE -> let's add an awsome city: {new_city}\n")
+
+                    # Create a normal city
+                    else:
+                        new_city = np.random.choice(driver.cities)
+                        while new_city == stdTrip._from or new_city == stdTrip.to:
+                            new_city = np.random.choice(driver.cities)
+
+                        if i > 0:
+                            actualRoute.get("route")[i - 1].update({"to": new_city})
+                        actualTrip.update({"from": new_city})
+                        actualTrip.update({"to": stdTrip.to})
+                        file.write(f"second dice is FALSE -> let's add a normal city: {new_city}\n")
+
+            # We don't have to change anything :P
             else:
-                # Create a new product
-                new_product = np.random.choice(driver.products)
-                while (
-                    new_product == stdTrip.merchandise
-                    or new_product in driver.dislikedProducts
-                ):
+                file.write("first dice is FALSE -> I'm not going to modify anithyng\n")
+                actualTrip.update({"from": stdTrip._from})
+                actualTrip.update({"to": stdTrip.to})
+
+            # If we removed the city skip products
+            if actualTrip == {}:
+                continue
+
+            """ PRODUCTS """  # TODO it's not complete
+            # We want to change the products
+            if np.random.randint(0, 101) <= driver.productsCrazyness:
+                # If the product is liked
+                if stdTrip.merchandise in driver.likedProducts:
+                    actualTrip.update({"merchandise": stdTrip.merchandise})
+                # It's the same if the product is disliked or not
+                else:
+                    # Create a new product
                     new_product = np.random.choice(driver.products)
-                actualTrip.update({"merchandise": new_product})
+                    while (
+                        new_product == stdTrip.merchandise
+                        or new_product in driver.dislikedProducts
+                    ):
+                        new_product = np.random.choice(driver.products)
+                    actualTrip.update({"merchandise": new_product})
 
-        # We don't have to change anything :P
-        else:
-            actualTrip.update({"merchandise": stdTrip.merchandise})
+            # We don't have to change anything :P
+            else:
+                actualTrip.update({"merchandise": stdTrip.merchandise})
 
-        # Add the trip to the route
-        actualRoute["route"].append(actualTrip)
-        i += 1
+            # Add the trip to the route
+            actualRoute["route"].append(actualTrip)
+            i += 1
 
-    return actualRoute
+            file.write("\n\n")
+            
+
+        return actualRoute
 
 
 def actRoute_generator() -> List[ActRoute]:
@@ -168,4 +189,6 @@ def actRoute_generator() -> List[ActRoute]:
 
 
 if __name__ == "__main__":
+    delete_folder("./tests/operations/")
+    os.makedirs("./tests/operations/")
     actRoute_generator()
