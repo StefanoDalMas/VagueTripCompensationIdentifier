@@ -113,8 +113,8 @@ def generateActualRoute(std_route: StdRoute, driver: Driver) -> ActRoute:
                         actualTrip.update({"to": stdTrip.to})
                         file.write(f"second dice is TRUE -> let's add an awsome city: {new_city}\n")
 
-                    # Create a normal city
                     else:
+                        # Create a normal city
                         new_city = np.random.choice(driver.cities)
                         while new_city == stdTrip._from or new_city == stdTrip.to:
                             new_city = np.random.choice(driver.cities)
@@ -171,21 +171,32 @@ def actRoute_generator() -> List[ActRoute]:
     drivers: List[Driver] = getDrivers()
     stdRoutes: List[StdRoute] = getStdRoutes()
     actualRoutes: List[ActRoute] = []
+    selected_stdRoutes: List[str] = []
+    selected_route: StdRoute
 
     for driver in drivers:
         DRIVER_ROUTES = np.random.randint(
             params.MIN_ROUTES_TO_DRIVERS, params.MAX_ROUTES_TO_DRIVERS + 1
         )
-        for _ in range(DRIVER_ROUTES):
-            selected_route: StdRoute = np.random.choice(stdRoutes)
-            # Create actual routes
-            actualRoutes.append(generateActualRoute(selected_route, driver))
+        for i in range(DRIVER_ROUTES):
+            selected_route = np.random.choice(stdRoutes)
+            if i == 0:
+                selected_stdRoutes.append(selected_route.id)
+                actualRoutes.append(generateActualRoute(selected_route, driver))
+            else:
+                while (selected_route.id in selected_stdRoutes):
+                    selected_route = np.random.choice(stdRoutes)
+                selected_stdRoutes.append(selected_route.id)
+                actualRoutes.append(generateActualRoute(selected_route, driver))
+        selected_stdRoutes.clear()
+                    
 
     # Save the actual routes on a json file
     with open("./data/" + params.AROUTES_FILENAME, "w") as f:
         f.write(json.dumps(actualRoutes, indent=4))
 
     return actualRoutes
+
 
 
 if __name__ == "__main__":
