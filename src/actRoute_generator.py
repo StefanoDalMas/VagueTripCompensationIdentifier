@@ -95,6 +95,9 @@ def generateActualRoute(std_route: StdRoute, driver: Driver) -> ActRoute:
                     file.write("I come from a city that sucks! Remove it!\n")
                     if i > 0 and actualRoute.get("route")[i - 1]["from"] != stdTrip.to:
                         actualRoute.get("route")[i - 1].update({"to": stdTrip.to})
+                    elif i > 0:
+                        actualTrip.update({"from": stdTrip._from})
+                        actualTrip.update({"to": stdTrip.to})
                     # TODO se non si può eliminare lasciamo così o sostituiamo?
 
                 # Otherwise, add a new city
@@ -103,11 +106,19 @@ def generateActualRoute(std_route: StdRoute, driver: Driver) -> ActRoute:
                     if (
                         np.random.randint(0, 101) <= params.CAP_ADD_NEW_CITY
                     ):  # Check if we want to create a liked city or a normal one
+                        
                         # Create a liked city
                         new_city = np.random.choice(driver.likedCities)
+                        counter_liked_cities = 0
                         while new_city == stdTrip._from or new_city == stdTrip.to or (i>0 and new_city == (actualRoute.get("route")[i - 1])["from"] ):
+                            # If we can't find a liked city, we create a normal one
+                            if counter_liked_cities == len(driver.likedCities):
+                                new_city = np.random.choice(driver.cities)
+                                break
                             new_city = np.random.choice(driver.likedCities)
+                            counter_liked_cities+=1
 
+                        ### We actually don't change the city
                         if i > 0:
                             actualRoute.get("route")[i - 1].update({"to": new_city})
                         actualTrip.update({"from": new_city})
@@ -163,8 +174,7 @@ def generateActualRoute(std_route: StdRoute, driver: Driver) -> ActRoute:
             i += 1
 
             file.write("\n\n")
-            
-
+        
         return actualRoute
 
 
@@ -202,8 +212,8 @@ def actRoute_generator() -> List[ActRoute]:
 
 
 if __name__ == "__main__":
-    delete_folder("./tests/operations/")
-    os.makedirs("./tests/operations/")
+    # delete_folder("./tests/operations/")
+    # os.makedirs("./tests/operations/")
     actRoute_generator()
 
 # regEx for testing if we have same to and from attribute of Trip in actRoutes
