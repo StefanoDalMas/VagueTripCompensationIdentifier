@@ -112,7 +112,7 @@ def generateActualRoute(std_route: StdRoute, driver: Driver) -> ActRoute:
                         counter_liked_cities = 0
                         while new_city == stdTrip._from or new_city == stdTrip.to or (i>0 and new_city == (actualRoute.get("route")[i - 1])["from"] ):
                             # If we can't find a liked city, we create a normal one
-                            if counter_liked_cities == len(driver.likedCities):
+                            if counter_liked_cities >= len(driver.likedCities):
                                 new_city = np.random.choice(driver.cities)
                                 break
                             new_city = np.random.choice(driver.likedCities)
@@ -197,6 +197,8 @@ def actRoute_generator() -> List[ActRoute]:
                 actualRoutes.append(generateActualRoute(selected_route, driver))
             else:
                 while (selected_route.id in selected_stdRoutes):
+                    if (len(selected_stdRoutes) >= len(stdRoutes)):
+                        break
                     selected_route = np.random.choice(stdRoutes)
                 selected_stdRoutes.append(selected_route.id)
                 actualRoutes.append(generateActualRoute(selected_route, driver))
@@ -212,8 +214,8 @@ def actRoute_generator() -> List[ActRoute]:
 
 
 if __name__ == "__main__":
-    # delete_folder("./tests/operations/")
-    # os.makedirs("./tests/operations/")
+    delete_folder("./tests/operations/")
+    os.makedirs("./tests/operations/")
     actRoute_generator()
 
 # regEx for testing if we have same to and from attribute of Trip in actRoutes
