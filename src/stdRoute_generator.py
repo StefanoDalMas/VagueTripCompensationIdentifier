@@ -9,8 +9,6 @@ from tools.parameters import Parameters as params
 from classes.StdRoute import StdRoute
 
 
-
-
 def stdRoute_generator(entries:int, minTrip:int, maxTrip:int, minProducts:int, maxProducts:int, fileName:str) -> List[StdRoute]:
     # open "data/standard.json, if it's not there, create it"
     try:
@@ -54,5 +52,4 @@ def stdRoute_generator(entries:int, minTrip:int, maxTrip:int, minProducts:int, m
 
 
 if __name__ == "__main__":
-
     stdRoute_generator(params.ENTRIES, params.MINTRIP, params.MAXTRIP, params.MINPRODUCTS, params.MAXPRODUCTS, params.SROUTES_FILENAME)
