@@ -1,6 +1,9 @@
 from tools.parameters import Parameters as params
+
 import actRoute_generator
 import stdRoute_generator
+import drivers_generator
+
 
 def check_params():
     print("Checking parameters...")
@@ -24,8 +27,19 @@ def check_params():
         raise Exception("MAX_ROUTES_TO_DRIVERS must be less than ENTRIES")
     print("Parameters OK")
 
+
 if __name__ == "__main__":
     check_params()
-    stdRoute_generator.stdRoute_generator(params.ENTRIES, params.MINTRIP, params.MAXTRIP, params.MINPRODUCTS, params.MAXPRODUCTS, params.SROUTES_FILENAME)
+    drivers_generator.drivers_generator()
+    print("Drivers generated")
+    stdRoute_generator.stdRoute_generator(
+        params.ENTRIES,
+        params.MINTRIP,
+        params.MAXTRIP,
+        params.MINPRODUCTS,
+        params.MAXPRODUCTS,
+        params.SROUTES_FILENAME,
+    )
+    print("Standard routes generated")
     actRoute_generator.actRoute_generator()
-    print("Done")
+    print("Actual routes generated")

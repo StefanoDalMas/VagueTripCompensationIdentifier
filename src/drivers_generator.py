@@ -43,9 +43,9 @@ def drivers_generator():
                         dislikedCities, dislikedProducts, cities, products)
         drivers.append(driver)
 
-        print(f"-DRIVER {n}-")
-        print(f"CITIES\n likedCities={len(likedCities)}\n dislikedCities={len(dislikedCities)}\n cities={len(cities)}\n")
-        print(f"PRODUCTS\n likedProducts={len(likedProducts)}\n dislikedProducts={len(dislikedProducts)}\n products={len(products)}\n")
+        # print(f"-DRIVER {n}-")
+        # print(f"CITIES\n likedCities={len(likedCities)}\n dislikedCities={len(dislikedCities)}\n cities={len(cities)}\n")
+        # print(f"PRODUCTS\n likedProducts={len(likedProducts)}\n dislikedProducts={len(dislikedProducts)}\n products={len(products)}\n")
 
     # cast all elements to dictionary
     driver_list_dict = [driver.to_dict() for driver in drivers]
@@ -57,5 +57,4 @@ def drivers_generator():
 
 
 if __name__ == "__main__":
-
     drivers_generator()

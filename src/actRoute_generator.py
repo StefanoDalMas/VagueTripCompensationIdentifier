@@ -73,7 +73,7 @@ def generateActualRoute(std_route: StdRoute, driver: Driver) -> ActRoute:
 
     if not os.path.exists("./tests/operations/driver_" + str(driver.id)):
         os.makedirs("./tests/operations/driver_" + str(driver.id))
-    with open(f'./tests/operations/driver_{driver.id}/{std_route.id}.txt', 'w') as file:
+    with open(f"./tests/operations/driver_{driver.id}/{std_route.id}.txt", "w") as file:
         i = 0
         for stdTrip in std_route.route:
             file.write(f"ciclo numero {i}, driver numero {driver.id}\n")
@@ -86,7 +86,9 @@ def generateActualRoute(std_route: StdRoute, driver: Driver) -> ActRoute:
                 file.write("first dice is TRUE -> let's modify!\n")
                 # If the city is liked, we keep it
                 if stdTrip._from in driver.likedCities:
-                    file.write("but I like the city I come from! I won't change anything\n")
+                    file.write(
+                        "but I like the city I come from! I won't change anything\n"
+                    )
                     actualTrip.update({"from": stdTrip._from})
                     actualTrip.update({"to": stdTrip.to})
 
@@ -105,37 +107,57 @@ def generateActualRoute(std_route: StdRoute, driver: Driver) -> ActRoute:
                     file.write("let's add a city\n")
                     if (
                         np.random.randint(0, 101) <= params.CAP_ADD_NEW_CITY
+                        and len(driver.likedCities) > 0
                     ):  # Check if we want to create a liked city or a normal one
-                        
                         # Create a liked city
                         new_city = np.random.choice(driver.likedCities)
                         counter_liked_cities = 0
-                        while new_city == stdTrip._from or new_city == stdTrip.to or (i>0 and new_city == (actualRoute.get("route")[i - 1])["from"] ):
+                        while (
+                            new_city == stdTrip._from
+                            or new_city == stdTrip.to
+                            or (
+                                i > 0
+                                and new_city
+                                == (actualRoute.get("route")[i - 1])["from"]
+                            )
+                        ):
                             # If we can't find a liked city, we create a normal one
                             if counter_liked_cities >= len(driver.likedCities):
                                 new_city = np.random.choice(driver.cities)
                                 break
                             new_city = np.random.choice(driver.likedCities)
-                            counter_liked_cities+=1
+                            counter_liked_cities += 1
 
                         ### We actually don't change the city
                         if i > 0:
                             actualRoute.get("route")[i - 1].update({"to": new_city})
                         actualTrip.update({"from": new_city})
                         actualTrip.update({"to": stdTrip.to})
-                        file.write(f"second dice is TRUE -> let's add an awsome city: {new_city}\n")
+                        file.write(
+                            f"second dice is TRUE -> let's add an awsome city: {new_city}\n"
+                        )
 
                     else:
                         # Create a normal city
                         new_city = np.random.choice(driver.cities)
-                        while new_city == stdTrip._from or new_city == stdTrip.to or (i>0 and new_city == (actualRoute.get("route")[i - 1])["from"] ):
+                        while (
+                            new_city == stdTrip._from
+                            or new_city == stdTrip.to
+                            or (
+                                i > 0
+                                and new_city
+                                == (actualRoute.get("route")[i - 1])["from"]
+                            )
+                        ):
                             new_city = np.random.choice(driver.cities)
 
                         if i > 0:
                             actualRoute.get("route")[i - 1].update({"to": new_city})
                         actualTrip.update({"from": new_city})
                         actualTrip.update({"to": stdTrip.to})
-                        file.write(f"second dice is FALSE -> let's add a normal city: {new_city}\n")
+                        file.write(
+                            f"second dice is FALSE -> let's add a normal city: {new_city}\n"
+                        )
 
             # We don't have to change anything :P
             else:
@@ -169,12 +191,16 @@ def generateActualRoute(std_route: StdRoute, driver: Driver) -> ActRoute:
             else:
                 actualTrip.update({"merchandise": stdTrip.merchandise})
 
+            # For now we just skip the trip if the from and to are the same
+            if actualTrip["from"] == actualTrip["to"]:
+                continue
+
             # Add the trip to the route
             actualRoute["route"].append(actualTrip)
             i += 1
 
             file.write("\n\n")
-        
+
         return actualRoute
 
 
@@ -196,21 +222,19 @@ def actRoute_generator() -> List[ActRoute]:
                 selected_stdRoutes.append(selected_route.id)
                 actualRoutes.append(generateActualRoute(selected_route, driver))
             else:
-                while (selected_route.id in selected_stdRoutes):
-                    if (len(selected_stdRoutes) >= len(stdRoutes)):
+                while selected_route.id in selected_stdRoutes:
+                    if len(selected_stdRoutes) >= len(stdRoutes):
                         break
                     selected_route = np.random.choice(stdRoutes)
                 selected_stdRoutes.append(selected_route.id)
                 actualRoutes.append(generateActualRoute(selected_route, driver))
         selected_stdRoutes.clear()
-                    
 
     # Save the actual routes on a json file
     with open("./data/" + params.AROUTES_FILENAME, "w") as f:
         f.write(json.dumps(actualRoutes, indent=4))
 
     return actualRoutes
-
 
 
 if __name__ == "__main__":
