@@ -3,78 +3,100 @@
         "id": "s0",
         "route": [
             {
-                "from": "Ancona",
-                "to": "Viareggio",
+                "from": "Aversa",
+                "to": "Giugliano in Campania",
                 "merchandise": {
-                    "Mop": 23,
-                    "Coffee": 28
+                    "Oranges": 12
                 }
             },
             {
-                "from": "Viareggio",
-                "to": "Grosseto",
+                "from": "Giugliano in Campania",
+                "to": "Prato",
                 "merchandise": {
-                    "Peanut Butter": 4
+                    "Floss": 10,
+                    "Coffee": 11
                 }
             },
             {
-                "from": "Grosseto",
-                "to": "Salerno",
+                "from": "Prato",
+                "to": "Velletri",
                 "merchandise": {
-                    "Tea": 12
+                    "Cucumbers": 30,
+                    "Sponges": 17
                 }
             },
             {
-                "from": "Salerno",
-                "to": "Terni",
+                "from": "Velletri",
+                "to": "Crotone",
                 "merchandise": {
-                    "Chicken": 3,
-                    "Toothpaste": 16
+                    "Yogurt": 20,
+                    "Cereal": 13
                 }
             },
             {
-                "from": "Terni",
-                "to": "Forl\u00ec",
+                "from": "Crotone",
+                "to": "Pesaro",
                 "merchandise": {
-                    "Shoes": 2
+                    "Ketchup": 6
                 }
             },
             {
-                "from": "Forl\u00ec",
-                "to": "Brindisi",
+                "from": "Pesaro",
+                "to": "Massa",
                 "merchandise": {
-                    "Dish Soap": 5
+                    "Light Bulbs": 3,
+                    "Ketchup": 30
                 }
             },
             {
-                "from": "Brindisi",
-                "to": "Pistoia",
+                "from": "Massa",
+                "to": "Massa Carrara",
                 "merchandise": {
-                    "Beef": 28,
-                    "Bucket": 9
+                    "Tissues": 21
                 }
             },
             {
-                "from": "Pistoia",
-                "to": "Lamezia Terme",
+                "from": "Massa Carrara",
+                "to": "Savona",
                 "merchandise": {
-                    "Tomatoes": 8,
-                    "Aluminum Foil": 16
+                    "Razors": 11
                 }
             },
             {
-                "from": "Lamezia Terme",
-                "to": "Cagliari",
+                "from": "Savona",
+                "to": "Gela",
                 "merchandise": {
-                    "Cucumbers": 4
+                    "Bread": 15
                 }
             },
             {
-                "from": "Cagliari",
-                "to": "Afragola",
+                "from": "Gela",
+                "to": "Modena",
                 "merchandise": {
-                    "Soda": 5,
-                    "Cucumbers": 12
+                    "Cheese": 14
+                }
+            },
+            {
+                "from": "Modena",
+                "to": "Guidonia Montecelio",
+                "merchandise": {
+                    "Butter": 15,
+                    "Chicken": 3
+                }
+            },
+            {
+                "from": "Guidonia Montecelio",
+                "to": "La Spezia",
+                "merchandise": {
+                    "Sponges": 7,
+                    "Fabric Softener": 13
+                }
+            },
+            {
+                "from": "La Spezia",
+                "to": "Lecce",
+                "merchandise": {
+                    "Soda": 20
                 }
             }
         ]
@@ -83,171 +105,128 @@
         "id": "s1",
         "route": [
             {
-                "from": "Ancona",
-                "to": "Ravenna",
+                "from": "Bolzano",
+                "to": "Asti",
                 "merchandise": {
-                    "Tissues": 17
+                    "Salt": 28
                 }
             },
             {
-                "from": "Ravenna",
-                "to": "Fiumicino",
+                "from": "Asti",
+                "to": "Agrigento",
                 "merchandise": {
-                    "Pepper": 7,
-                    "Matches": 22
+                    "Microwave": 9
                 }
             },
             {
-                "from": "Fiumicino",
-                "to": "Cosenza",
+                "from": "Agrigento",
+                "to": "Velletri",
                 "merchandise": {
-                    "Pens": 19,
-                    "Butter": 2
+                    "Coffeemaker": 29,
+                    "Ketchup": 24
                 }
             },
             {
-                "from": "Cosenza",
-                "to": "Barletta",
+                "from": "Velletri",
+                "to": "Torino",
                 "merchandise": {
-                    "Water": 14
+                    "Carrots": 6,
+                    "Floss": 28
                 }
             },
             {
-                "from": "Barletta",
-                "to": "Perugia",
+                "from": "Torino",
+                "to": "Brescia",
                 "merchandise": {
-                    "Medicine": 13,
-                    "Beef": 13
+                    "Fabric Softener": 8
                 }
             },
             {
-                "from": "Perugia",
-                "to": "Castellammare di Stabia",
+                "from": "Brescia",
+                "to": "Torino",
                 "merchandise": {
-                    "Cucumbers": 8,
-                    "Socks": 3
+                    "Plastic Wrap": 27,
+                    "Dish Soap": 17
                 }
             },
             {
-                "from": "Castellammare di Stabia",
-                "to": "Taranto",
+                "from": "Torino",
+                "to": "Pavia",
                 "merchandise": {
-                    "Apples": 24
+                    "Carrots": 12
                 }
             },
             {
-                "from": "Taranto",
-                "to": "L\u2019Aquila",
+                "from": "Pavia",
+                "to": "Belluno",
                 "merchandise": {
-                    "Paper Towels": 11
+                    "Chips": 12,
+                    "Yogurt": 11
                 }
             },
             {
-                "from": "L\u2019Aquila",
-                "to": "Salerno",
+                "from": "Belluno",
+                "to": "Puegnago sul Garda",
                 "merchandise": {
-                    "Batteries": 9,
-                    "Chicken": 18
+                    "Tomatoes": 29
                 }
             },
             {
-                "from": "Salerno",
+                "from": "Puegnago sul Garda",
+                "to": "Carpi",
+                "merchandise": {
+                    "Onions": 15
+                }
+            },
+            {
+                "from": "Carpi",
+                "to": "Civitavecchia",
+                "merchandise": {
+                    "Mustard": 24,
+                    "Razors": 19
+                }
+            },
+            {
+                "from": "Civitavecchia",
                 "to": "Savona",
                 "merchandise": {
-                    "Tissues": 3,
-                    "Yogurt": 9
+                    "Clothing": 19
                 }
             },
             {
                 "from": "Savona",
-                "to": "Pesaro",
+                "to": "Agrigento",
                 "merchandise": {
-                    "Clothing": 3
+                    "Bucket": 14,
+                    "Flour": 15
                 }
             },
             {
-                "from": "Pesaro",
-                "to": "Pomezia",
+                "from": "Agrigento",
+                "to": "Cuneo",
                 "merchandise": {
-                    "Fabric Softener": 10
+                    "Bell Peppers": 5
                 }
             },
             {
-                "from": "Pomezia",
-                "to": "Ferrara",
+                "from": "Cuneo",
+                "to": "Crotone",
                 "merchandise": {
-                    "Vinegar": 26,
-                    "Potatoes": 15
+                    "Candles": 19
                 }
             },
             {
-                "from": "Ferrara",
-                "to": "Milano",
+                "from": "Crotone",
+                "to": "Novi Sad",
                 "merchandise": {
-                    "Shoes": 15,
-                    "Dustpan": 5
+                    "Chicken": 6
                 }
             },
             {
-                "from": "Milano",
-                "to": "Brindisi",
+                "from": "Novi Sad",
+                "to": "Lecce",
                 "merchandise": {
-                    "Sugar": 7,
-                    "Vinegar": 6
-                }
-            },
-            {
-                "from": "Brindisi",
-                "to": "Massa Carrara",
-                "merchandise": {
-                    "Matches": 20,
-                    "Microwave": 18
-                }
-            },
-            {
-                "from": "Massa Carrara",
-                "to": "Firenze",
-                "merchandise": {
-                    "Potatoes": 12
-                }
-            },
-            {
-                "from": "Firenze",
-                "to": "Afragola",
-                "merchandise": {
-                    "Sugar": 19
-                }
-            },
-            {
-                "from": "Afragola",
-                "to": "Pesaro",
-                "merchandise": {
-                    "Tissues": 15,
-                    "Shoes": 30
-                }
-            },
-            {
-                "from": "Pesaro",
-                "to": "Trieste",
-                "merchandise": {
-                    "Underwear": 11,
-                    "Butter": 26
-                }
-            },
-            {
-                "from": "Trieste",
-                "to": "Caltanissetta",
-                "merchandise": {
-                    "Salt": 9,
-                    "Cucumbers": 7
-                }
-            },
-            {
-                "from": "Caltanissetta",
-                "to": "Macerata",
-                "merchandise": {
-                    "Trash Bags": 5,
-                    "Matches": 11
+                    "Bucket": 15
                 }
             }
         ]
@@ -256,166 +235,147 @@
         "id": "s2",
         "route": [
             {
-                "from": "Andria",
-                "to": "Catania",
+                "from": "Vicenza",
+                "to": "Ancona",
                 "merchandise": {
-                    "Water": 14
+                    "Butter": 27,
+                    "Yogurt": 7
                 }
             },
             {
-                "from": "Catania",
-                "to": "Terni",
-                "merchandise": {
-                    "Clothing": 4
-                }
-            },
-            {
-                "from": "Terni",
-                "to": "Latina",
-                "merchandise": {
-                    "Jelly": 5
-                }
-            },
-            {
-                "from": "Latina",
-                "to": "Grosseto",
-                "merchandise": {
-                    "Towels": 26,
-                    "Bucket": 2
-                }
-            },
-            {
-                "from": "Grosseto",
-                "to": "Casoria",
-                "merchandise": {
-                    "Detergent": 23,
-                    "Cookies": 22
-                }
-            },
-            {
-                "from": "Casoria",
-                "to": "Arezzo",
-                "merchandise": {
-                    "Pasta": 9,
-                    "Floss": 17
-                }
-            },
-            {
-                "from": "Arezzo",
-                "to": "Pescara",
-                "merchandise": {
-                    "Flour": 3
-                }
-            },
-            {
-                "from": "Pescara",
-                "to": "Reggio Calabria",
-                "merchandise": {
-                    "Pepper": 3,
-                    "Cheese": 13
-                }
-            },
-            {
-                "from": "Reggio Calabria",
-                "to": "Belluno",
-                "merchandise": {
-                    "Sponges": 11
-                }
-            },
-            {
-                "from": "Belluno",
-                "to": "Genova",
-                "merchandise": {
-                    "Olive Oil": 19
-                }
-            },
-            {
-                "from": "Genova",
-                "to": "Fiumicino",
-                "merchandise": {
-                    "Jelly": 2,
-                    "Oranges": 13
-                }
-            },
-            {
-                "from": "Fiumicino",
-                "to": "Avellino",
-                "merchandise": {
-                    "Shoes": 28
-                }
-            },
-            {
-                "from": "Avellino",
-                "to": "Udine",
-                "merchandise": {
-                    "Onions": 6,
-                    "Tea": 23
-                }
-            },
-            {
-                "from": "Udine",
-                "to": "Faenza",
-                "merchandise": {
-                    "Fabric Softener": 29
-                }
-            },
-            {
-                "from": "Faenza",
-                "to": "Civitavecchia",
-                "merchandise": {
-                    "Carrots": 3,
-                    "Matches": 2
-                }
-            },
-            {
-                "from": "Civitavecchia",
-                "to": "L\u2019Aquila",
-                "merchandise": {
-                    "Medicine": 30
-                }
-            },
-            {
-                "from": "L\u2019Aquila",
-                "to": "Novara",
-                "merchandise": {
-                    "Coffee": 18,
-                    "Cheese": 20
-                }
-            },
-            {
-                "from": "Novara",
-                "to": "Caserta",
-                "merchandise": {
-                    "Cereal": 26
-                }
-            },
-            {
-                "from": "Caserta",
+                "from": "Ancona",
                 "to": "Pisa",
                 "merchandise": {
-                    "Salad Dressing": 23
+                    "Razors": 6,
+                    "Olive Oil": 26
                 }
             },
             {
                 "from": "Pisa",
-                "to": "Catanzaro",
+                "to": "Molfetta",
                 "merchandise": {
-                    "Yogurt": 7,
-                    "Rice": 30
+                    "Tomatoes": 12,
+                    "Bread": 16
                 }
             },
             {
-                "from": "Catanzaro",
+                "from": "Molfetta",
+                "to": "Marano di Napoli",
+                "merchandise": {
+                    "Soap": 3
+                }
+            },
+            {
+                "from": "Marano di Napoli",
+                "to": "Taranto",
+                "merchandise": {
+                    "Chicken": 6,
+                    "Water": 3
+                }
+            },
+            {
+                "from": "Taranto",
+                "to": "Pavia",
+                "merchandise": {
+                    "Cucumbers": 8
+                }
+            },
+            {
+                "from": "Pavia",
+                "to": "Taranto",
+                "merchandise": {
+                    "Broom": 25
+                }
+            },
+            {
+                "from": "Taranto",
+                "to": "Torino",
+                "merchandise": {
+                    "Chips": 7
+                }
+            },
+            {
+                "from": "Torino",
+                "to": "Roma",
+                "merchandise": {
+                    "Flour": 24,
+                    "Aluminum Foil": 14
+                }
+            },
+            {
+                "from": "Roma",
                 "to": "Civitanova Marche",
                 "merchandise": {
-                    "Dustpan": 16
+                    "Matches": 8
                 }
             },
             {
                 "from": "Civitanova Marche",
-                "to": "Massa Carrara",
+                "to": "L\u2019Aquila",
                 "merchandise": {
-                    "Rice": 19
+                    "Dustpan": 4
+                }
+            },
+            {
+                "from": "L\u2019Aquila",
+                "to": "Novi Sad",
+                "merchandise": {
+                    "Tomatoes": 22,
+                    "Yogurt": 16
+                }
+            },
+            {
+                "from": "Novi Sad",
+                "to": "Pisa",
+                "merchandise": {
+                    "Bananas": 25,
+                    "Cheese": 3
+                }
+            },
+            {
+                "from": "Pisa",
+                "to": "Brindisi",
+                "merchandise": {
+                    "Vinegar": 25,
+                    "Peanut Butter": 28
+                }
+            },
+            {
+                "from": "Brindisi",
+                "to": "Catania",
+                "merchandise": {
+                    "Fish": 5,
+                    "Ketchup": 26
+                }
+            },
+            {
+                "from": "Catania",
+                "to": "Arezzo",
+                "merchandise": {
+                    "Butter": 12,
+                    "Cereal": 2
+                }
+            },
+            {
+                "from": "Arezzo",
+                "to": "San Severo",
+                "merchandise": {
+                    "Toaster": 20
+                }
+            },
+            {
+                "from": "San Severo",
+                "to": "Civitanova Marche",
+                "merchandise": {
+                    "Bananas": 28,
+                    "Butter": 10
+                }
+            },
+            {
+                "from": "Civitanova Marche",
+                "to": "Belluno",
+                "merchandise": {
+                    "Light Bulbs": 19
                 }
             }
         ]
@@ -424,225 +384,227 @@
         "id": "s3",
         "route": [
             {
-                "from": "Lamezia Terme",
-                "to": "Siracusa",
+                "from": "Novi Sad",
+                "to": "Brindisi",
                 "merchandise": {
-                    "Pillowcases": 25
+                    "Grapes": 9
                 }
             },
             {
-                "from": "Siracusa",
-                "to": "Marano di Napoli",
+                "from": "Brindisi",
+                "to": "Cesena",
                 "merchandise": {
-                    "Ketchup": 22,
-                    "Milk": 16
+                    "Socks": 13
                 }
             },
             {
-                "from": "Marano di Napoli",
-                "to": "Civitavecchia",
+                "from": "Cesena",
+                "to": "Agrigento",
                 "merchandise": {
-                    "Milk": 3
+                    "Bucket": 15
                 }
             },
             {
-                "from": "Civitavecchia",
+                "from": "Agrigento",
                 "to": "Ercolano",
                 "merchandise": {
-                    "Light Bulbs": 10,
-                    "Tea": 17
+                    "Sheets": 3
                 }
             },
             {
                 "from": "Ercolano",
-                "to": "Monza",
+                "to": "Grosseto",
                 "merchandise": {
-                    "Bread": 11
+                    "Salad Dressing": 4
                 }
             },
             {
-                "from": "Monza",
-                "to": "Marano di Napoli",
+                "from": "Grosseto",
+                "to": "Sassari",
                 "merchandise": {
-                    "Shampoo": 30,
-                    "Coffee": 5
+                    "Matches": 22
                 }
             },
             {
-                "from": "Marano di Napoli",
-                "to": "Casalnuovo di Napoli",
+                "from": "Sassari",
+                "to": "Benevento",
                 "merchandise": {
-                    "Trash Bags": 13
+                    "Broom": 15
                 }
             },
             {
-                "from": "Casalnuovo di Napoli",
-                "to": "Fiumicino",
+                "from": "Benevento",
+                "to": "Ravenna",
                 "merchandise": {
-                    "Olive Oil": 10,
-                    "Mayonnaise": 23
+                    "Dustpan": 16
                 }
             },
             {
-                "from": "Fiumicino",
-                "to": "Gela",
+                "from": "Ravenna",
+                "to": "Concesio",
                 "merchandise": {
-                    "Olive Oil": 26,
-                    "Sponges": 13
+                    "Bakery Goods": 11,
+                    "Medicine": 10
                 }
             },
             {
-                "from": "Gela",
-                "to": "Cosenza",
+                "from": "Concesio",
+                "to": "Aversa",
                 "merchandise": {
-                    "Olive Oil": 18
+                    "Carrots": 28,
+                    "Sponges": 26
                 }
             },
             {
-                "from": "Cosenza",
-                "to": "Fano",
+                "from": "Aversa",
+                "to": "Bergamo",
                 "merchandise": {
-                    "Flour": 5
+                    "Lettuce": 19
                 }
             },
             {
-                "from": "Fano",
-                "to": "Trento",
+                "from": "Bergamo",
+                "to": "Bologna",
                 "merchandise": {
-                    "Bandages": 11
+                    "Fabric Softener": 21
                 }
             },
             {
-                "from": "Trento",
-                "to": "Massa",
+                "from": "Bologna",
+                "to": "Udine",
                 "merchandise": {
-                    "Clothing": 18,
-                    "Paper Towels": 23
+                    "Cereal": 18,
+                    "Cheese": 17
                 }
             },
             {
-                "from": "Massa",
-                "to": "Viareggio",
+                "from": "Udine",
+                "to": "Belluno",
                 "merchandise": {
-                    "Plastic Wrap": 20,
-                    "Tea": 5
+                    "Detergent": 2,
+                    "Underwear": 22
                 }
             },
             {
-                "from": "Viareggio",
-                "to": "Latina",
+                "from": "Belluno",
+                "to": "Bergamo",
                 "merchandise": {
-                    "Trash Bags": 9
+                    "Olive Oil": 10
                 }
             },
             {
-                "from": "Latina",
+                "from": "Bergamo",
+                "to": "Trapani",
+                "merchandise": {
+                    "Fabric Softener": 21,
+                    "Cheese": 14
+                }
+            },
+            {
+                "from": "Trapani",
+                "to": "Taranto",
+                "merchandise": {
+                    "Shampoo": 20,
+                    "Coffeemaker": 30
+                }
+            },
+            {
+                "from": "Taranto",
                 "to": "Foggia",
                 "merchandise": {
-                    "Plastic Wrap": 6
+                    "Toothpaste": 19,
+                    "Vinegar": 3
                 }
             },
             {
                 "from": "Foggia",
-                "to": "Ferrara",
+                "to": "Teramo",
                 "merchandise": {
-                    "Aluminum Foil": 14,
-                    "Mop": 10
+                    "Pens": 17
                 }
             },
             {
-                "from": "Ferrara",
-                "to": "Scandicci",
+                "from": "Teramo",
+                "to": "Viterbo",
                 "merchandise": {
-                    "Plastic Wrap": 28
+                    "Trash Bags": 19,
+                    "Bananas": 3
                 }
             },
             {
-                "from": "Scandicci",
-                "to": "Ferrara",
+                "from": "Viterbo",
+                "to": "Udine",
                 "merchandise": {
-                    "Microwave": 27
+                    "Toilet Paper": 7
                 }
             },
             {
-                "from": "Ferrara",
+                "from": "Udine",
+                "to": "Reggio Calabria",
+                "merchandise": {
+                    "Cucumbers": 2,
+                    "Blankets": 22
+                }
+            },
+            {
+                "from": "Reggio Calabria",
                 "to": "Andria",
                 "merchandise": {
-                    "Blankets": 23
+                    "Bandages": 18
                 }
             },
             {
                 "from": "Andria",
-                "to": "Caltanissetta",
+                "to": "Pistoia",
                 "merchandise": {
-                    "Yogurt": 16
+                    "Floss": 17
                 }
             },
             {
-                "from": "Caltanissetta",
+                "from": "Pistoia",
+                "to": "Pavia",
+                "merchandise": {
+                    "Salt": 13,
+                    "Pens": 26
+                }
+            },
+            {
+                "from": "Pavia",
                 "to": "Gorizia",
                 "merchandise": {
-                    "Tomatoes": 11
+                    "Shoes": 28,
+                    "Salad Dressing": 10
                 }
             },
             {
                 "from": "Gorizia",
-                "to": "Acerra",
+                "to": "Alessandria",
                 "merchandise": {
-                    "Razors": 3,
-                    "Cookies": 20
+                    "Lettuce": 18
                 }
             },
             {
-                "from": "Acerra",
+                "from": "Alessandria",
+                "to": "Asti",
+                "merchandise": {
+                    "Plastic Wrap": 19,
+                    "Aluminum Foil": 28
+                }
+            },
+            {
+                "from": "Asti",
                 "to": "Ferrara",
                 "merchandise": {
-                    "Bucket": 9
+                    "Strawberries": 11,
+                    "Juice": 29
                 }
             },
             {
                 "from": "Ferrara",
-                "to": "Pisa",
+                "to": "Casalnuovo di Napoli",
                 "merchandise": {
-                    "Cucumbers": 2
-                }
-            },
-            {
-                "from": "Pisa",
-                "to": "Fano",
-                "merchandise": {
-                    "Strawberries": 30,
-                    "Sugar": 19
-                }
-            },
-            {
-                "from": "Fano",
-                "to": "Macerata",
-                "merchandise": {
-                    "Chips": 14
-                }
-            },
-            {
-                "from": "Macerata",
-                "to": "La Spezia",
-                "merchandise": {
-                    "Toothbrush": 2,
-                    "Broom": 14
-                }
-            },
-            {
-                "from": "La Spezia",
-                "to": "Vicenza",
-                "merchandise": {
-                    "Tomatoes": 8
-                }
-            },
-            {
-                "from": "Vicenza",
-                "to": "Forl\u00ec",
-                "merchandise": {
-                    "Pasta": 13,
-                    "Vinegar": 9
+                    "Microwave": 22,
+                    "Blankets": 26
                 }
             }
         ]
@@ -651,158 +613,129 @@
         "id": "s4",
         "route": [
             {
-                "from": "Perugia",
-                "to": "Salerno",
-                "merchandise": {
-                    "Razors": 19
-                }
-            },
-            {
-                "from": "Salerno",
-                "to": "Scandicci",
-                "merchandise": {
-                    "Strawberries": 8
-                }
-            },
-            {
-                "from": "Scandicci",
-                "to": "Teramo",
-                "merchandise": {
-                    "Bandages": 7
-                }
-            },
-            {
-                "from": "Teramo",
-                "to": "Trani",
-                "merchandise": {
-                    "Salad Dressing": 21,
-                    "Toothpaste": 29
-                }
-            },
-            {
-                "from": "Trani",
-                "to": "Trapani",
-                "merchandise": {
-                    "Milk": 6
-                }
-            },
-            {
-                "from": "Trapani",
-                "to": "Trento",
-                "merchandise": {
-                    "Milk": 16
-                }
-            },
-            {
-                "from": "Trento",
-                "to": "Caserta",
-                "merchandise": {
-                    "Milk": 19,
-                    "Cookies": 5
-                }
-            },
-            {
-                "from": "Caserta",
-                "to": "Avellino",
-                "merchandise": {
-                    "Onions": 12,
-                    "Microwave": 27
-                }
-            },
-            {
-                "from": "Avellino",
-                "to": "Carpi",
-                "merchandise": {
-                    "Salt": 13
-                }
-            },
-            {
-                "from": "Carpi",
-                "to": "Perugia",
-                "merchandise": {
-                    "Bucket": 29,
-                    "Ketchup": 24
-                }
-            },
-            {
-                "from": "Perugia",
+                "from": "Giugliano in Campania",
                 "to": "Lamezia Terme",
                 "merchandise": {
-                    "Butter": 25,
-                    "Medicine": 29
+                    "First Aid Kit": 22
                 }
             },
             {
                 "from": "Lamezia Terme",
-                "to": "Teramo",
+                "to": "Civitanova Marche",
                 "merchandise": {
-                    "Onions": 29
+                    "Vinegar": 4,
+                    "Sheets": 24
                 }
             },
             {
-                "from": "Teramo",
+                "from": "Civitanova Marche",
+                "to": "Padova",
+                "merchandise": {
+                    "Coffee": 11
+                }
+            },
+            {
+                "from": "Padova",
+                "to": "Macerata",
+                "merchandise": {
+                    "Fish": 26
+                }
+            },
+            {
+                "from": "Macerata",
                 "to": "Caltanissetta",
                 "merchandise": {
-                    "Mustard": 11,
-                    "Batteries": 27
+                    "Oranges": 25
                 }
             },
             {
                 "from": "Caltanissetta",
-                "to": "Castellammare di Stabia",
+                "to": "Pisa",
                 "merchandise": {
-                    "Olive Oil": 13
+                    "Toaster": 4,
+                    "Salt": 6
                 }
             },
             {
-                "from": "Castellammare di Stabia",
-                "to": "Livorno",
+                "from": "Pisa",
+                "to": "Fiumicino",
                 "merchandise": {
-                    "Olive Oil": 18
+                    "Mop": 5,
+                    "Juice": 13
                 }
             },
             {
-                "from": "Livorno",
-                "to": "Siracusa",
+                "from": "Fiumicino",
+                "to": "Napoli",
                 "merchandise": {
-                    "Potatoes": 23
+                    "Chicken": 7,
+                    "Eggs": 19
                 }
             },
             {
-                "from": "Siracusa",
+                "from": "Napoli",
+                "to": "Ancona",
+                "merchandise": {
+                    "Light Bulbs": 7,
+                    "Eggs": 15
+                }
+            },
+            {
+                "from": "Ancona",
+                "to": "Puegnago sul Garda",
+                "merchandise": {
+                    "Ice Cream": 17,
+                    "Mayonnaise": 9
+                }
+            },
+            {
+                "from": "Puegnago sul Garda",
+                "to": "Pozzuoli",
+                "merchandise": {
+                    "Underwear": 29
+                }
+            },
+            {
+                "from": "Pozzuoli",
                 "to": "Agrigento",
                 "merchandise": {
-                    "Bandages": 11,
-                    "Aluminum Foil": 18
+                    "Bakery Goods": 3
                 }
             },
             {
                 "from": "Agrigento",
-                "to": "Forl\u00ec",
+                "to": "Cuneo",
                 "merchandise": {
-                    "Fish": 11
+                    "Coffee": 28
                 }
             },
             {
-                "from": "Forl\u00ec",
-                "to": "Terni",
+                "from": "Cuneo",
+                "to": "Pozzuoli",
                 "merchandise": {
-                    "Underwear": 15
+                    "Potatoes": 15
                 }
             },
             {
-                "from": "Terni",
-                "to": "Casoria",
+                "from": "Pozzuoli",
+                "to": "Macerata",
                 "merchandise": {
-                    "Mop": 11,
-                    "Fabric Softener": 18
+                    "Tea": 24
                 }
             },
             {
-                "from": "Casoria",
-                "to": "Viterbo",
+                "from": "Macerata",
+                "to": "Puegnago sul Garda",
                 "merchandise": {
-                    "Rice": 23
+                    "Coffee": 8,
+                    "Plastic Wrap": 26
+                }
+            },
+            {
+                "from": "Puegnago sul Garda",
+                "to": "Lamezia Terme",
+                "merchandise": {
+                    "Shoes": 26
                 }
             }
         ]
@@ -811,217 +744,177 @@
         "id": "s5",
         "route": [
             {
-                "from": "Aversa",
-                "to": "Pistoia",
+                "from": "April",
+                "to": "Marano di Napoli",
                 "merchandise": {
-                    "Strawberries": 24
+                    "Matches": 20
                 }
             },
             {
-                "from": "Pistoia",
-                "to": "Civitanova Marche",
+                "from": "Marano di Napoli",
+                "to": "Benevento",
                 "merchandise": {
-                    "Cucumbers": 22
+                    "Vinegar": 12,
+                    "Sheets": 7
                 }
             },
             {
-                "from": "Civitanova Marche",
-                "to": "Bolzano",
+                "from": "Benevento",
+                "to": "L\u2019Aquila",
                 "merchandise": {
-                    "Jelly": 21
+                    "Cucumbers": 27
                 }
             },
             {
-                "from": "Bolzano",
-                "to": "Andria",
+                "from": "L\u2019Aquila",
+                "to": "Viareggio",
                 "merchandise": {
-                    "Pepper": 2
+                    "First Aid Kit": 28
                 }
             },
             {
-                "from": "Andria",
-                "to": "Verona",
+                "from": "Viareggio",
+                "to": "Catania",
                 "merchandise": {
-                    "Toaster": 6,
-                    "Fish": 17
+                    "Soda": 15
                 }
             },
             {
-                "from": "Verona",
-                "to": "Barletta",
+                "from": "Catania",
+                "to": "Trieste",
                 "merchandise": {
-                    "Light Bulbs": 3
+                    "Chicken": 16
                 }
             },
             {
-                "from": "Barletta",
-                "to": "San Severo",
+                "from": "Trieste",
+                "to": "Novara",
                 "merchandise": {
-                    "Coffee": 9,
-                    "Mop": 24
+                    "Matches": 28,
+                    "Cucumbers": 24
                 }
             },
             {
-                "from": "San Severo",
-                "to": "Cesena",
+                "from": "Novara",
+                "to": "Velletri",
                 "merchandise": {
-                    "Trash Can": 12,
-                    "Sponges": 21
+                    "Dish Soap": 25,
+                    "Cheese": 30
                 }
             },
             {
-                "from": "Cesena",
-                "to": "Cremona",
+                "from": "Velletri",
+                "to": "Afragola",
                 "merchandise": {
-                    "Trash Can": 18,
-                    "Bucket": 28
+                    "Strawberries": 8
                 }
             },
             {
-                "from": "Cremona",
-                "to": "Casoria",
+                "from": "Afragola",
+                "to": "Pescara",
                 "merchandise": {
-                    "Microwave": 10
+                    "Lettuce": 6,
+                    "Microwave": 20
                 }
             },
             {
-                "from": "Casoria",
-                "to": "Scandicci",
+                "from": "Pescara",
+                "to": "Lecce",
                 "merchandise": {
-                    "Rice": 28
+                    "Sheets": 14,
+                    "Clothing": 12
                 }
             },
             {
-                "from": "Scandicci",
-                "to": "Pavia",
-                "merchandise": {
-                    "Salt": 15,
-                    "Onions": 10
-                }
-            },
-            {
-                "from": "Pavia",
-                "to": "Carpi",
-                "merchandise": {
-                    "Oranges": 22
-                }
-            },
-            {
-                "from": "Carpi",
-                "to": "Genova",
-                "merchandise": {
-                    "Pens": 14
-                }
-            },
-            {
-                "from": "Genova",
-                "to": "Perugia",
-                "merchandise": {
-                    "Toilet Paper": 11
-                }
-            },
-            {
-                "from": "Perugia",
-                "to": "Milano",
-                "merchandise": {
-                    "Spinach": 20
-                }
-            },
-            {
-                "from": "Milano",
-                "to": "Pistoia",
-                "merchandise": {
-                    "First Aid Kit": 30
-                }
-            },
-            {
-                "from": "Pistoia",
-                "to": "Siracusa",
-                "merchandise": {
-                    "Grapes": 23,
-                    "Coffeemaker": 4
-                }
-            },
-            {
-                "from": "Siracusa",
-                "to": "Gorizia",
-                "merchandise": {
-                    "Jelly": 24
-                }
-            },
-            {
-                "from": "Gorizia",
-                "to": "Agrigento",
-                "merchandise": {
-                    "Bakery Goods": 18
-                }
-            },
-            {
-                "from": "Agrigento",
+                "from": "Lecce",
                 "to": "Giugliano in Campania",
                 "merchandise": {
-                    "Broom": 13,
-                    "Towels": 4
+                    "Mayonnaise": 12,
+                    "Bananas": 25
                 }
             },
             {
                 "from": "Giugliano in Campania",
-                "to": "Savona",
+                "to": "Verona",
                 "merchandise": {
-                    "Clothing": 3,
-                    "Beef": 9
+                    "Lettuce": 26
                 }
             },
             {
-                "from": "Savona",
+                "from": "Verona",
+                "to": "Pomezia",
+                "merchandise": {
+                    "Sheets": 27,
+                    "Mop": 21
+                }
+            },
+            {
+                "from": "Pomezia",
                 "to": "Imola",
                 "merchandise": {
-                    "Cucumbers": 16
+                    "Razors": 2,
+                    "Tea": 5
                 }
             },
             {
                 "from": "Imola",
-                "to": "Concesio",
+                "to": "Brindisi",
                 "merchandise": {
-                    "Sponges": 15,
-                    "Cereal": 12
+                    "Cucumbers": 24,
+                    "Salt": 25
                 }
             },
             {
-                "from": "Concesio",
+                "from": "Brindisi",
+                "to": "Imola",
+                "merchandise": {
+                    "Jelly": 25,
+                    "Shoes": 26
+                }
+            },
+            {
+                "from": "Imola",
+                "to": "Benevento",
+                "merchandise": {
+                    "Bell Peppers": 9
+                }
+            },
+            {
+                "from": "Benevento",
+                "to": "Afragola",
+                "merchandise": {
+                    "Toothbrush": 10,
+                    "Strawberries": 29
+                }
+            },
+            {
+                "from": "Afragola",
+                "to": "Marano di Napoli",
+                "merchandise": {
+                    "Olive Oil": 10
+                }
+            },
+            {
+                "from": "Marano di Napoli",
+                "to": "Caserta",
+                "merchandise": {
+                    "Dish Soap": 18
+                }
+            },
+            {
+                "from": "Caserta",
                 "to": "Catanzaro",
                 "merchandise": {
-                    "Salad Dressing": 21,
-                    "Shampoo": 6
+                    "Cookies": 27,
+                    "Clothing": 10
                 }
             },
             {
                 "from": "Catanzaro",
-                "to": "Siena",
+                "to": "Foggia",
                 "merchandise": {
-                    "Underwear": 22,
-                    "Cheese": 19
-                }
-            },
-            {
-                "from": "Siena",
-                "to": "Pesaro",
-                "merchandise": {
-                    "Cookies": 5
-                }
-            },
-            {
-                "from": "Pesaro",
-                "to": "Padova",
-                "merchandise": {
-                    "Juice": 11
-                }
-            },
-            {
-                "from": "Padova",
-                "to": "Scandicci",
-                "merchandise": {
-                    "Toaster": 17
+                    "Ketchup": 29,
+                    "Toaster": 24
                 }
             }
         ]
@@ -1030,159 +923,137 @@
         "id": "s6",
         "route": [
             {
-                "from": "Fano",
-                "to": "Afragola",
+                "from": "Perugia",
+                "to": "Concesio",
                 "merchandise": {
-                    "Plastic Wrap": 23
+                    "Cleaning Wipes": 4,
+                    "Medicine": 22
                 }
             },
             {
-                "from": "Afragola",
-                "to": "Ercolano",
+                "from": "Concesio",
+                "to": "Salerno",
                 "merchandise": {
-                    "Coffeemaker": 12
+                    "Mop": 21
                 }
             },
             {
-                "from": "Ercolano",
-                "to": "Siena",
+                "from": "Salerno",
+                "to": "Venezia",
                 "merchandise": {
-                    "Salad Dressing": 3,
-                    "Chips": 22
+                    "Fabric Softener": 25,
+                    "Oranges": 18
                 }
             },
             {
-                "from": "Siena",
-                "to": "Benevento",
-                "merchandise": {
-                    "Soda": 10
-                }
-            },
-            {
-                "from": "Benevento",
-                "to": "Novara",
-                "merchandise": {
-                    "Toothbrush": 30
-                }
-            },
-            {
-                "from": "Novara",
-                "to": "Pescara",
-                "merchandise": {
-                    "Ice Cream": 4
-                }
-            },
-            {
-                "from": "Pescara",
-                "to": "San Severo",
-                "merchandise": {
-                    "Dustpan": 4
-                }
-            },
-            {
-                "from": "San Severo",
-                "to": "Viareggio",
-                "merchandise": {
-                    "Onions": 30,
-                    "Juice": 17
-                }
-            },
-            {
-                "from": "Viareggio",
-                "to": "Ancona",
-                "merchandise": {
-                    "Toothbrush": 19
-                }
-            },
-            {
-                "from": "Ancona",
-                "to": "Barletta",
-                "merchandise": {
-                    "Coffeemaker": 11,
-                    "Onions": 7
-                }
-            },
-            {
-                "from": "Barletta",
-                "to": "Trento",
-                "merchandise": {
-                    "Oranges": 14
-                }
-            },
-            {
-                "from": "Trento",
-                "to": "Caltanissetta",
-                "merchandise": {
-                    "Mayonnaise": 15,
-                    "Lettuce": 11
-                }
-            },
-            {
-                "from": "Caltanissetta",
-                "to": "Trieste",
-                "merchandise": {
-                    "Water": 4
-                }
-            },
-            {
-                "from": "Trieste",
-                "to": "Prato",
-                "merchandise": {
-                    "Yogurt": 10
-                }
-            },
-            {
-                "from": "Prato",
-                "to": "Avellino",
-                "merchandise": {
-                    "Razors": 17,
-                    "Floss": 27
-                }
-            },
-            {
-                "from": "Avellino",
-                "to": "Genova",
-                "merchandise": {
-                    "Eggs": 18
-                }
-            },
-            {
-                "from": "Genova",
+                "from": "Venezia",
                 "to": "Acerra",
                 "merchandise": {
-                    "Bell Peppers": 2,
-                    "Candles": 19
+                    "Mop": 8
                 }
             },
             {
                 "from": "Acerra",
-                "to": "April",
+                "to": "Reggio Calabria",
                 "merchandise": {
-                    "Mustard": 14,
-                    "Butter": 4
+                    "Soap": 9
                 }
             },
             {
-                "from": "April",
-                "to": "Gorizia",
+                "from": "Reggio Calabria",
+                "to": "Aversa",
                 "merchandise": {
-                    "Matches": 25,
-                    "Salad Dressing": 13
+                    "Cucumbers": 19
                 }
             },
             {
-                "from": "Gorizia",
-                "to": "Napoli",
+                "from": "Aversa",
+                "to": "Roma",
                 "merchandise": {
-                    "Tea": 11
+                    "Water": 14
                 }
             },
             {
-                "from": "Napoli",
-                "to": "Cuneo",
+                "from": "Roma",
+                "to": "Vercelli",
                 "merchandise": {
-                    "Cleaning Wipes": 2,
-                    "Dustpan": 23
+                    "Pillowcases": 5
+                }
+            },
+            {
+                "from": "Vercelli",
+                "to": "Siracusa",
+                "merchandise": {
+                    "Medicine": 28
+                }
+            },
+            {
+                "from": "Siracusa",
+                "to": "Massa",
+                "merchandise": {
+                    "Butter": 4,
+                    "Paper Towels": 30
+                }
+            },
+            {
+                "from": "Massa",
+                "to": "Milano",
+                "merchandise": {
+                    "Shampoo": 15,
+                    "Chips": 20
+                }
+            },
+            {
+                "from": "Milano",
+                "to": "Rimini",
+                "merchandise": {
+                    "Ketchup": 7,
+                    "Pens": 21
+                }
+            },
+            {
+                "from": "Rimini",
+                "to": "Verona",
+                "merchandise": {
+                    "Cookies": 22,
+                    "Trash Can": 24
+                }
+            },
+            {
+                "from": "Verona",
+                "to": "Carpi",
+                "merchandise": {
+                    "Peanut Butter": 21,
+                    "Matches": 7
+                }
+            },
+            {
+                "from": "Carpi",
+                "to": "Giugliano in Campania",
+                "merchandise": {
+                    "Mayonnaise": 13
+                }
+            },
+            {
+                "from": "Giugliano in Campania",
+                "to": "Reggio Emilia",
+                "merchandise": {
+                    "Chicken": 2,
+                    "Toilet Paper": 11
+                }
+            },
+            {
+                "from": "Reggio Emilia",
+                "to": "Torino",
+                "merchandise": {
+                    "Coffee": 8
+                }
+            },
+            {
+                "from": "Torino",
+                "to": "Catania",
+                "merchandise": {
+                    "Floss": 26
                 }
             }
         ]
@@ -1191,114 +1062,228 @@
         "id": "s7",
         "route": [
             {
-                "from": "Avellino",
-                "to": "Trapani",
-                "merchandise": {
-                    "Onions": 6,
-                    "Pillowcases": 8
-                }
-            },
-            {
-                "from": "Trapani",
-                "to": "Parma",
-                "merchandise": {
-                    "Chicken": 13,
-                    "Blankets": 22
-                }
-            },
-            {
-                "from": "Parma",
-                "to": "Roma",
-                "merchandise": {
-                    "Dish Soap": 9,
-                    "Yogurt": 5
-                }
-            },
-            {
                 "from": "Roma",
-                "to": "Alessandria",
+                "to": "Firenze",
                 "merchandise": {
-                    "Plastic Wrap": 23
+                    "Toothbrush": 24,
+                    "Sponges": 14
                 }
             },
             {
-                "from": "Alessandria",
-                "to": "Casalnuovo di Napoli",
+                "from": "Firenze",
+                "to": "Pescara",
                 "merchandise": {
-                    "Lettuce": 17
+                    "Sponges": 3
                 }
             },
             {
-                "from": "Casalnuovo di Napoli",
-                "to": "Vicenza",
+                "from": "Pescara",
+                "to": "Foggia",
                 "merchandise": {
-                    "Paper Towels": 10
+                    "Blankets": 3
                 }
             },
             {
-                "from": "Vicenza",
-                "to": "Fano",
+                "from": "Foggia",
+                "to": "Torino",
                 "merchandise": {
-                    "Oranges": 16
+                    "Onions": 11
                 }
             },
             {
-                "from": "Fano",
-                "to": "Rimini",
+                "from": "Torino",
+                "to": "Udine",
                 "merchandise": {
-                    "Fish": 11
+                    "Peanut Butter": 24
                 }
             },
             {
-                "from": "Rimini",
-                "to": "Roma",
+                "from": "Udine",
+                "to": "Novara",
                 "merchandise": {
-                    "Cucumbers": 8,
-                    "Shampoo": 9
+                    "Yogurt": 5,
+                    "Mop": 26
                 }
             },
             {
-                "from": "Roma",
-                "to": "Massa Carrara",
+                "from": "Novara",
+                "to": "Castellammare di Stabia",
                 "merchandise": {
-                    "Chips": 27,
-                    "Tea": 5
+                    "Chips": 18,
+                    "Mop": 7
                 }
             },
             {
-                "from": "Massa Carrara",
+                "from": "Castellammare di Stabia",
+                "to": "Potenza",
+                "merchandise": {
+                    "Pasta": 27
+                }
+            },
+            {
+                "from": "Potenza",
                 "to": "Arezzo",
                 "merchandise": {
-                    "Vinegar": 26
+                    "Vinegar": 3,
+                    "Apples": 18
                 }
             },
             {
                 "from": "Arezzo",
+                "to": "Caltanissetta",
+                "merchandise": {
+                    "Onions": 14
+                }
+            },
+            {
+                "from": "Caltanissetta",
+                "to": "Trapani",
+                "merchandise": {
+                    "Medicine": 19,
+                    "Broom": 12
+                }
+            },
+            {
+                "from": "Trapani",
+                "to": "Viterbo",
+                "merchandise": {
+                    "Pepper": 13
+                }
+            },
+            {
+                "from": "Viterbo",
+                "to": "Grosseto",
+                "merchandise": {
+                    "Dish Soap": 8,
+                    "Bell Peppers": 16
+                }
+            },
+            {
+                "from": "Grosseto",
+                "to": "Molfetta",
+                "merchandise": {
+                    "Pens": 5,
+                    "Bananas": 15
+                }
+            },
+            {
+                "from": "Molfetta",
+                "to": "Guidonia Montecelio",
+                "merchandise": {
+                    "Sheets": 12
+                }
+            },
+            {
+                "from": "Guidonia Montecelio",
+                "to": "Brescia",
+                "merchandise": {
+                    "Lettuce": 8
+                }
+            },
+            {
+                "from": "Brescia",
+                "to": "Monza",
+                "merchandise": {
+                    "Peanut Butter": 22,
+                    "Shampoo": 2
+                }
+            },
+            {
+                "from": "Monza",
                 "to": "April",
                 "merchandise": {
-                    "Pepper": 30,
-                    "Butter": 9
+                    "Broom": 11
                 }
             },
             {
                 "from": "April",
-                "to": "Piacenza",
+                "to": "Caserta",
                 "merchandise": {
-                    "Strawberries": 2
+                    "Yogurt": 17,
+                    "Peanut Butter": 5
                 }
             },
             {
-                "from": "Piacenza",
-                "to": "Lecce",
+                "from": "Caserta",
+                "to": "Casoria",
                 "merchandise": {
-                    "Mayonnaise": 28
+                    "Dustpan": 19,
+                    "Cleaning Wipes": 21
                 }
             },
             {
-                "from": "Lecce",
-                "to": "Concesio",
+                "from": "Casoria",
+                "to": "Afragola",
                 "merchandise": {
-                    "Ice Cream": 3
+                    "Dish Soap": 13
+                }
+            },
+            {
+                "from": "Afragola",
+                "to": "Velletri",
+                "merchandise": {
+                    "Oranges": 5,
+                    "Mustard": 16
+                }
+            },
+            {
+                "from": "Velletri",
+                "to": "Teramo",
+                "merchandise": {
+                    "Cleaning Wipes": 29,
+                    "Shampoo": 23
+                }
+            },
+            {
+                "from": "Teramo",
+                "to": "Bologna",
+                "merchandise": {
+                    "Bananas": 24,
+                    "Peanut Butter": 12
+                }
+            },
+            {
+                "from": "Bologna",
+                "to": "Pescara",
+                "merchandise": {
+                    "Oranges": 30
+                }
+            },
+            {
+                "from": "Pescara",
+                "to": "Carpi",
+                "merchandise": {
+                    "Razors": 30,
+                    "Mayonnaise": 30
+                }
+            },
+            {
+                "from": "Carpi",
+                "to": "Novara",
+                "merchandise": {
+                    "Tomatoes": 20
+                }
+            },
+            {
+                "from": "Novara",
+                "to": "Trento",
+                "merchandise": {
+                    "Plastic Wrap": 11,
+                    "Tissues": 19
+                }
+            },
+            {
+                "from": "Trento",
+                "to": "Lamezia Terme",
+                "merchandise": {
+                    "Clothing": 3
+                }
+            },
+            {
+                "from": "Lamezia Terme",
+                "to": "Ravenna",
+                "merchandise": {
+                    "Medicine": 18
                 }
             }
         ]
@@ -1307,114 +1292,231 @@
         "id": "s8",
         "route": [
             {
-                "from": "Pisa",
-                "to": "Pescara",
+                "from": "Velletri",
+                "to": "Reggio Calabria",
                 "merchandise": {
-                    "Coffee": 29,
-                    "Pillowcases": 26
+                    "Cleaning Wipes": 7,
+                    "Yogurt": 28
                 }
             },
             {
-                "from": "Pescara",
+                "from": "Reggio Calabria",
+                "to": "Casoria",
+                "merchandise": {
+                    "Soap": 6
+                }
+            },
+            {
+                "from": "Casoria",
+                "to": "Belluno",
+                "merchandise": {
+                    "Blankets": 27
+                }
+            },
+            {
+                "from": "Belluno",
+                "to": "Civitavecchia",
+                "merchandise": {
+                    "Rice": 11
+                }
+            },
+            {
+                "from": "Civitavecchia",
                 "to": "Gorizia",
                 "merchandise": {
-                    "Laundry Detergent": 23,
-                    "Butter": 14
+                    "Butter": 25,
+                    "Rice": 12
                 }
             },
             {
                 "from": "Gorizia",
-                "to": "Castellammare di Stabia",
+                "to": "Aversa",
                 "merchandise": {
-                    "Toaster": 2,
-                    "Salad Dressing": 21
+                    "Floss": 28,
+                    "Soap": 27
                 }
             },
             {
-                "from": "Castellammare di Stabia",
-                "to": "Torino",
+                "from": "Aversa",
+                "to": "Trieste",
                 "merchandise": {
-                    "Fish": 2,
-                    "Shoes": 21
+                    "Razors": 13
                 }
             },
             {
-                "from": "Torino",
-                "to": "Avellino",
+                "from": "Trieste",
+                "to": "Rimini",
                 "merchandise": {
-                    "Eggs": 21
+                    "Cookies": 26,
+                    "Light Bulbs": 22
                 }
             },
             {
-                "from": "Avellino",
-                "to": "Lamezia Terme",
+                "from": "Rimini",
+                "to": "Crotone",
                 "merchandise": {
-                    "Laundry Detergent": 10,
-                    "Juice": 12
+                    "Floss": 17,
+                    "Peanut Butter": 29
                 }
             },
             {
-                "from": "Lamezia Terme",
-                "to": "Cagliari",
+                "from": "Crotone",
+                "to": "Trieste",
                 "merchandise": {
-                    "Underwear": 20
+                    "Dustpan": 2,
+                    "Sugar": 28
                 }
             },
             {
-                "from": "Cagliari",
-                "to": "Grosseto",
+                "from": "Trieste",
+                "to": "Caltanissetta",
                 "merchandise": {
-                    "Mustard": 18
+                    "Chips": 8,
+                    "Bread": 24
                 }
             },
             {
-                "from": "Grosseto",
-                "to": "Pisa",
+                "from": "Caltanissetta",
+                "to": "Siena",
                 "merchandise": {
-                    "Aluminum Foil": 7
+                    "Apples": 20
                 }
             },
             {
-                "from": "Pisa",
+                "from": "Siena",
+                "to": "La Spezia",
+                "merchandise": {
+                    "Bell Peppers": 17
+                }
+            },
+            {
+                "from": "La Spezia",
+                "to": "Siracusa",
+                "merchandise": {
+                    "Mustard": 24
+                }
+            },
+            {
+                "from": "Siracusa",
+                "to": "Concesio",
+                "merchandise": {
+                    "Sugar": 24,
+                    "Mop": 20
+                }
+            },
+            {
+                "from": "Concesio",
+                "to": "Agrigento",
+                "merchandise": {
+                    "Socks": 18,
+                    "Ketchup": 18
+                }
+            },
+            {
+                "from": "Agrigento",
+                "to": "Terni",
+                "merchandise": {
+                    "Broom": 25,
+                    "Bananas": 22
+                }
+            },
+            {
+                "from": "Terni",
+                "to": "Pomezia",
+                "merchandise": {
+                    "Laundry Detergent": 19
+                }
+            },
+            {
+                "from": "Pomezia",
+                "to": "Udine",
+                "merchandise": {
+                    "Pens": 5
+                }
+            },
+            {
+                "from": "Udine",
+                "to": "Imola",
+                "merchandise": {
+                    "Toothpaste": 13,
+                    "Bandages": 7
+                }
+            },
+            {
+                "from": "Imola",
+                "to": "Viterbo",
+                "merchandise": {
+                    "Ketchup": 7
+                }
+            },
+            {
+                "from": "Viterbo",
+                "to": "La Spezia",
+                "merchandise": {
+                    "Bakery Goods": 6,
+                    "Tissues": 25
+                }
+            },
+            {
+                "from": "La Spezia",
+                "to": "Bergamo",
+                "merchandise": {
+                    "Rice": 15,
+                    "Toothpaste": 14
+                }
+            },
+            {
+                "from": "Bergamo",
+                "to": "Trapani",
+                "merchandise": {
+                    "Dish Soap": 13,
+                    "Batteries": 10
+                }
+            },
+            {
+                "from": "Trapani",
+                "to": "Macerata",
+                "merchandise": {
+                    "Sugar": 7,
+                    "Shoes": 29
+                }
+            },
+            {
+                "from": "Macerata",
+                "to": "Afragola",
+                "merchandise": {
+                    "Cleaning Wipes": 21,
+                    "Cookies": 7
+                }
+            },
+            {
+                "from": "Afragola",
+                "to": "Belluno",
+                "merchandise": {
+                    "Juice": 18
+                }
+            },
+            {
+                "from": "Belluno",
+                "to": "Modena",
+                "merchandise": {
+                    "Aluminum Foil": 29,
+                    "Medicine": 22
+                }
+            },
+            {
+                "from": "Modena",
                 "to": "Cesena",
                 "merchandise": {
-                    "Soda": 21
+                    "Butter": 5
                 }
             },
             {
                 "from": "Cesena",
-                "to": "Novi Sad",
+                "to": "Catania",
                 "merchandise": {
-                    "Floss": 13
-                }
-            },
-            {
-                "from": "Novi Sad",
-                "to": "Barletta",
-                "merchandise": {
-                    "Dustpan": 23
-                }
-            },
-            {
-                "from": "Barletta",
-                "to": "Cosenza",
-                "merchandise": {
-                    "Grapes": 16,
-                    "Pens": 25
-                }
-            },
-            {
-                "from": "Cosenza",
-                "to": "Firenze",
-                "merchandise": {
-                    "Mustard": 13
-                }
-            },
-            {
-                "from": "Firenze",
-                "to": "Reggio Calabria",
-                "merchandise": {
-                    "Underwear": 17
+                    "Toothbrush": 9,
+                    "Cereal": 13
                 }
             }
         ]
@@ -1423,154 +1525,207 @@
         "id": "s9",
         "route": [
             {
-                "from": "Prato",
-                "to": "Reggio Emilia",
+                "from": "Castellammare di Stabia",
+                "to": "Fano",
                 "merchandise": {
-                    "Fish": 18,
-                    "Mop": 23
+                    "Milk": 21
                 }
             },
             {
-                "from": "Reggio Emilia",
-                "to": "Padova",
-                "merchandise": {
-                    "Olive Oil": 19
-                }
-            },
-            {
-                "from": "Padova",
-                "to": "Venezia",
-                "merchandise": {
-                    "Apples": 13,
-                    "Toothpaste": 23
-                }
-            },
-            {
-                "from": "Venezia",
-                "to": "Roma",
-                "merchandise": {
-                    "Toilet Paper": 21,
-                    "Toothpaste": 7
-                }
-            },
-            {
-                "from": "Roma",
-                "to": "Cesena",
-                "merchandise": {
-                    "Chicken": 19
-                }
-            },
-            {
-                "from": "Cesena",
-                "to": "Bergamo",
-                "merchandise": {
-                    "Soda": 12
-                }
-            },
-            {
-                "from": "Bergamo",
-                "to": "Ferrara",
-                "merchandise": {
-                    "Chips": 6,
-                    "Toothpaste": 23
-                }
-            },
-            {
-                "from": "Ferrara",
-                "to": "Roma",
-                "merchandise": {
-                    "Cereal": 17,
-                    "Potatoes": 11
-                }
-            },
-            {
-                "from": "Roma",
+                "from": "Fano",
                 "to": "Brindisi",
                 "merchandise": {
-                    "Strawberries": 22
+                    "Spinach": 24
                 }
             },
             {
                 "from": "Brindisi",
-                "to": "Gela",
+                "to": "Trento",
                 "merchandise": {
-                    "Clothing": 16,
-                    "Salad Dressing": 25
+                    "Beef": 4
                 }
             },
             {
-                "from": "Gela",
-                "to": "Padova",
+                "from": "Trento",
+                "to": "Udine",
                 "merchandise": {
-                    "Salt": 22
+                    "Shoes": 7,
+                    "Medicine": 18
                 }
             },
             {
-                "from": "Padova",
-                "to": "Bologna",
-                "merchandise": {
-                    "Ice Cream": 23,
-                    "Microwave": 29
-                }
-            },
-            {
-                "from": "Bologna",
+                "from": "Udine",
                 "to": "Catania",
                 "merchandise": {
-                    "Microwave": 14
+                    "Peanut Butter": 18
                 }
             },
             {
                 "from": "Catania",
-                "to": "Vicenza",
+                "to": "Trani",
                 "merchandise": {
-                    "Peanut Butter": 5,
-                    "Aluminum Foil": 24
+                    "Peanut Butter": 4
                 }
             },
             {
-                "from": "Vicenza",
-                "to": "Foggia",
+                "from": "Trani",
+                "to": "Acerra",
                 "merchandise": {
-                    "Trash Bags": 22
+                    "Mustard": 30,
+                    "Water": 18
                 }
             },
             {
-                "from": "Foggia",
-                "to": "Padova",
+                "from": "Acerra",
+                "to": "Casoria",
                 "merchandise": {
-                    "First Aid Kit": 8
+                    "Sponges": 27,
+                    "Yogurt": 3
                 }
             },
             {
-                "from": "Padova",
-                "to": "Giugliano in Campania",
+                "from": "Casoria",
+                "to": "Guidonia Montecelio",
                 "merchandise": {
-                    "Razors": 25,
-                    "Soda": 23
+                    "Beef": 25,
+                    "Cheese": 4
                 }
             },
             {
-                "from": "Giugliano in Campania",
-                "to": "Macerata",
+                "from": "Guidonia Montecelio",
+                "to": "Grosseto",
                 "merchandise": {
-                    "First Aid Kit": 20
+                    "Floss": 23
                 }
             },
             {
-                "from": "Macerata",
-                "to": "Lamezia Terme",
+                "from": "Grosseto",
+                "to": "Salerno",
                 "merchandise": {
-                    "Aluminum Foil": 18,
-                    "Clothing": 12
+                    "Butter": 29,
+                    "Ketchup": 9
                 }
             },
             {
-                "from": "Lamezia Terme",
-                "to": "Caltanissetta",
+                "from": "Salerno",
+                "to": "Barletta",
                 "merchandise": {
-                    "Soap": 7,
-                    "Flour": 11
+                    "Pens": 19
+                }
+            },
+            {
+                "from": "Barletta",
+                "to": "Afragola",
+                "merchandise": {
+                    "Cheese": 8
+                }
+            },
+            {
+                "from": "Afragola",
+                "to": "Viterbo",
+                "merchandise": {
+                    "Shampoo": 6
+                }
+            },
+            {
+                "from": "Viterbo",
+                "to": "Udine",
+                "merchandise": {
+                    "Underwear": 19,
+                    "Dustpan": 14
+                }
+            },
+            {
+                "from": "Udine",
+                "to": "Bergamo",
+                "merchandise": {
+                    "Mayonnaise": 2,
+                    "Milk": 20
+                }
+            },
+            {
+                "from": "Bergamo",
+                "to": "April",
+                "merchandise": {
+                    "Sheets": 21
+                }
+            },
+            {
+                "from": "April",
+                "to": "Verona",
+                "merchandise": {
+                    "Soap": 28,
+                    "Chips": 18
+                }
+            },
+            {
+                "from": "Verona",
+                "to": "Civitanova Marche",
+                "merchandise": {
+                    "Bread": 17,
+                    "Sponges": 27
+                }
+            },
+            {
+                "from": "Civitanova Marche",
+                "to": "Torino",
+                "merchandise": {
+                    "Dustpan": 7
+                }
+            },
+            {
+                "from": "Torino",
+                "to": "April",
+                "merchandise": {
+                    "Cleaning Wipes": 12,
+                    "Grapes": 12
+                }
+            },
+            {
+                "from": "April",
+                "to": "Imola",
+                "merchandise": {
+                    "Bakery Goods": 12,
+                    "Shoes": 16
+                }
+            },
+            {
+                "from": "Imola",
+                "to": "Andria",
+                "merchandise": {
+                    "Matches": 23
+                }
+            },
+            {
+                "from": "Andria",
+                "to": "Reggio Emilia",
+                "merchandise": {
+                    "Cheese": 15,
+                    "Onions": 23
+                }
+            },
+            {
+                "from": "Reggio Emilia",
+                "to": "Pozzuoli",
+                "merchandise": {
+                    "Yogurt": 17,
+                    "Water": 28
+                }
+            },
+            {
+                "from": "Pozzuoli",
+                "to": "Gela",
+                "merchandise": {
+                    "Cookies": 2,
+                    "Detergent": 11
+                }
+            },
+            {
+                "from": "Gela",
+                "to": "Vercelli",
+                "merchandise": {
+                    "First Aid Kit": 7,
+                    "Potatoes": 16
                 }
             }
         ]
@@ -1579,104 +1734,136 @@
         "id": "s10",
         "route": [
             {
-                "from": "Cuneo",
-                "to": "Terni",
+                "from": "Novi Sad",
+                "to": "Reggio Emilia",
                 "merchandise": {
-                    "Chips": 14,
-                    "Salt": 29
+                    "Fabric Softener": 30
                 }
             },
             {
-                "from": "Terni",
-                "to": "Latina",
+                "from": "Reggio Emilia",
+                "to": "Viterbo",
                 "merchandise": {
-                    "Lettuce": 19,
-                    "Soap": 21
+                    "Broom": 26,
+                    "Sugar": 19
                 }
             },
             {
-                "from": "Latina",
-                "to": "Salerno",
+                "from": "Viterbo",
+                "to": "Ferrara",
                 "merchandise": {
-                    "Light Bulbs": 16,
-                    "Pens": 2
+                    "Trash Can": 10
                 }
             },
             {
-                "from": "Salerno",
-                "to": "Lecce",
+                "from": "Ferrara",
+                "to": "Monza",
                 "merchandise": {
-                    "Water": 5,
-                    "Bread": 24
+                    "Chips": 15,
+                    "Cheese": 5
                 }
             },
             {
-                "from": "Lecce",
-                "to": "Potenza",
+                "from": "Monza",
+                "to": "Foggia",
                 "merchandise": {
-                    "Mop": 8,
-                    "Pillowcases": 17
+                    "Rice": 15
                 }
             },
             {
-                "from": "Potenza",
-                "to": "Gela",
+                "from": "Foggia",
+                "to": "Caserta",
                 "merchandise": {
-                    "Spinach": 23
+                    "Toothbrush": 27,
+                    "Toaster": 13
                 }
             },
             {
-                "from": "Gela",
-                "to": "Pistoia",
+                "from": "Caserta",
+                "to": "Parma",
                 "merchandise": {
-                    "Tea": 28,
-                    "Strawberries": 20
+                    "Olive Oil": 19
                 }
             },
             {
-                "from": "Pistoia",
-                "to": "Trani",
-                "merchandise": {
-                    "Bakery Goods": 15,
-                    "Bell Peppers": 3
-                }
-            },
-            {
-                "from": "Trani",
-                "to": "Forl\u00ec",
-                "merchandise": {
-                    "Mayonnaise": 2,
-                    "Underwear": 21
-                }
-            },
-            {
-                "from": "Forl\u00ec",
-                "to": "Concesio",
-                "merchandise": {
-                    "Tissues": 5
-                }
-            },
-            {
-                "from": "Concesio",
-                "to": "Fiumicino",
-                "merchandise": {
-                    "Yogurt": 29
-                }
-            },
-            {
-                "from": "Fiumicino",
+                "from": "Parma",
                 "to": "Arezzo",
                 "merchandise": {
-                    "Olive Oil": 22,
-                    "Light Bulbs": 2
+                    "Mayonnaise": 15
                 }
             },
             {
                 "from": "Arezzo",
-                "to": "Ravenna",
+                "to": "Scandicci",
                 "merchandise": {
-                    "Onions": 30,
-                    "Carrots": 18
+                    "Toothbrush": 25
+                }
+            },
+            {
+                "from": "Scandicci",
+                "to": "Pesaro",
+                "merchandise": {
+                    "Soap": 6
+                }
+            },
+            {
+                "from": "Pesaro",
+                "to": "April",
+                "merchandise": {
+                    "Toothbrush": 3,
+                    "Socks": 19
+                }
+            },
+            {
+                "from": "April",
+                "to": "Caserta",
+                "merchandise": {
+                    "Butter": 9,
+                    "First Aid Kit": 9
+                }
+            },
+            {
+                "from": "Caserta",
+                "to": "Pescara",
+                "merchandise": {
+                    "Cucumbers": 19
+                }
+            },
+            {
+                "from": "Pescara",
+                "to": "Roma",
+                "merchandise": {
+                    "Floss": 2
+                }
+            },
+            {
+                "from": "Roma",
+                "to": "Imola",
+                "merchandise": {
+                    "Water": 21,
+                    "Peanut Butter": 26
+                }
+            },
+            {
+                "from": "Imola",
+                "to": "La Spezia",
+                "merchandise": {
+                    "Bandages": 9
+                }
+            },
+            {
+                "from": "La Spezia",
+                "to": "Benevento",
+                "merchandise": {
+                    "Bandages": 7,
+                    "Carrots": 6
+                }
+            },
+            {
+                "from": "Benevento",
+                "to": "Sassari",
+                "merchandise": {
+                    "Underwear": 30
                 }
             }
         ]
@@ -1685,181 +1872,153 @@
         "id": "s11",
         "route": [
             {
-                "from": "Cuneo",
-                "to": "Caserta",
+                "from": "Perugia",
+                "to": "Firenze",
                 "merchandise": {
-                    "Coffee": 22
+                    "Broom": 24,
+                    "Socks": 13
                 }
             },
             {
-                "from": "Caserta",
-                "to": "Velletri",
-                "merchandise": {
-                    "Toothbrush": 21,
-                    "Coffee": 17
-                }
-            },
-            {
-                "from": "Velletri",
-                "to": "Benevento",
-                "merchandise": {
-                    "Trash Bags": 22,
-                    "Pillowcases": 30
-                }
-            },
-            {
-                "from": "Benevento",
-                "to": "Brindisi",
-                "merchandise": {
-                    "Peanut Butter": 3
-                }
-            },
-            {
-                "from": "Brindisi",
-                "to": "Crotone",
-                "merchandise": {
-                    "Detergent": 11,
-                    "Coffee": 21
-                }
-            },
-            {
-                "from": "Crotone",
-                "to": "Brindisi",
-                "merchandise": {
-                    "Pasta": 21,
-                    "Chips": 29
-                }
-            },
-            {
-                "from": "Brindisi",
-                "to": "Imola",
-                "merchandise": {
-                    "Matches": 11,
-                    "Beef": 13
-                }
-            },
-            {
-                "from": "Imola",
-                "to": "Gorizia",
-                "merchandise": {
-                    "Tea": 20
-                }
-            },
-            {
-                "from": "Gorizia",
-                "to": "Trani",
-                "merchandise": {
-                    "Trash Bags": 27,
-                    "Cookies": 12
-                }
-            },
-            {
-                "from": "Trani",
-                "to": "Massa",
-                "merchandise": {
-                    "Cereal": 5,
-                    "Rice": 24
-                }
-            },
-            {
-                "from": "Massa",
-                "to": "Novi Sad",
-                "merchandise": {
-                    "Flour": 16
-                }
-            },
-            {
-                "from": "Novi Sad",
-                "to": "Sassari",
-                "merchandise": {
-                    "Bakery Goods": 15,
-                    "Jelly": 27
-                }
-            },
-            {
-                "from": "Sassari",
-                "to": "Siracusa",
-                "merchandise": {
-                    "Detergent": 23,
-                    "Mustard": 7
-                }
-            },
-            {
-                "from": "Siracusa",
-                "to": "Piacenza",
-                "merchandise": {
-                    "Fabric Softener": 4,
-                    "Yogurt": 9
-                }
-            },
-            {
-                "from": "Piacenza",
-                "to": "Pistoia",
-                "merchandise": {
-                    "Yogurt": 26
-                }
-            },
-            {
-                "from": "Pistoia",
-                "to": "Forl\u00ec",
-                "merchandise": {
-                    "Laundry Detergent": 10,
-                    "Onions": 19
-                }
-            },
-            {
-                "from": "Forl\u00ec",
-                "to": "Ravenna",
-                "merchandise": {
-                    "Bell Peppers": 23,
-                    "Bandages": 19
-                }
-            },
-            {
-                "from": "Ravenna",
+                "from": "Firenze",
                 "to": "Guidonia Montecelio",
                 "merchandise": {
-                    "Fish": 19,
-                    "Broom": 2
+                    "Water": 25,
+                    "Beef": 24
                 }
             },
             {
                 "from": "Guidonia Montecelio",
-                "to": "Reggio Calabria",
+                "to": "Rimini",
                 "merchandise": {
-                    "Chips": 13,
-                    "Bandages": 22
+                    "Trash Can": 9
                 }
             },
             {
-                "from": "Reggio Calabria",
-                "to": "Concesio",
+                "from": "Rimini",
+                "to": "Forl\u00ec",
                 "merchandise": {
-                    "Trash Can": 18
+                    "Socks": 5
                 }
             },
             {
-                "from": "Concesio",
+                "from": "Forl\u00ec",
+                "to": "Carpi",
+                "merchandise": {
+                    "Bandages": 18
+                }
+            },
+            {
+                "from": "Carpi",
+                "to": "Prato",
+                "merchandise": {
+                    "Trash Bags": 2,
+                    "Olive Oil": 17
+                }
+            },
+            {
+                "from": "Prato",
+                "to": "La Spezia",
+                "merchandise": {
+                    "Vinegar": 22,
+                    "Fabric Softener": 19
+                }
+            },
+            {
+                "from": "La Spezia",
                 "to": "Napoli",
                 "merchandise": {
-                    "Sponges": 25,
-                    "Oranges": 18
+                    "Broom": 30
                 }
             },
             {
                 "from": "Napoli",
-                "to": "Gela",
+                "to": "Arezzo",
                 "merchandise": {
-                    "Mayonnaise": 4,
-                    "Chicken": 20
+                    "Toaster": 24,
+                    "Sponges": 25
                 }
             },
             {
-                "from": "Gela",
-                "to": "Pistoia",
+                "from": "Arezzo",
+                "to": "Afragola",
                 "merchandise": {
-                    "Trash Can": 6,
-                    "Light Bulbs": 3
+                    "Onions": 20
+                }
+            },
+            {
+                "from": "Afragola",
+                "to": "Casoria",
+                "merchandise": {
+                    "Jelly": 27,
+                    "Detergent": 19
+                }
+            },
+            {
+                "from": "Casoria",
+                "to": "Fano",
+                "merchandise": {
+                    "Bread": 25
+                }
+            },
+            {
+                "from": "Fano",
+                "to": "April",
+                "merchandise": {
+                    "Candles": 28,
+                    "Cheese": 15
+                }
+            },
+            {
+                "from": "April",
+                "to": "Rimini",
+                "merchandise": {
+                    "Coffeemaker": 23
+                }
+            },
+            {
+                "from": "Rimini",
+                "to": "Foggia",
+                "merchandise": {
+                    "Sheets": 12
+                }
+            },
+            {
+                "from": "Foggia",
+                "to": "Civitanova Marche",
+                "merchandise": {
+                    "Toothbrush": 7,
+                    "Soap": 6
+                }
+            },
+            {
+                "from": "Civitanova Marche",
+                "to": "Cagliari",
+                "merchandise": {
+                    "Medicine": 6,
+                    "Tea": 30
+                }
+            },
+            {
+                "from": "Cagliari",
+                "to": "Catania",
+                "merchandise": {
+                    "Coffeemaker": 9,
+                    "Carrots": 26
+                }
+            },
+            {
+                "from": "Catania",
+                "to": "Asti",
+                "merchandise": {
+                    "Rice": 27
+                }
+            },
+            {
+                "from": "Asti",
+                "to": "Casalnuovo di Napoli",
+                "merchandise": {
+                    "Cookies": 20
                 }
             }
         ]
@@ -1868,139 +2027,108 @@
         "id": "s12",
         "route": [
             {
-                "from": "Palermo",
-                "to": "Cremona",
+                "from": "Reggio Calabria",
+                "to": "Vercelli",
                 "merchandise": {
-                    "Clothing": 3,
-                    "Chicken": 26
+                    "Flour": 24,
+                    "Sugar": 6
                 }
             },
             {
-                "from": "Cremona",
-                "to": "Padova",
+                "from": "Vercelli",
+                "to": "Afragola",
                 "merchandise": {
-                    "Milk": 8,
-                    "Bananas": 13
+                    "Cucumbers": 18
                 }
             },
             {
-                "from": "Padova",
-                "to": "Trapani",
-                "merchandise": {
-                    "Cheese": 20
-                }
-            },
-            {
-                "from": "Trapani",
-                "to": "Trento",
-                "merchandise": {
-                    "Soda": 22
-                }
-            },
-            {
-                "from": "Trento",
-                "to": "Trapani",
-                "merchandise": {
-                    "Socks": 30
-                }
-            },
-            {
-                "from": "Trapani",
-                "to": "Alessandria",
-                "merchandise": {
-                    "Toothbrush": 12,
-                    "Salad Dressing": 16
-                }
-            },
-            {
-                "from": "Alessandria",
-                "to": "Marano di Napoli",
-                "merchandise": {
-                    "Pens": 27,
-                    "Socks": 21
-                }
-            },
-            {
-                "from": "Marano di Napoli",
-                "to": "Faenza",
-                "merchandise": {
-                    "Rice": 16,
-                    "Tea": 29
-                }
-            },
-            {
-                "from": "Faenza",
-                "to": "Brindisi",
-                "merchandise": {
-                    "Lettuce": 25
-                }
-            },
-            {
-                "from": "Brindisi",
-                "to": "Potenza",
-                "merchandise": {
-                    "Ice Cream": 26
-                }
-            },
-            {
-                "from": "Potenza",
-                "to": "Pisa",
-                "merchandise": {
-                    "Cucumbers": 11,
-                    "Lettuce": 13
-                }
-            },
-            {
-                "from": "Pisa",
-                "to": "Bolzano",
-                "merchandise": {
-                    "Trash Bags": 3,
-                    "Butter": 21
-                }
-            },
-            {
-                "from": "Bolzano",
-                "to": "Bergamo",
-                "merchandise": {
-                    "Salad Dressing": 6,
-                    "Cookies": 10
-                }
-            },
-            {
-                "from": "Bergamo",
-                "to": "Padova",
-                "merchandise": {
-                    "Dustpan": 23
-                }
-            },
-            {
-                "from": "Padova",
-                "to": "Cosenza",
-                "merchandise": {
-                    "Coffeemaker": 15
-                }
-            },
-            {
-                "from": "Cosenza",
-                "to": "Massa Carrara",
-                "merchandise": {
-                    "Bucket": 23,
-                    "Candles": 21
-                }
-            },
-            {
-                "from": "Massa Carrara",
-                "to": "Faenza",
-                "merchandise": {
-                    "Floss": 21
-                }
-            },
-            {
-                "from": "Faenza",
+                "from": "Afragola",
                 "to": "Avellino",
                 "merchandise": {
-                    "Sheets": 26,
-                    "Microwave": 9
+                    "Ice Cream": 9
+                }
+            },
+            {
+                "from": "Avellino",
+                "to": "L\u2019Aquila",
+                "merchandise": {
+                    "Broom": 26
+                }
+            },
+            {
+                "from": "L\u2019Aquila",
+                "to": "Molfetta",
+                "merchandise": {
+                    "Chicken": 4,
+                    "Ketchup": 21
+                }
+            },
+            {
+                "from": "Molfetta",
+                "to": "Prato",
+                "merchandise": {
+                    "Cheese": 30
+                }
+            },
+            {
+                "from": "Prato",
+                "to": "Barletta",
+                "merchandise": {
+                    "Pens": 2
+                }
+            },
+            {
+                "from": "Barletta",
+                "to": "Milano",
+                "merchandise": {
+                    "Peanut Butter": 7,
+                    "Vinegar": 4
+                }
+            },
+            {
+                "from": "Milano",
+                "to": "Trani",
+                "merchandise": {
+                    "Pepper": 3,
+                    "Sponges": 29
+                }
+            },
+            {
+                "from": "Trani",
+                "to": "Grosseto",
+                "merchandise": {
+                    "Toilet Paper": 26
+                }
+            },
+            {
+                "from": "Grosseto",
+                "to": "Trieste",
+                "merchandise": {
+                    "Ketchup": 10,
+                    "Socks": 24
+                }
+            },
+            {
+                "from": "Trieste",
+                "to": "Guidonia Montecelio",
+                "merchandise": {
+                    "Mop": 12,
+                    "Tea": 30
+                }
+            },
+            {
+                "from": "Guidonia Montecelio",
+                "to": "Modena",
+                "merchandise": {
+                    "Pens": 2,
+                    "Blankets": 15
+                }
+            },
+            {
+                "from": "Modena",
+                "to": "Prato",
+                "merchandise": {
+                    "Cheese": 4
                 }
             }
         ]
@@ -2009,116 +2137,75 @@
         "id": "s13",
         "route": [
             {
+                "from": "Gorizia",
+                "to": "Concesio",
+                "merchandise": {
+                    "Bakery Goods": 6
+                }
+            },
+            {
+                "from": "Concesio",
+                "to": "Pomezia",
+                "merchandise": {
+                    "Lettuce": 14
+                }
+            },
+            {
+                "from": "Pomezia",
+                "to": "Civitavecchia",
+                "merchandise": {
+                    "Mop": 22
+                }
+            },
+            {
+                "from": "Civitavecchia",
+                "to": "Scandicci",
+                "merchandise": {
+                    "First Aid Kit": 28
+                }
+            },
+            {
+                "from": "Scandicci",
+                "to": "Brindisi",
+                "merchandise": {
+                    "Cheese": 25,
+                    "Peanut Butter": 19
+                }
+            },
+            {
+                "from": "Brindisi",
+                "to": "Monza",
+                "merchandise": {
+                    "Pillowcases": 11
+                }
+            },
+            {
                 "from": "Monza",
-                "to": "Siena",
+                "to": "Barletta",
                 "merchandise": {
-                    "Dish Soap": 18
+                    "Bucket": 2,
+                    "Floss": 7
                 }
             },
             {
-                "from": "Siena",
-                "to": "Lamezia Terme",
+                "from": "Barletta",
+                "to": "Terni",
                 "merchandise": {
-                    "Carrots": 14,
-                    "Dustpan": 4
+                    "Ice Cream": 13
                 }
             },
             {
-                "from": "Lamezia Terme",
-                "to": "Bolzano",
+                "from": "Terni",
+                "to": "Lecce",
                 "merchandise": {
-                    "Shoes": 15,
-                    "Microwave": 24
+                    "Toothbrush": 29
                 }
             },
             {
-                "from": "Bolzano",
-                "to": "Avellino",
+                "from": "Lecce",
+                "to": "Pavia",
                 "merchandise": {
-                    "Onions": 25
-                }
-            },
-            {
-                "from": "Avellino",
-                "to": "Livorno",
-                "merchandise": {
-                    "Laundry Detergent": 23
-                }
-            },
-            {
-                "from": "Livorno",
-                "to": "Torino",
-                "merchandise": {
-                    "Pasta": 16,
-                    "Apples": 5
-                }
-            },
-            {
-                "from": "Torino",
-                "to": "Bolzano",
-                "merchandise": {
-                    "Rice": 11,
-                    "Aluminum Foil": 11
-                }
-            },
-            {
-                "from": "Bolzano",
-                "to": "Firenze",
-                "merchandise": {
-                    "Bandages": 21,
-                    "Cleaning Wipes": 19
-                }
-            },
-            {
-                "from": "Firenze",
-                "to": "Trieste",
-                "merchandise": {
-                    "Coffeemaker": 12
-                }
-            },
-            {
-                "from": "Trieste",
-                "to": "La Spezia",
-                "merchandise": {
-                    "Light Bulbs": 24,
-                    "Chips": 11
-                }
-            },
-            {
-                "from": "La Spezia",
-                "to": "Reggio Calabria",
-                "merchandise": {
-                    "Juice": 16
-                }
-            },
-            {
-                "from": "Reggio Calabria",
-                "to": "Brescia",
-                "merchandise": {
-                    "Butter": 16,
-                    "Dustpan": 20
-                }
-            },
-            {
-                "from": "Brescia",
-                "to": "Roma",
-                "merchandise": {
-                    "Olive Oil": 29,
-                    "Bandages": 2
-                }
-            },
-            {
-                "from": "Roma",
-                "to": "Genova",
-                "merchandise": {
-                    "Cleaning Wipes": 20
-                }
-            },
-            {
-                "from": "Genova",
-                "to": "Civitanova Marche",
-                "merchandise": {
-                    "Yogurt": 27
+                    "Matches": 29
                 }
             }
         ]
@@ -2127,188 +2214,152 @@
         "id": "s14",
         "route": [
             {
-                "from": "Caserta",
-                "to": "Asti",
-                "merchandise": {
-                    "Coffee": 20
-                }
-            },
-            {
-                "from": "Asti",
-                "to": "Faenza",
-                "merchandise": {
-                    "Olive Oil": 24
-                }
-            },
-            {
-                "from": "Faenza",
-                "to": "L\u2019Aquila",
-                "merchandise": {
-                    "Trash Bags": 12
-                }
-            },
-            {
-                "from": "L\u2019Aquila",
-                "to": "Monza",
-                "merchandise": {
-                    "Plastic Wrap": 8,
-                    "Chips": 28
-                }
-            },
-            {
-                "from": "Monza",
-                "to": "Trento",
-                "merchandise": {
-                    "Batteries": 27
-                }
-            },
-            {
-                "from": "Trento",
-                "to": "Caserta",
-                "merchandise": {
-                    "Coffee": 24,
-                    "Apples": 26
-                }
-            },
-            {
-                "from": "Caserta",
-                "to": "Reggio Calabria",
-                "merchandise": {
-                    "Paper Towels": 21
-                }
-            },
-            {
-                "from": "Reggio Calabria",
-                "to": "Alessandria",
-                "merchandise": {
-                    "Salad Dressing": 21,
-                    "Sponges": 22
-                }
-            },
-            {
-                "from": "Alessandria",
-                "to": "Casoria",
-                "merchandise": {
-                    "Apples": 18
-                }
-            },
-            {
-                "from": "Casoria",
-                "to": "Cosenza",
-                "merchandise": {
-                    "Floss": 14
-                }
-            },
-            {
-                "from": "Cosenza",
-                "to": "Gela",
-                "merchandise": {
-                    "Flour": 5
-                }
-            },
-            {
-                "from": "Gela",
-                "to": "Civitavecchia",
-                "merchandise": {
-                    "Plastic Wrap": 18,
-                    "Matches": 11
-                }
-            },
-            {
-                "from": "Civitavecchia",
-                "to": "Lamezia Terme",
-                "merchandise": {
-                    "Carrots": 11
-                }
-            },
-            {
-                "from": "Lamezia Terme",
-                "to": "Vicenza",
-                "merchandise": {
-                    "Shampoo": 30,
-                    "Cheese": 19
-                }
-            },
-            {
-                "from": "Vicenza",
-                "to": "Vercelli",
-                "merchandise": {
-                    "Ice Cream": 23,
-                    "Coffeemaker": 16
-                }
-            },
-            {
-                "from": "Vercelli",
-                "to": "Novi Sad",
-                "merchandise": {
-                    "Olive Oil": 10
-                }
-            },
-            {
-                "from": "Novi Sad",
-                "to": "Cesena",
-                "merchandise": {
-                    "Apples": 21,
-                    "Bandages": 21
-                }
-            },
-            {
-                "from": "Cesena",
-                "to": "Potenza",
-                "merchandise": {
-                    "Clothing": 29
-                }
-            },
-            {
-                "from": "Potenza",
-                "to": "Imola",
-                "merchandise": {
-                    "Soda": 3,
-                    "Cucumbers": 8
-                }
-            },
-            {
-                "from": "Imola",
+                "from": "Concesio",
                 "to": "Massa",
                 "merchandise": {
-                    "Tomatoes": 28
+                    "Plastic Wrap": 5
                 }
             },
             {
                 "from": "Massa",
-                "to": "Gela",
+                "to": "Bergamo",
                 "merchandise": {
-                    "Broom": 24
+                    "Salad Dressing": 2
                 }
             },
             {
-                "from": "Gela",
-                "to": "Perugia",
+                "from": "Bergamo",
+                "to": "Novara",
                 "merchandise": {
-                    "Bandages": 28
+                    "Fish": 18,
+                    "Clothing": 27
                 }
             },
             {
-                "from": "Perugia",
-                "to": "Palermo",
+                "from": "Novara",
+                "to": "Avellino",
                 "merchandise": {
-                    "Broom": 2,
-                    "Plastic Wrap": 21
+                    "Toilet Paper": 21,
+                    "Olive Oil": 6
                 }
             },
             {
-                "from": "Palermo",
-                "to": "Imola",
+                "from": "Avellino",
+                "to": "Brindisi",
                 "merchandise": {
-                    "Toothpaste": 7
+                    "Dustpan": 10
                 }
             },
             {
-                "from": "Imola",
-                "to": "Castellammare di Stabia",
+                "from": "Brindisi",
+                "to": "Gorizia",
                 "merchandise": {
-                    "Towels": 3,
-                    "Socks": 8
+                    "Peanut Butter": 5,
+                    "Chicken": 29
+                }
+            },
+            {
+                "from": "Gorizia",
+                "to": "Milano",
+                "merchandise": {
+                    "Ice Cream": 14
+                }
+            },
+            {
+                "from": "Milano",
+                "to": "Savona",
+                "merchandise": {
+                    "Coffee": 17
+                }
+            },
+            {
+                "from": "Savona",
+                "to": "Massa Carrara",
+                "merchandise": {
+                    "Light Bulbs": 16,
+                    "Pepper": 25
+                }
+            },
+            {
+                "from": "Massa Carrara",
+                "to": "Ravenna",
+                "merchandise": {
+                    "Clothing": 27
+                }
+            },
+            {
+                "from": "Ravenna",
+                "to": "Avellino",
+                "merchandise": {
+                    "Cucumbers": 24
+                }
+            },
+            {
+                "from": "Avellino",
+                "to": "Afragola",
+                "merchandise": {
+                    "Potatoes": 22
+                }
+            },
+            {
+                "from": "Afragola",
+                "to": "Faenza",
+                "merchandise": {
+                    "Toothpaste": 18
+                }
+            },
+            {
+                "from": "Faenza",
+                "to": "Latina",
+                "merchandise": {
+                    "Light Bulbs": 20,
+                    "Carrots": 30
+                }
+            },
+            {
+                "from": "Latina",
+                "to": "Faenza",
+                "merchandise": {
+                    "Salad Dressing": 29,
+                    "Cucumbers": 15
+                }
+            },
+            {
+                "from": "Faenza",
+                "to": "Afragola",
+                "merchandise": {
+                    "Flour": 6
+                }
+            },
+            {
+                "from": "Afragola",
+                "to": "Belluno",
+                "merchandise": {
+                    "Soap": 14,
+                    "Cheese": 7
+                }
+            },
+            {
+                "from": "Belluno",
+                "to": "Guidonia Montecelio",
+                "merchandise": {
+                    "Clothing": 19,
+                    "Aluminum Foil": 12
+                }
+            },
+            {
+                "from": "Guidonia Montecelio",
+                "to": "Fano",
+                "merchandise": {
+                    "Bakery Goods": 8,
+                    "Tissues": 13
+                }
+            },
+            {
+                "from": "Fano",
+                "to": "Lecce",
+                "merchandise": {
+                    "Cheese": 11
                 }
             }
         ]
@@ -2317,86 +2368,214 @@
         "id": "s15",
         "route": [
             {
-                "from": "Acerra",
-                "to": "Milano",
+                "from": "Cuneo",
+                "to": "Cagliari",
                 "merchandise": {
-                    "Cleaning Wipes": 23
+                    "Laundry Detergent": 9,
+                    "Bucket": 9
                 }
             },
             {
-                "from": "Milano",
-                "to": "Parma",
+                "from": "Cagliari",
+                "to": "Bari",
                 "merchandise": {
-                    "Plastic Wrap": 26,
-                    "Vinegar": 20
+                    "Dish Soap": 8,
+                    "Trash Can": 10
                 }
             },
             {
-                "from": "Parma",
-                "to": "Prato",
+                "from": "Bari",
+                "to": "Piacenza",
                 "merchandise": {
-                    "Milk": 14
+                    "Bread": 29,
+                    "Sheets": 6
                 }
             },
             {
-                "from": "Prato",
-                "to": "Vercelli",
+                "from": "Piacenza",
+                "to": "Asti",
                 "merchandise": {
-                    "Underwear": 5
+                    "Rice": 24,
+                    "Salt": 4
                 }
             },
             {
-                "from": "Vercelli",
-                "to": "Napoli",
+                "from": "Asti",
+                "to": "Lecce",
                 "merchandise": {
-                    "Rice": 19,
-                    "Cheese": 12
+                    "Bandages": 20,
+                    "Pepper": 23
                 }
             },
             {
-                "from": "Napoli",
-                "to": "Modena",
+                "from": "Lecce",
+                "to": "Verona",
                 "merchandise": {
-                    "Onions": 30
+                    "Batteries": 28
                 }
             },
             {
-                "from": "Modena",
-                "to": "Pistoia",
-                "merchandise": {
-                    "Bananas": 14,
-                    "Water": 8
-                }
-            },
-            {
-                "from": "Pistoia",
-                "to": "Afragola",
-                "merchandise": {
-                    "Sponges": 5,
-                    "Vinegar": 12
-                }
-            },
-            {
-                "from": "Afragola",
-                "to": "Catanzaro",
-                "merchandise": {
-                    "Onions": 8,
-                    "Apples": 5
-                }
-            },
-            {
-                "from": "Catanzaro",
+                "from": "Verona",
                 "to": "Pescara",
                 "merchandise": {
-                    "Dish Soap": 11,
-                    "Spinach": 25
+                    "Cookies": 23,
+                    "Tissues": 15
                 }
             },
             {
                 "from": "Pescara",
-                "to": "Napoli",
+                "to": "Monza",
                 "merchandise": {
-                    "Tomatoes": 30
+                    "Shampoo": 19,
+                    "Peanut Butter": 9
+                }
+            },
+            {
+                "from": "Monza",
+                "to": "Agrigento",
+                "merchandise": {
+                    "Plastic Wrap": 27
+                }
+            },
+            {
+                "from": "Agrigento",
+                "to": "Concesio",
+                "merchandise": {
+                    "Grapes": 14,
+                    "Toothpaste": 12
+                }
+            },
+            {
+                "from": "Concesio",
+                "to": "Casoria",
+                "merchandise": {
+                    "Chicken": 25
+                }
+            },
+            {
+                "from": "Casoria",
+                "to": "Taranto",
+                "merchandise": {
+                    "Mustard": 4
+                }
+            },
+            {
+                "from": "Taranto",
+                "to": "Savona",
+                "merchandise": {
+                    "Tomatoes": 10
+                }
+            },
+            {
+                "from": "Savona",
+                "to": "Siena",
+                "merchandise": {
+                    "Salad Dressing": 24
+                }
+            },
+            {
+                "from": "Siena",
+                "to": "Potenza",
+                "merchandise": {
+                    "Dish Soap": 16
+                }
+            },
+            {
+                "from": "Potenza",
+                "to": "Massa Carrara",
+                "merchandise": {
+                    "Pasta": 28
+                }
+            },
+            {
+                "from": "Massa Carrara",
+                "to": "Bari",
+                "merchandise": {
+                    "Mop": 7,
+                    "Cucumbers": 18
+                }
+            },
+            {
+                "from": "Bari",
+                "to": "Trani",
+                "merchandise": {
+                    "Soap": 20
+                }
+            },
+            {
+                "from": "Trani",
+                "to": "Monza",
+                "merchandise": {
+                    "Dustpan": 7,
+                    "Tea": 3
+                }
+            },
+            {
+                "from": "Monza",
+                "to": "Civitavecchia",
+                "merchandise": {
+                    "Paper Towels": 29,
+                    "Matches": 18
+                }
+            },
+            {
+                "from": "Civitavecchia",
+                "to": "Bolzano",
+                "merchandise": {
+                    "Tea": 29
+                }
+            },
+            {
+                "from": "Bolzano",
+                "to": "Pisa",
+                "merchandise": {
+                    "Pepper": 12,
+                    "Candles": 21
+                }
+            },
+            {
+                "from": "Pisa",
+                "to": "Faenza",
+                "merchandise": {
+                    "Plastic Wrap": 14,
+                    "Sheets": 18
+                }
+            },
+            {
+                "from": "Faenza",
+                "to": "Crotone",
+                "merchandise": {
+                    "Salad Dressing": 8,
+                    "Broom": 29
+                }
+            },
+            {
+                "from": "Crotone",
+                "to": "Savona",
+                "merchandise": {
+                    "Lettuce": 14
+                }
+            },
+            {
+                "from": "Savona",
+                "to": "Puegnago sul Garda",
+                "merchandise": {
+                    "Olive Oil": 22
+                }
+            },
+            {
+                "from": "Puegnago sul Garda",
+                "to": "Foggia",
+                "merchandise": {
+                    "Ketchup": 19
+                }
+            },
+            {
+                "from": "Foggia",
+                "to": "Rimini",
+                "merchandise": {
+                    "Cleaning Wipes": 15,
+                    "Cheese": 14
                 }
             }
         ]
@@ -2405,133 +2584,126 @@
         "id": "s16",
         "route": [
             {
-                "from": "Agrigento",
-                "to": "Firenze",
+                "from": "Ancona",
+                "to": "Trani",
                 "merchandise": {
-                    "Bell Peppers": 14,
-                    "Olive Oil": 26
+                    "Pepper": 12
                 }
             },
             {
-                "from": "Firenze",
-                "to": "Pesaro",
-                "merchandise": {
-                    "Laundry Detergent": 11,
-                    "Light Bulbs": 6
-                }
-            },
-            {
-                "from": "Pesaro",
-                "to": "Catanzaro",
-                "merchandise": {
-                    "Dish Soap": 25,
-                    "Ice Cream": 11
-                }
-            },
-            {
-                "from": "Catanzaro",
+                "from": "Trani",
                 "to": "Aversa",
                 "merchandise": {
-                    "Bread": 28
+                    "Toaster": 28,
+                    "Rice": 24
                 }
             },
             {
                 "from": "Aversa",
-                "to": "Trento",
+                "to": "Faenza",
                 "merchandise": {
-                    "Bananas": 10,
-                    "Dish Soap": 7
+                    "Ice Cream": 21
                 }
             },
             {
-                "from": "Trento",
-                "to": "Catanzaro",
+                "from": "Faenza",
+                "to": "Benevento",
                 "merchandise": {
-                    "Microwave": 20,
-                    "Milk": 17
+                    "Jelly": 28
                 }
             },
             {
-                "from": "Catanzaro",
-                "to": "Lecce",
+                "from": "Benevento",
+                "to": "Scandicci",
                 "merchandise": {
-                    "Pasta": 17,
-                    "Coffee": 21
+                    "Soda": 29
                 }
             },
             {
-                "from": "Lecce",
-                "to": "Molfetta",
+                "from": "Scandicci",
+                "to": "Roma",
                 "merchandise": {
-                    "Strawberries": 25
+                    "Jelly": 11
                 }
             },
             {
-                "from": "Molfetta",
-                "to": "Giugliano in Campania",
-                "merchandise": {
-                    "Towels": 23,
-                    "Salt": 19
-                }
-            },
-            {
-                "from": "Giugliano in Campania",
-                "to": "Monza",
-                "merchandise": {
-                    "Medicine": 30,
-                    "Lettuce": 27
-                }
-            },
-            {
-                "from": "Monza",
-                "to": "Crotone",
-                "merchandise": {
-                    "Carrots": 29,
-                    "Sugar": 27
-                }
-            },
-            {
-                "from": "Crotone",
-                "to": "Torino",
-                "merchandise": {
-                    "Olive Oil": 3
-                }
-            },
-            {
-                "from": "Torino",
+                "from": "Roma",
                 "to": "La Spezia",
                 "merchandise": {
-                    "Spinach": 15,
-                    "Soap": 21
+                    "Beef": 18,
+                    "Ice Cream": 30
                 }
             },
             {
                 "from": "La Spezia",
-                "to": "Foggia",
+                "to": "Benevento",
                 "merchandise": {
-                    "Potatoes": 13,
-                    "Vinegar": 3
+                    "Dish Soap": 7
                 }
             },
             {
-                "from": "Foggia",
-                "to": "Casoria",
+                "from": "Benevento",
+                "to": "Brescia",
                 "merchandise": {
-                    "Flour": 12
+                    "Ice Cream": 13
                 }
             },
             {
-                "from": "Casoria",
-                "to": "Civitanova Marche",
+                "from": "Brescia",
+                "to": "Carpi",
                 "merchandise": {
-                    "Blankets": 9
+                    "Toaster": 21,
+                    "Trash Bags": 23
                 }
             },
             {
-                "from": "Civitanova Marche",
-                "to": "Castellammare di Stabia",
+                "from": "Carpi",
+                "to": "Imola",
                 "merchandise": {
-                    "Bucket": 29
+                    "Medicine": 27
+                }
+            },
+            {
+                "from": "Imola",
+                "to": "Vicenza",
+                "merchandise": {
+                    "Grapes": 10,
+                    "Spinach": 14
+                }
+            },
+            {
+                "from": "Vicenza",
+                "to": "Teramo",
+                "merchandise": {
+                    "Ketchup": 11
+                }
+            },
+            {
+                "from": "Teramo",
+                "to": "Ercolano",
+                "merchandise": {
+                    "Mop": 8
+                }
+            },
+            {
+                "from": "Ercolano",
+                "to": "Ancona",
+                "merchandise": {
+                    "Shampoo": 23
+                }
+            },
+            {
+                "from": "Ancona",
+                "to": "Viareggio",
+                "merchandise": {
+                    "Pens": 2
+                }
+            },
+            {
+                "from": "Viareggio",
+                "to": "Puegnago sul Garda",
+                "merchandise": {
+                    "Pens": 9
                 }
             }
         ]
@@ -2540,229 +2712,178 @@
         "id": "s17",
         "route": [
             {
-                "from": "Pozzuoli",
-                "to": "Civitavecchia",
+                "from": "Imola",
+                "to": "Napoli",
                 "merchandise": {
-                    "Laundry Detergent": 24,
-                    "Bandages": 14
+                    "Bread": 3,
+                    "Pepper": 27
                 }
             },
             {
-                "from": "Civitavecchia",
-                "to": "Vercelli",
-                "merchandise": {
-                    "Water": 4,
-                    "Juice": 12
-                }
-            },
-            {
-                "from": "Vercelli",
-                "to": "Sassari",
-                "merchandise": {
-                    "Apples": 9
-                }
-            },
-            {
-                "from": "Sassari",
-                "to": "Grosseto",
-                "merchandise": {
-                    "Ice Cream": 4,
-                    "Bread": 15
-                }
-            },
-            {
-                "from": "Grosseto",
-                "to": "Faenza",
-                "merchandise": {
-                    "Ketchup": 6,
-                    "Tissues": 2
-                }
-            },
-            {
-                "from": "Faenza",
-                "to": "Trento",
-                "merchandise": {
-                    "Razors": 9,
-                    "Cucumbers": 9
-                }
-            },
-            {
-                "from": "Trento",
-                "to": "Pescara",
-                "merchandise": {
-                    "Laundry Detergent": 19,
-                    "Socks": 12
-                }
-            },
-            {
-                "from": "Pescara",
-                "to": "Savona",
-                "merchandise": {
-                    "Olive Oil": 14,
-                    "Sugar": 11
-                }
-            },
-            {
-                "from": "Savona",
-                "to": "Carpi",
-                "merchandise": {
-                    "Fish": 9,
-                    "Floss": 7
-                }
-            },
-            {
-                "from": "Carpi",
-                "to": "Piacenza",
-                "merchandise": {
-                    "Butter": 6
-                }
-            },
-            {
-                "from": "Piacenza",
-                "to": "Caserta",
-                "merchandise": {
-                    "Bandages": 22
-                }
-            },
-            {
-                "from": "Caserta",
-                "to": "Pozzuoli",
-                "merchandise": {
-                    "Bananas": 27
-                }
-            },
-            {
-                "from": "Pozzuoli",
-                "to": "Pomezia",
-                "merchandise": {
-                    "Razors": 9
-                }
-            },
-            {
-                "from": "Pomezia",
-                "to": "Bari",
-                "merchandise": {
-                    "Peanut Butter": 9,
-                    "Laundry Detergent": 14
-                }
-            },
-            {
-                "from": "Bari",
-                "to": "Massa",
-                "merchandise": {
-                    "Oranges": 13
-                }
-            },
-            {
-                "from": "Massa",
-                "to": "Novi Sad",
-                "merchandise": {
-                    "Vinegar": 30,
-                    "Pasta": 21
-                }
-            },
-            {
-                "from": "Novi Sad",
-                "to": "Verona",
-                "merchandise": {
-                    "Cookies": 16
-                }
-            },
-            {
-                "from": "Verona",
-                "to": "Velletri",
-                "merchandise": {
-                    "Fabric Softener": 14,
-                    "Broom": 6
-                }
-            },
-            {
-                "from": "Velletri",
-                "to": "Andria",
-                "merchandise": {
-                    "Aluminum Foil": 27
-                }
-            },
-            {
-                "from": "Andria",
-                "to": "Asti",
-                "merchandise": {
-                    "Oranges": 15,
-                    "Shoes": 5
-                }
-            },
-            {
-                "from": "Asti",
-                "to": "Caltanissetta",
-                "merchandise": {
-                    "Fish": 30
-                }
-            },
-            {
-                "from": "Caltanissetta",
-                "to": "Lamezia Terme",
-                "merchandise": {
-                    "Jelly": 11
-                }
-            },
-            {
-                "from": "Lamezia Terme",
-                "to": "Fiumicino",
-                "merchandise": {
-                    "Onions": 25
-                }
-            },
-            {
-                "from": "Fiumicino",
-                "to": "Pesaro",
-                "merchandise": {
-                    "Shampoo": 8,
-                    "Light Bulbs": 23
-                }
-            },
-            {
-                "from": "Pesaro",
-                "to": "Marano di Napoli",
-                "merchandise": {
-                    "Flour": 19,
-                    "Onions": 3
-                }
-            },
-            {
-                "from": "Marano di Napoli",
-                "to": "San Severo",
-                "merchandise": {
-                    "Oranges": 8,
-                    "Dish Soap": 7
-                }
-            },
-            {
-                "from": "San Severo",
-                "to": "Aversa",
-                "merchandise": {
-                    "Spinach": 4,
-                    "Chicken": 27
-                }
-            },
-            {
-                "from": "Aversa",
-                "to": "Torino",
-                "merchandise": {
-                    "Laundry Detergent": 5
-                }
-            },
-            {
-                "from": "Torino",
+                "from": "Napoli",
                 "to": "Cesena",
                 "merchandise": {
-                    "Butter": 22
+                    "Chicken": 19,
+                    "Paper Towels": 26
                 }
             },
             {
                 "from": "Cesena",
-                "to": "Civitavecchia",
+                "to": "Lecce",
                 "merchandise": {
-                    "Toaster": 13
+                    "Cucumbers": 2
+                }
+            },
+            {
+                "from": "Lecce",
+                "to": "Viterbo",
+                "merchandise": {
+                    "Pillowcases": 11
+                }
+            },
+            {
+                "from": "Viterbo",
+                "to": "Viareggio",
+                "merchandise": {
+                    "Ice Cream": 12,
+                    "Juice": 28
+                }
+            },
+            {
+                "from": "Viareggio",
+                "to": "Viterbo",
+                "merchandise": {
+                    "Cookies": 4,
+                    "Batteries": 26
+                }
+            },
+            {
+                "from": "Viterbo",
+                "to": "Cesena",
+                "merchandise": {
+                    "Sugar": 4,
+                    "Toaster": 30
+                }
+            },
+            {
+                "from": "Cesena",
+                "to": "Bolzano",
+                "merchandise": {
+                    "Strawberries": 10
+                }
+            },
+            {
+                "from": "Bolzano",
+                "to": "Imola",
+                "merchandise": {
+                    "Fish": 23
+                }
+            },
+            {
+                "from": "Imola",
+                "to": "Cagliari",
+                "merchandise": {
+                    "Shoes": 8,
+                    "Toilet Paper": 18
+                }
+            },
+            {
+                "from": "Cagliari",
+                "to": "Carpi",
+                "merchandise": {
+                    "Lettuce": 8,
+                    "Bell Peppers": 17
+                }
+            },
+            {
+                "from": "Carpi",
+                "to": "Cosenza",
+                "merchandise": {
+                    "Socks": 30
+                }
+            },
+            {
+                "from": "Cosenza",
+                "to": "Novi Sad",
+                "merchandise": {
+                    "Ketchup": 6
+                }
+            },
+            {
+                "from": "Novi Sad",
+                "to": "Brescia",
+                "merchandise": {
+                    "Toaster": 8,
+                    "Pasta": 8
+                }
+            },
+            {
+                "from": "Brescia",
+                "to": "Bolzano",
+                "merchandise": {
+                    "Bell Peppers": 7,
+                    "Peanut Butter": 16
+                }
+            },
+            {
+                "from": "Bolzano",
+                "to": "Alessandria",
+                "merchandise": {
+                    "Light Bulbs": 12
+                }
+            },
+            {
+                "from": "Alessandria",
+                "to": "Pistoia",
+                "merchandise": {
+                    "Eggs": 2,
+                    "Lettuce": 5
+                }
+            },
+            {
+                "from": "Pistoia",
+                "to": "Potenza",
+                "merchandise": {
+                    "Pasta": 7,
+                    "Coffeemaker": 2
+                }
+            },
+            {
+                "from": "Potenza",
+                "to": "Macerata",
+                "merchandise": {
+                    "Blankets": 16,
+                    "Detergent": 30
+                }
+            },
+            {
+                "from": "Macerata",
+                "to": "Fiumicino",
+                "merchandise": {
+                    "Shoes": 17
+                }
+            },
+            {
+                "from": "Fiumicino",
+                "to": "Carpi",
+                "merchandise": {
+                    "Toothbrush": 5
+                }
+            },
+            {
+                "from": "Carpi",
+                "to": "Milano",
+                "merchandise": {
+                    "Bell Peppers": 23,
+                    "Blankets": 15
+                }
+            },
+            {
+                "from": "Milano",
+                "to": "Caltanissetta",
+                "merchandise": {
+                    "Paper Towels": 30,
+                    "Chicken": 21
                 }
             }
         ]
@@ -2771,179 +2892,109 @@
         "id": "s18",
         "route": [
             {
-                "from": "Udine",
-                "to": "Pescara",
+                "from": "Scandicci",
+                "to": "Milano",
                 "merchandise": {
-                    "Cleaning Wipes": 9
+                    "Tissues": 11,
+                    "Bread": 26
                 }
             },
             {
-                "from": "Pescara",
+                "from": "Milano",
+                "to": "Gorizia",
+                "merchandise": {
+                    "Spinach": 5,
+                    "Pepper": 22
+                }
+            },
+            {
+                "from": "Gorizia",
+                "to": "Padova",
+                "merchandise": {
+                    "Ketchup": 21
+                }
+            },
+            {
+                "from": "Padova",
+                "to": "Massa Carrara",
+                "merchandise": {
+                    "Clothing": 2,
+                    "Pillowcases": 15
+                }
+            },
+            {
+                "from": "Massa Carrara",
+                "to": "Agrigento",
+                "merchandise": {
+                    "Tomatoes": 30,
+                    "Cleaning Wipes": 11
+                }
+            },
+            {
+                "from": "Agrigento",
                 "to": "Novi Sad",
                 "merchandise": {
-                    "Blankets": 15
+                    "Rice": 5
                 }
             },
             {
                 "from": "Novi Sad",
-                "to": "Siena",
+                "to": "Salerno",
                 "merchandise": {
-                    "Mayonnaise": 6
+                    "Water": 22,
+                    "Toilet Paper": 5
                 }
             },
             {
-                "from": "Siena",
-                "to": "Palermo",
+                "from": "Salerno",
+                "to": "Vercelli",
                 "merchandise": {
-                    "Dish Soap": 13,
-                    "Bell Peppers": 12
+                    "Toothbrush": 9,
+                    "Underwear": 5
                 }
             },
             {
-                "from": "Palermo",
-                "to": "Latina",
+                "from": "Vercelli",
+                "to": "Trieste",
                 "merchandise": {
-                    "Water": 19
+                    "Milk": 26
                 }
             },
             {
-                "from": "Latina",
-                "to": "Avellino",
-                "merchandise": {
-                    "Pens": 16
-                }
-            },
-            {
-                "from": "Avellino",
-                "to": "Teramo",
-                "merchandise": {
-                    "Cleaning Wipes": 26,
-                    "Shampoo": 8
-                }
-            },
-            {
-                "from": "Teramo",
-                "to": "Caltanissetta",
-                "merchandise": {
-                    "Dustpan": 8,
-                    "Spinach": 27
-                }
-            },
-            {
-                "from": "Caltanissetta",
-                "to": "Catanzaro",
-                "merchandise": {
-                    "Vinegar": 10
-                }
-            },
-            {
-                "from": "Catanzaro",
-                "to": "Fano",
-                "merchandise": {
-                    "Shoes": 28
-                }
-            },
-            {
-                "from": "Fano",
-                "to": "Barletta",
-                "merchandise": {
-                    "Potatoes": 27,
-                    "Pasta": 19
-                }
-            },
-            {
-                "from": "Barletta",
-                "to": "Trapani",
-                "merchandise": {
-                    "Chips": 10
-                }
-            },
-            {
-                "from": "Trapani",
-                "to": "Carpi",
-                "merchandise": {
-                    "Tea": 4,
-                    "Grapes": 21
-                }
-            },
-            {
-                "from": "Carpi",
-                "to": "Sassari",
-                "merchandise": {
-                    "Trash Bags": 12,
-                    "Bread": 30
-                }
-            },
-            {
-                "from": "Sassari",
+                "from": "Trieste",
                 "to": "Concesio",
                 "merchandise": {
-                    "Shampoo": 7
+                    "Sugar": 25
                 }
             },
             {
                 "from": "Concesio",
-                "to": "Sassari",
+                "to": "Pisa",
                 "merchandise": {
-                    "Sugar": 17
+                    "Socks": 5
                 }
             },
             {
-                "from": "Sassari",
-                "to": "Cosenza",
-                "merchandise": {
-                    "Carrots": 19,
-                    "Eggs": 24
-                }
-            },
-            {
-                "from": "Cosenza",
-                "to": "Ancona",
-                "merchandise": {
-                    "Mustard": 8
-                }
-            },
-            {
-                "from": "Ancona",
+                "from": "Pisa",
                 "to": "Taranto",
                 "merchandise": {
-                    "Shoes": 6
+                    "Butter": 8,
+                    "Yogurt": 10
                 }
             },
             {
                 "from": "Taranto",
-                "to": "Andria",
+                "to": "Cuneo",
                 "merchandise": {
-                    "Socks": 6
+                    "Plastic Wrap": 15
                 }
             },
             {
-                "from": "Andria",
-                "to": "San Severo",
+                "from": "Cuneo",
+                "to": "Asti",
                 "merchandise": {
-                    "Vinegar": 8
-                }
-            },
-            {
-                "from": "San Severo",
-                "to": "Siena",
-                "merchandise": {
-                    "Light Bulbs": 21
-                }
-            },
-            {
-                "from": "Siena",
-                "to": "Andria",
-                "merchandise": {
-                    "Trash Bags": 27
-                }
-            },
-            {
-                "from": "Andria",
-                "to": "Caltanissetta",
-                "merchandise": {
-                    "Bandages": 2,
-                    "Salt": 10
+                    "Microwave": 14,
+                    "Medicine": 8
                 }
             }
         ]
@@ -2952,138 +3003,203 @@
         "id": "s19",
         "route": [
             {
-                "from": "Concesio",
-                "to": "Rimini",
-                "merchandise": {
-                    "Pepper": 17,
-                    "Ice Cream": 18
-                }
-            },
-            {
-                "from": "Rimini",
-                "to": "Monza",
-                "merchandise": {
-                    "Broom": 4,
-                    "Spinach": 20
-                }
-            },
-            {
-                "from": "Monza",
-                "to": "Viareggio",
-                "merchandise": {
-                    "Spinach": 10
-                }
-            },
-            {
-                "from": "Viareggio",
-                "to": "Belluno",
-                "merchandise": {
-                    "Olive Oil": 26
-                }
-            },
-            {
-                "from": "Belluno",
-                "to": "Perugia",
-                "merchandise": {
-                    "Juice": 19
-                }
-            },
-            {
-                "from": "Perugia",
-                "to": "La Spezia",
-                "merchandise": {
-                    "Paper Towels": 26,
-                    "Coffeemaker": 3
-                }
-            },
-            {
-                "from": "La Spezia",
-                "to": "Andria",
-                "merchandise": {
-                    "Toothpaste": 4,
-                    "Water": 15
-                }
-            },
-            {
-                "from": "Andria",
-                "to": "Verona",
-                "merchandise": {
-                    "Grapes": 7,
-                    "Towels": 29
-                }
-            },
-            {
                 "from": "Verona",
-                "to": "Pozzuoli",
-                "merchandise": {
-                    "Cookies": 30
-                }
-            },
-            {
-                "from": "Pozzuoli",
-                "to": "Bergamo",
-                "merchandise": {
-                    "Bread": 27,
-                    "Tissues": 6
-                }
-            },
-            {
-                "from": "Bergamo",
-                "to": "Salerno",
-                "merchandise": {
-                    "Underwear": 24
-                }
-            },
-            {
-                "from": "Salerno",
-                "to": "Cremona",
+                "to": "Milano",
                 "merchandise": {
                     "Coffeemaker": 7
                 }
             },
             {
+                "from": "Milano",
+                "to": "Padova",
+                "merchandise": {
+                    "Soap": 20
+                }
+            },
+            {
+                "from": "Padova",
+                "to": "Barletta",
+                "merchandise": {
+                    "Milk": 22
+                }
+            },
+            {
+                "from": "Barletta",
+                "to": "Ravenna",
+                "merchandise": {
+                    "Paper Towels": 10
+                }
+            },
+            {
+                "from": "Ravenna",
+                "to": "Arezzo",
+                "merchandise": {
+                    "Laundry Detergent": 10,
+                    "Broom": 28
+                }
+            },
+            {
+                "from": "Arezzo",
+                "to": "Cuneo",
+                "merchandise": {
+                    "Coffeemaker": 24
+                }
+            },
+            {
+                "from": "Cuneo",
+                "to": "L\u2019Aquila",
+                "merchandise": {
+                    "Yogurt": 7
+                }
+            },
+            {
+                "from": "L\u2019Aquila",
+                "to": "Pistoia",
+                "merchandise": {
+                    "Coffee": 21,
+                    "Bucket": 29
+                }
+            },
+            {
+                "from": "Pistoia",
+                "to": "Ercolano",
+                "merchandise": {
+                    "Eggs": 12
+                }
+            },
+            {
+                "from": "Ercolano",
+                "to": "Reggio Emilia",
+                "merchandise": {
+                    "Cereal": 2,
+                    "First Aid Kit": 29
+                }
+            },
+            {
+                "from": "Reggio Emilia",
+                "to": "Lamezia Terme",
+                "merchandise": {
+                    "Soda": 9
+                }
+            },
+            {
+                "from": "Lamezia Terme",
+                "to": "Reggio Calabria",
+                "merchandise": {
+                    "Bucket": 12
+                }
+            },
+            {
+                "from": "Reggio Calabria",
+                "to": "Savona",
+                "merchandise": {
+                    "Microwave": 21
+                }
+            },
+            {
+                "from": "Savona",
+                "to": "Modena",
+                "merchandise": {
+                    "Microwave": 24,
+                    "Pillowcases": 23
+                }
+            },
+            {
+                "from": "Modena",
+                "to": "L\u2019Aquila",
+                "merchandise": {
+                    "Medicine": 8
+                }
+            },
+            {
+                "from": "L\u2019Aquila",
+                "to": "La Spezia",
+                "merchandise": {
+                    "Shampoo": 14
+                }
+            },
+            {
+                "from": "La Spezia",
+                "to": "Pozzuoli",
+                "merchandise": {
+                    "Ice Cream": 12,
+                    "Towels": 17
+                }
+            },
+            {
+                "from": "Pozzuoli",
+                "to": "Catanzaro",
+                "merchandise": {
+                    "Tissues": 26,
+                    "Light Bulbs": 22
+                }
+            },
+            {
+                "from": "Catanzaro",
+                "to": "Castellammare di Stabia",
+                "merchandise": {
+                    "Razors": 15
+                }
+            },
+            {
+                "from": "Castellammare di Stabia",
+                "to": "Giugliano in Campania",
+                "merchandise": {
+                    "Toilet Paper": 25
+                }
+            },
+            {
+                "from": "Giugliano in Campania",
+                "to": "Pozzuoli",
+                "merchandise": {
+                    "Trash Can": 12,
+                    "Toilet Paper": 7
+                }
+            },
+            {
+                "from": "Pozzuoli",
+                "to": "Reggio Calabria",
+                "merchandise": {
+                    "Butter": 8
+                }
+            },
+            {
+                "from": "Reggio Calabria",
+                "to": "Trapani",
+                "merchandise": {
+                    "Matches": 4,
+                    "Butter": 11
+                }
+            },
+            {
+                "from": "Trapani",
+                "to": "Gela",
+                "merchandise": {
+                    "Socks": 5
+                }
+            },
+            {
+                "from": "Gela",
+                "to": "Civitavecchia",
+                "merchandise": {
+                    "Detergent": 24,
+                    "Toaster": 30
+                }
+            },
+            {
+                "from": "Civitavecchia",
+                "to": "Cremona",
+                "merchandise": {
+                    "Dish Soap": 2,
+                    "Water": 24
+                }
+            },
+            {
                 "from": "Cremona",
-                "to": "Asti",
+                "to": "Udine",
                 "merchandise": {
-                    "Apples": 18
-                }
-            },
-            {
-                "from": "Asti",
-                "to": "Brescia",
-                "merchandise": {
-                    "Mayonnaise": 8,
-                    "Coffeemaker": 17
-                }
-            },
-            {
-                "from": "Brescia",
-                "to": "Bologna",
-                "merchandise": {
-                    "Candles": 6,
-                    "Laundry Detergent": 20
-                }
-            },
-            {
-                "from": "Bologna",
-                "to": "Avellino",
-                "merchandise": {
-                    "Shoes": 22
-                }
-            },
-            {
-                "from": "Avellino",
-                "to": "Bolzano",
-                "merchandise": {
-                    "Cleaning Wipes": 8,
-                    "Ice Cream": 28
-                }
-            },
-            {
-                "from": "Bolzano",
-                "to": "Cagliari",
-                "merchandise": {
-                    "Plastic Wrap": 7
+                    "Blankets": 16,
+                    "Juice": 5
                 }
             }
         ]

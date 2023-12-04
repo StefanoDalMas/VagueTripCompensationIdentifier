@@ -15,7 +15,6 @@ class TestRoutesGenerator(unittest.TestCase):
     standard_route: List[StdRoute]
     
     def setUp(self):
-        self.params = params
         self.actual_routes = actRoute_generator()
         self.standard_routes = stdRoute_generator(params.ENTRIES, params.MINTRIP, params.MAXTRIP, params.MINPRODUCTS, params.MAXPRODUCTS, params.SROUTES_FILENAME)
 
