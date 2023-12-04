@@ -116,6 +116,8 @@ italian_cities = [
     "Belluno",
     "Concesio",
     "Macerata",
+    "Puegnago sul Garda",
+
 ]
 
 
