@@ -28,5 +28,5 @@ class Parameters:
 
     # Actual routes
     MIN_ROUTES_TO_DRIVERS: int = 40
-    MAX_ROUTES_TO_DRIVERS: int = 180
+    MAX_ROUTES_TO_DRIVERS: int = 100
     CAP_ADD_NEW_CITY: int = 70
