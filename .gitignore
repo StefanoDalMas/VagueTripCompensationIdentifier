@@ -1,6 +1,7 @@
 .venv/
 .DS_Store/
 *.DS_Store/
+src/.DS_Store/
 **__pycache__/
 src/data/*
 src/tests/operations/*

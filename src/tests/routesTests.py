@@ -7,16 +7,24 @@ from typing import List
 from tools.parameters import Parameters as params
 from actRoute_generator import actRoute_generator
 from stdRoute_generator import stdRoute_generator
+from drivers_generator import drivers_generator
 from classes.ActRoute import ActRoute 
 from classes.StdRoute import StdRoute
+from classes.Driver import Driver
 
 class TestRoutesGenerator(unittest.TestCase):
     actual_route: List[ActRoute] 
     standard_route: List[StdRoute]
+    drivers: List[Driver]
     
     def setUp(self):
-        self.actual_routes = actRoute_generator()
+        self.drivers = drivers_generator()
+        print("drivers_generator GOOD")
         self.standard_routes = stdRoute_generator(params.ENTRIES, params.MINTRIP, params.MAXTRIP, params.MINPRODUCTS, params.MAXPRODUCTS, params.SROUTES_FILENAME)
+        print("stdRoute_generator GOOD")
+        self.actual_routes = actRoute_generator()
+        print("actRoute_generator GOOD")
+            
 
     def tearDown(self):
         pass
@@ -66,6 +74,7 @@ class TestRoutesGenerator(unittest.TestCase):
                 if last != None:
                     assert(trip.get("from") == last) 
                 last = trip.get("to")
+
 
 
 if __name__ == "__main__":

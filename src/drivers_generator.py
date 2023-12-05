@@ -3,6 +3,7 @@ import numpy as np
 from tools.cities_products import italian_cities as ic
 from tools.cities_products import shopping_list as sl
 import json
+import os
 from classes.Driver import Driver
 from tools.parameters import Parameters as params
 
@@ -13,7 +14,7 @@ class NumpyEncoder(json.JSONEncoder):
             return obj.tolist()
         return json.JSONEncoder.default(self, obj)
     
-def drivers_generator():
+def drivers_generator() -> List[Driver]:
     
     drivers: List[Driver] = []
     for n in range(params.N_DRIVERS):
@@ -22,7 +23,7 @@ def drivers_generator():
 
         # cities-related values
         citiesCrazyness = np.random.randint(0, 101)
-        likedCities = np.random.choice(ic, size=np.random.randint(0, params.MAX_LIKED_CITIES), replace=False)
+        likedCities = np.random.choice(ic, size=np.random.randint(params.MIN_LIKED_CITIES, params.MAX_LIKED_CITIES), replace=False)
         icMinusLiked_set = set(ic) - set(likedCities)
         icMinusLiked = list(icMinusLiked_set)
         dislikedCities = np.random.choice(icMinusLiked, size=np.random.randint(0, params.MAX_DISLIKED_CITIES), replace=False)
@@ -51,8 +52,11 @@ def drivers_generator():
     driver_list_dict = [driver.to_dict() for driver in drivers]
 
     # print to file
+    if not os.path.exists("./data"):
+        os.makedirs("./data")
     with open("./data/" + params.DRIVERS_FILENAME, "w") as f:
         json.dump(driver_list_dict, f, indent=4, cls=NumpyEncoder)
+    return drivers
 
 
 

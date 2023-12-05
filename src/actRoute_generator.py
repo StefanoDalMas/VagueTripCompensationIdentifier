@@ -76,25 +76,30 @@ def generateActualRoute(std_route: StdRoute, driver: Driver) -> ActRoute:
     with open(f"./tests/operations/driver_{driver.id}/{std_route.id}.txt", "w") as file:
         i = 0
         for stdTrip in std_route.route:
-            file.write(f"ciclo numero {i}, driver numero {driver.id}\n")
+            if params.DEBUG:
+                file.write(f"ciclo numero {i}, driver numero {driver.id}\n")
             actualTrip = {}
 
             """ CITIES """
             if (
                 np.random.randint(0, 101) <= driver.citiesCrazyness
             ):  # We want to change the city
-                file.write("first dice is TRUE -> let's modify!\n")
+                if params.DEBUG:
+                    file.write("first dice is TRUE -> let's modify!\n")
                 # If the city is liked, we keep it
                 if stdTrip._from in driver.likedCities:
-                    file.write(
-                        "but I like the city I come from! I won't change anything\n"
-                    )
+
+                    if params.DEBUG:
+                        file.write(
+                            "but I like the city I come from! I won't change anything\n"
+                        )
                     actualTrip.update({"from": stdTrip._from})
                     actualTrip.update({"to": stdTrip.to})
 
                 # If it's disliked we remove it
                 elif stdTrip._from in driver.dislikedCities:
-                    file.write("I come from a city that sucks! Remove it!\n")
+                    if params.DEBUG:
+                        file.write("I come from a city that sucks! Remove it!\n")
                     if i > 0 and actualRoute.get("route")[i - 1]["from"] != stdTrip.to:
                         actualRoute.get("route")[i - 1].update({"to": stdTrip.to})
                     elif i > 0:
@@ -104,7 +109,8 @@ def generateActualRoute(std_route: StdRoute, driver: Driver) -> ActRoute:
 
                 # Otherwise, add a new city
                 else:
-                    file.write("let's add a city\n")
+                    if params.DEBUG:
+                        file.write("let's add a city\n")
                     if (
                         np.random.randint(0, 101) <= params.CAP_ADD_NEW_CITY
                         and len(driver.likedCities) > 0
@@ -117,14 +123,9 @@ def generateActualRoute(std_route: StdRoute, driver: Driver) -> ActRoute:
                             or new_city == stdTrip.to
                             or (
                                 i > 0
-                                and new_city
-                                == (actualRoute.get("route")[i - 1])["from"]
+                                and new_city == (actualRoute.get("route")[i - 1])["from"]
                             )
                         ):
-                            # If we can't find a liked city, we create a normal one
-                            if counter_liked_cities >= len(driver.likedCities):
-                                new_city = np.random.choice(driver.cities)
-                                break
                             new_city = np.random.choice(driver.likedCities)
                             counter_liked_cities += 1
 
@@ -133,9 +134,10 @@ def generateActualRoute(std_route: StdRoute, driver: Driver) -> ActRoute:
                             actualRoute.get("route")[i - 1].update({"to": new_city})
                         actualTrip.update({"from": new_city})
                         actualTrip.update({"to": stdTrip.to})
-                        file.write(
-                            f"second dice is TRUE -> let's add an awsome city: {new_city}\n"
-                        )
+                        if params.DEBUG:
+                            file.write(
+                                f"second dice is TRUE -> let's add an awsome city: {new_city}\n"
+                            )
 
                     else:
                         # Create a normal city
@@ -155,18 +157,21 @@ def generateActualRoute(std_route: StdRoute, driver: Driver) -> ActRoute:
                             actualRoute.get("route")[i - 1].update({"to": new_city})
                         actualTrip.update({"from": new_city})
                         actualTrip.update({"to": stdTrip.to})
-                        file.write(
-                            f"second dice is FALSE -> let's add a normal city: {new_city}\n"
-                        )
+
+                        if params.DEBUG:
+                            file.write(
+                                f"second dice is FALSE -> let's add a normal city: {new_city}\n"
+                            )
 
             # We don't have to change anything :P
             else:
-                file.write("first dice is FALSE -> I'm not going to modify anithyng\n")
+                if params.DEBUG:
+                    file.write("first dice is FALSE -> I'm not going to modify anithyng\n")
                 actualTrip.update({"from": stdTrip._from})
                 actualTrip.update({"to": stdTrip.to})
 
             # If we removed the city skip products
-            if actualTrip == {}:
+            if actualTrip == {} and params.DEBUG:
                 file.write("\n\n")
                 continue
 
@@ -199,7 +204,8 @@ def generateActualRoute(std_route: StdRoute, driver: Driver) -> ActRoute:
             actualRoute["route"].append(actualTrip)
             i += 1
 
-            file.write("\n\n")
+            if params.DEBUG:
+                file.write("\n\n")
 
         return actualRoute
 
@@ -223,8 +229,6 @@ def actRoute_generator() -> List[ActRoute]:
                 actualRoutes.append(generateActualRoute(selected_route, driver))
             else:
                 while selected_route.id in selected_stdRoutes:
-                    if len(selected_stdRoutes) >= len(stdRoutes):
-                        break
                     selected_route = np.random.choice(stdRoutes)
                 selected_stdRoutes.append(selected_route.id)
                 actualRoutes.append(generateActualRoute(selected_route, driver))
