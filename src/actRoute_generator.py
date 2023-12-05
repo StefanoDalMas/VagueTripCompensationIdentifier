@@ -117,14 +117,9 @@ def generateActualRoute(std_route: StdRoute, driver: Driver) -> ActRoute:
                             or new_city == stdTrip.to
                             or (
                                 i > 0
-                                and new_city
-                                == (actualRoute.get("route")[i - 1])["from"]
+                                and new_city == (actualRoute.get("route")[i - 1])["from"]
                             )
                         ):
-                            # If we can't find a liked city, we create a normal one
-                            if counter_liked_cities >= len(driver.likedCities):
-                                new_city = np.random.choice(driver.cities)
-                                break
                             new_city = np.random.choice(driver.likedCities)
                             counter_liked_cities += 1
 
@@ -223,8 +218,6 @@ def actRoute_generator() -> List[ActRoute]:
                 actualRoutes.append(generateActualRoute(selected_route, driver))
             else:
                 while selected_route.id in selected_stdRoutes:
-                    if len(selected_stdRoutes) >= len(stdRoutes):
-                        break
                     selected_route = np.random.choice(stdRoutes)
                 selected_stdRoutes.append(selected_route.id)
                 actualRoutes.append(generateActualRoute(selected_route, driver))
