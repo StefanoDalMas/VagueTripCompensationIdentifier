@@ -25,6 +25,10 @@ def check_params():
         raise Exception("MIN_ROUTES_TO_DRIVERS must be less than ENTRIES")
     if params.MAX_ROUTES_TO_DRIVERS > params.ENTRIES:
         raise Exception("MAX_ROUTES_TO_DRIVERS must be less than ENTRIES")
+    if params.MIN_LIKED_CITIES < 4:
+        raise Exception("MIN_LIKED_CITIES must be more than 4")
+    if params.MIN_CITIES < 4:
+        raise Exception("MIN_CITIES must be more than 4")
     print("Parameters OK")
 
 

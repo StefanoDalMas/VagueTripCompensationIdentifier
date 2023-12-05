@@ -26,9 +26,9 @@ def drivers_generator() -> List[Driver]:
         likedCities = np.random.choice(ic, size=np.random.randint(params.MIN_LIKED_CITIES, params.MAX_LIKED_CITIES), replace=False)
         icMinusLiked_set = set(ic) - set(likedCities)
         icMinusLiked = list(icMinusLiked_set)
-        dislikedCities = np.random.choice(icMinusLiked, size=np.random.randint(0, params.MAX_DISLIKED_CITIES), replace=False)
-        cities_set = set(icMinusLiked) - set(dislikedCities)
-        cities = list(cities_set)
+        cities = np.random.choice(icMinusLiked, size=np.random.randint(params.MIN_CITIES, params.MAX_CITIES), replace=False)
+        dislikedCities_set = set(icMinusLiked) - set(cities)
+        dislikedCities = list(dislikedCities_set)
 
         # product-related values
         productCrazyness = np.random.randint(0, 101)

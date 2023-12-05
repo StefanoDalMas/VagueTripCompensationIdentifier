@@ -24,11 +24,9 @@ class TestRoutesGenerator(unittest.TestCase):
         print("stdRoute_generator GOOD")
         self.actual_routes = actRoute_generator()
         print("actRoute_generator GOOD")
-            
 
     def tearDown(self):
         pass
-
 
     def testStdFromToSameNode(self):
         print("Testing if there are no minimal loops in the standard routes")

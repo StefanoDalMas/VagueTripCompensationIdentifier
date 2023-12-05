@@ -79,6 +79,7 @@ def generateActualRoute(std_route: StdRoute, driver: Driver) -> ActRoute:
             if params.DEBUG:
                 file.write(f"ciclo numero {i}, driver numero {driver.id}\n")
             actualTrip = {}
+            actualTripCityAdded = {}
 
             """ CITIES """
             if (
@@ -109,15 +110,13 @@ def generateActualRoute(std_route: StdRoute, driver: Driver) -> ActRoute:
 
                 # Otherwise, add a new city
                 else:
-                    if params.DEBUG:
-                        file.write("let's add a city\n")
+                    if params.DEBUG: file.write("let's add a city\n")
                     if (
                         np.random.randint(0, 101) <= params.CAP_ADD_NEW_CITY
                         and len(driver.likedCities) > 0
                     ):  # Check if we want to create a liked city or a normal one
                         # Create a liked city
                         new_city = np.random.choice(driver.likedCities)
-                        counter_liked_cities = 0
                         while (
                             new_city == stdTrip._from
                             or new_city == stdTrip.to
@@ -127,13 +126,15 @@ def generateActualRoute(std_route: StdRoute, driver: Driver) -> ActRoute:
                             )
                         ):
                             new_city = np.random.choice(driver.likedCities)
-                            counter_liked_cities += 1
 
-                        ### We actually don't change the city
                         if i > 0:
                             actualRoute.get("route")[i - 1].update({"to": new_city})
                         actualTrip.update({"from": new_city})
-                        actualTrip.update({"to": stdTrip.to})
+                        actualTrip.update({"to": stdTrip._from})
+                        actualTripCityAdded.update({"from": stdTrip._from})
+                        actualTripCityAdded.update({"to": stdTrip.to})
+
+
                         if params.DEBUG:
                             file.write(
                                 f"second dice is TRUE -> let's add an awsome city: {new_city}\n"
@@ -152,11 +153,13 @@ def generateActualRoute(std_route: StdRoute, driver: Driver) -> ActRoute:
                             )
                         ):
                             new_city = np.random.choice(driver.cities)
-
+                        
                         if i > 0:
                             actualRoute.get("route")[i - 1].update({"to": new_city})
                         actualTrip.update({"from": new_city})
-                        actualTrip.update({"to": stdTrip.to})
+                        actualTrip.update({"to": stdTrip._from})
+                        actualTripCityAdded.update({"from": stdTrip._from})
+                        actualTripCityAdded.update({"to": stdTrip.to})
 
                         if params.DEBUG:
                             file.write(
@@ -171,8 +174,8 @@ def generateActualRoute(std_route: StdRoute, driver: Driver) -> ActRoute:
                 actualTrip.update({"to": stdTrip.to})
 
             # If we removed the city skip products
-            if actualTrip == {} and params.DEBUG:
-                file.write("\n\n")
+            if actualTrip == {}:
+                if (params.DEBUG): file.write("\n\n")
                 continue
 
             """ PRODUCTS """  # TODO it's not complete
@@ -202,6 +205,9 @@ def generateActualRoute(std_route: StdRoute, driver: Driver) -> ActRoute:
 
             # Add the trip to the route
             actualRoute["route"].append(actualTrip)
+            if actualTripCityAdded != {}:
+                actualRoute["route"].append(actualTripCityAdded)
+                i += 1
             i += 1
 
             if params.DEBUG:
@@ -245,7 +251,3 @@ if __name__ == "__main__":
     delete_folder("./tests/operations/")
     os.makedirs("./tests/operations/")
     actRoute_generator()
-
-# regEx for testing if we have same to and from attribute of Trip in actRoutes
-# "from": "\b(\w+)\b",
-#                 "to": "\b\1\b",
