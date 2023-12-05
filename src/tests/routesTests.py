@@ -17,18 +17,18 @@ class TestRoutesGenerator(unittest.TestCase):
     standard_route: List[StdRoute]
     drivers: List[Driver]
     
-    def setUp(self):
-        self.drivers = drivers_generator()
+    @classmethod
+    def setUpClass(cls):
+        cls.drivers = drivers_generator()
         print("drivers_generator GOOD")
-        self.standard_routes = stdRoute_generator(params.ENTRIES, params.MINTRIP, params.MAXTRIP, params.MINPRODUCTS, params.MAXPRODUCTS, params.SROUTES_FILENAME)
+        cls.standard_routes = stdRoute_generator(params.ENTRIES, params.MINTRIP, params.MAXTRIP, params.MINPRODUCTS, params.MAXPRODUCTS, params.SROUTES_FILENAME)
         print("stdRoute_generator GOOD")
-        self.actual_routes = actRoute_generator()
+        cls.actual_routes = actRoute_generator()
         print("actRoute_generator GOOD")
             
-
-    def tearDown(self):
+    @classmethod
+    def tearDownClass(cls):
         pass
-
 
     def testStdFromToSameNode(self):
         print("Testing if there are no minimal loops in the standard routes")

@@ -171,8 +171,9 @@ def generateActualRoute(std_route: StdRoute, driver: Driver) -> ActRoute:
                 actualTrip.update({"to": stdTrip.to})
 
             # If we removed the city skip products
-            if actualTrip == {} and params.DEBUG:
-                file.write("\n\n")
+            if actualTrip == {}:
+                if (params.DEBUG):
+                    file.write("\n\n")
                 continue
 
             """ PRODUCTS """  # TODO it's not complete
