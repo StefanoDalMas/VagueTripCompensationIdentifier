@@ -1,8 +1,6 @@
 import random
 from typing import List, Tuple, Dict
-
-MIN_RANDOM_VALUE = 2
-MAX_RANDOM_VALUE = 30
+import tools.parameters as params
 
 italian_cities = [
     "Roma",
@@ -117,7 +115,6 @@ italian_cities = [
     "Concesio",
     "Macerata",
     "Puegnago sul Garda",
-
 ]
 
 
@@ -222,7 +219,7 @@ def random_item() -> str:
 
 
 def random_item_value() -> int:
-    return random.randint(MIN_RANDOM_VALUE, MAX_RANDOM_VALUE)
+    return random.randint(params.MIN_RANDOM_VALUE, params.MAX_RANDOM_VALUE)
 
 
 def merch_maker(minproducts, maxproducts) -> Dict[str, int]:

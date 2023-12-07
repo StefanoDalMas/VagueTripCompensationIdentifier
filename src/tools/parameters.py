@@ -10,7 +10,9 @@ class Parameters:
     MINTRIP: int = 10
     MAXTRIP: int = 30
     MINPRODUCTS: int = 1
-    MAXPRODUCTS: int = 2
+    MAXPRODUCTS: int = 10
+    MIN_RANDOM_VALUE = 2 # Minimum value for every product
+    MAX_RANDOM_VALUE = 30 # Maximum value for every product
 
     # Paths
     SROUTES_FILENAME: str = "standard.json"
@@ -30,3 +32,7 @@ class Parameters:
     MIN_ROUTES_TO_DRIVERS: int = 40
     MAX_ROUTES_TO_DRIVERS: int = 100
     CAP_ADD_NEW_CITY: int = 70
+    #Products
+    MIN_PRODUCTS_TO_ADD: int = 1
+    MAX_PRODUCTS_TO_ADD: int = 5
+    CAP_TO_MODIFY_PRODUCT: int = 60

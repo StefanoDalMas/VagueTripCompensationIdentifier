@@ -26,5 +26,5 @@ class ActRoute():
             "id": self.id,
             "driver": self.driver_id,
             "sroute": self.sRoute_id,
-            "route": self.aRoute
+            "route": [trip.to_dict() for trip in self.aRoute] #self.aRoute
         }
