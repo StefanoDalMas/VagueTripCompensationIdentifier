@@ -30,6 +30,7 @@ class TestRoutesGenerator(unittest.TestCase):
     def tearDownClass(cls):
         pass
 
+# standard_routes has no type
     def testStdFromToSameNode(self):
         print("Testing if there are no minimal loops in the standard routes")
         for route in self.standard_routes:
@@ -43,13 +44,14 @@ class TestRoutesGenerator(unittest.TestCase):
     def testActFromToSameNode(self):
         print("Testing if there are no minimal loops in the actual routes")
         for route in self.actual_routes:
-            trips = route.get("route")
+            trips = route.aRoute
             if trips == None:
-                assert(1==0)
+                assert(1 == 0)
             for trip in trips:
-                assert(trip.get("from")!=trip.get("to"))
-        assert(True==True)
+                assert(trip._from != trip.to)
+        assert(True == True)
 
+# standard_routes has no type
     def testStdFromToLinked(self):
         print("Testing if all STANDARD routes are linked")
         for route in self.standard_routes:
@@ -67,13 +69,13 @@ class TestRoutesGenerator(unittest.TestCase):
         #checks if from and to are right
         for route in self.actual_routes:
             last = None
-            trips = route.get("route")
+            trips = route.aRoute
             if trips == None:
                 assert(1==0)
             for trip in trips:
                 if last != None:
-                    assert(trip.get("from") == last) 
-                last = trip.get("to")
+                    assert(trip._from == last) 
+                last = trip.to
 
 
 

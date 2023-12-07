@@ -9,6 +9,7 @@ from classes.StdRoute import StdRoute
 from classes.ActRoute import ActRoute
 from tools.parameters import Parameters as params
 from tools.utils import delete_folder
+from tools.cities_products import shopping_list as sl, random_item_value, merch_maker
 
 act_route_counter: int = 0  # For the id of the actual routes
 
@@ -104,7 +105,6 @@ def genCities(
                 file.write("let's add a city\n")
             if (
                 np.random.randint(0, 101) <= params.CAP_ADD_NEW_CITY
-                and len(driver.likedCities) > 0
             ):  # Check if we want to create a liked city or a normal one
                 # Create a liked city
                 new_city = np.random.choice(driver.likedCities)
@@ -173,20 +173,19 @@ def modify_merch(
     merch: str,
     quantity: int,
     driver: Driver,
-    actualTrip: Trip,
-    actualTripCityAdded: Trip,
-    stdTrip: Trip,
+    trip: Trip,
+    # stdTrip: Trip,
 ) -> Tuple[Trip, Trip]:
     # If the product is liked we add more
     if merch in driver.likedProducts:
         new_quantity = quantity + np.random.randint(
             params.MIN_PRODUCTS_TO_ADD, params.MAX_PRODUCTS_TO_ADD
         )
-        actualTrip.merchandise.update({merch: new_quantity})
+        trip.merchandise.update({merch: new_quantity})
 
     # If the product is disliked we don't add it
     elif merch in driver.dislikedProducts:
-        return actualTrip, actualTripCityAdded
+        return trip
 
     # If not liked or disliked
     else:
@@ -203,11 +202,15 @@ def modify_merch(
                 new_quantity = quantity - np.random.randint(
                     params.MIN_PRODUCTS_TO_ADD, params.MAX_PRODUCTS_TO_ADD
                 )
-            actualTrip.merchandise.update({merch: new_quantity})
+            trip.merchandise.update({merch: new_quantity})
 
         # Otherwise modify the whole product
         else:
-            print("TODO")
+            key_difference = list(set(sl) - set(trip.merchandise.keys()))
+            new_key = np.random.choice(key_difference)
+            trip.merchandise.update({new_key: random_item_value()})
+
+    return trip
 
 
 # Generate the merchandise
@@ -219,19 +222,36 @@ def genMerchandise(
     file,
 ) -> Tuple[Trip, Trip]:
     # COULD BE USEFUL likedProducts = np.random.choice(sl, size=np.random.randint(0, params.MAX_LIKED_PRODUCTS), replace=False)
+    if (actualTripCityAdded.is_empty()):
+        for merch, quantity in stdTrip.merchandise.items():
+            if len(stdTrip.merchandise) >= params.MAXPRODUCTS:
+                break
+            # We want to change the products
+            if np.random.randint(0, 101) <= driver.productsCrazyness:
+                actualTrip = modify_merch(
+                    merch, quantity, driver, actualTrip
+                )
 
-    for merch, quantity in stdTrip.merchandise.items():
-        if len(stdTrip.merchandise) >= params.MAXPRODUCTS:
-            break
-        # We want to change the products
-        if np.random.randint(0, 101) <= driver.productsCrazyness:
-            modify_merch(
-                merch, quantity, driver, actualTrip, actualTripCityAdded, stdTrip
-            )
+            # We don't have to change anything :P
+            else:
+                actualTrip.merchandise.update({merch: quantity})
+    else:
+        for merch, quantity in stdTrip.merchandise.items():
+            if len(stdTrip.merchandise) >= params.MAXPRODUCTS:
+                break
+            # We want to change the products
+            if np.random.randint(0, 101) <= driver.productsCrazyness:
+                actualTripCityAdded = modify_merch(
+                    merch, quantity, driver, actualTripCityAdded
+                )
 
-        # We don't have to change anything :P
-        else:
-            actualTrip.merchandise.update({merch: quantity})
+            # We don't have to change anything :P
+            else:
+                actualTripCityAdded.merchandise.update({merch: quantity})
+        
+        # create a totally new merchandise dictionary for the new city
+        actualTrip.merchandise.update(merch_maker(params.MINPRODUCTS, params.MAXPRODUCTS))
+
 
     return actualTrip, actualTripCityAdded
 
@@ -281,7 +301,7 @@ def generateActualRoute(std_route: StdRoute, driver: Driver) -> ActRoute:
 
             # Add the trip to the route
             actualRoute.aRoute.append(actualTrip)
-            if actualTripCityAdded != {}:
+            if not actualTripCityAdded.is_empty():
                 actualRoute.aRoute.append(actualTripCityAdded)
                 i += 1
             i += 1
@@ -290,7 +310,7 @@ def generateActualRoute(std_route: StdRoute, driver: Driver) -> ActRoute:
                 file.write("\n\n")
 
         # to_dict() so it's serializable
-        return actualRoute.to_dict()
+        return actualRoute
 
 
 def actRoute_generator() -> List[ActRoute]:
@@ -317,9 +337,11 @@ def actRoute_generator() -> List[ActRoute]:
                 actualRoutes.append(generateActualRoute(selected_route, driver))
         selected_stdRoutes.clear()
 
+    # cast all elements to dictionary
+    actRoutes_list_dict = [actRoute.to_dict() for actRoute in actualRoutes]
     # Save the actual routes on a json file
     with open("./data/" + params.AROUTES_FILENAME, "w") as f:
-        f.write(json.dumps(actualRoutes, indent=4))
+        f.write(json.dumps(actRoutes_list_dict, indent=4))
 
     return actualRoutes
 

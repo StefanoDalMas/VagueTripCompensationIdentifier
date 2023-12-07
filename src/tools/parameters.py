@@ -11,8 +11,8 @@ class Parameters:
     MAXTRIP: int = 30
     MINPRODUCTS: int = 1
     MAXPRODUCTS: int = 10
-    MIN_RANDOM_VALUE = 2 # Minimum value for every product
-    MAX_RANDOM_VALUE = 30 # Maximum value for every product
+    # MIN_RANDOM_VALUE = 2 # Minimum value for every product
+    # MAX_RANDOM_VALUE = 30 # Maximum value for every product
 
     # Paths
     SROUTES_FILENAME: str = "standard.json"

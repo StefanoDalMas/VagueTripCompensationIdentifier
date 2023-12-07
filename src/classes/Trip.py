@@ -18,3 +18,8 @@ class Trip():
             "to": self.to,
             "merchandise": self.merchandise
         }
+
+    def is_empty(self):
+        if self._from == "" and self.to == "" and self.merchandise == {}:
+            return True
+        return False
