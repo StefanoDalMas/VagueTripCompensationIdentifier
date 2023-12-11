@@ -90,13 +90,14 @@ def genCities(
         elif stdTrip._from in driver.dislikedCities:
             if params.DEBUG:
                 file.write("I come from a city that sucks! Remove it!\n")
-            if i > 0 and actualRoute.aRoute[i - 1]._from != stdTrip.to:
-                actualRoute.aRoute[i - 1].to = stdTrip.to  # update({"to": stdTrip.to})
-            elif i > 0:
-                # actualTrip.update({"from": stdTrip._from})
-                # actualTrip.update({"to": stdTrip.to})
-                actualTrip._from = stdTrip._from
-                actualTrip.to = stdTrip.to
+            if i > 0:
+                if actualRoute.aRoute[i - 1]._from != stdTrip.to:
+                    actualRoute.aRoute[i - 1].to = stdTrip.to  # update({"to": stdTrip.to})
+                else:
+                    # actualTrip.update({"from": stdTrip._from})
+                    # actualTrip.update({"to": stdTrip.to})
+                    actualTrip._from = stdTrip._from
+                    actualTrip.to = stdTrip.to
             # TODO se non si può eliminare lasciamo così o sostituiamo?
 
         # Otherwise, add a new city
@@ -290,14 +291,14 @@ def generateActualRoute(std_route: StdRoute, driver: Driver) -> ActRoute:
                     file.write("\n\n")
                 continue
 
+             # For now we just skip the trip if the from and to are the same
+            if actualTrip._from == "" and  actualTrip.to == "":
+                continue
+
             """ PRODUCTS """  # TODO it's not complete
             actualTrip, actualTripCityAdded = genMerchandise(
                 driver, stdTrip, actualTrip, actualTripCityAdded, file
             )
-
-            # For now we just skip the trip if the from and to are the same
-            if actualTrip._from == actualTrip.to:
-                continue
 
             # Add the trip to the route
             actualRoute.aRoute.append(actualTrip)

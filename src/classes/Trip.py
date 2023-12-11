@@ -1,5 +1,6 @@
 # system imports
 from typing import List, Dict, Tuple 
+import numpy as np
 
 class Trip():
 
@@ -23,3 +24,17 @@ class Trip():
         if self._from == "" and self.to == "" and self.merchandise == {}:
             return True
         return False
+    
+    def dict_to_vector(self):
+        # Estrai le chiavi e i valori dal dizionario
+        keys = list(self.merchandise.keys())
+        values = list(self.merchandise.values())
+
+        # Crea un vettore NumPy
+        vector = np.zeros(len(keys), dtype=int)
+
+        # Assegna i valori alle posizioni corrispondenti nel vettore
+        for key, value in zip(keys, values):
+            vector[int(key)] = value
+
+        return vector
