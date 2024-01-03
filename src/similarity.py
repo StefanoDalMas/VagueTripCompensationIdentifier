@@ -1,8 +1,10 @@
+from typing import List, Dict
 import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
 from classes.Trip import Trip
 from classes.ActRoute import ActRoute
 from classes.StdRoute import StdRoute
+from classes.DriverRoutesSimilarity import DriverRoutesSimilarity
 from tools.parameters import Parameters as params
 from actRoute_generator import getStdRoutes, getActRoutes
 
@@ -90,12 +92,15 @@ def route_similarity(stdRoute: StdRoute, actRoute: ActRoute) -> float:
 
     return (penality + similarity) / max
 
+#TODO: save results in dictionary 
+# {driver5, {route5:0.9, route6:0.8, route7:0.7}}
+def generate_similarities () -> List[DriverRoutesSimilarity]:
+    std_routes:List[StdRoute] = getStdRoutes()
+    act_routes:List[ActRoute] = getActRoutes()
 
-if __name__ == "__main__":
-    std_routes = getStdRoutes()
-    act_routes = getActRoutes()
-
-    similarity = 0
+    driver_sim: Dict[str, List[Dict[str, float]]] = {}
+    similarity:Dict[str, float] ={}
+    #find corresponding route
     for i in range(len(act_routes)):
         id = act_routes[i].sRoute_id
         std_route = None
@@ -103,12 +108,25 @@ if __name__ == "__main__":
             if std_routes[j].id == id:
                 std_route = std_routes[j]
                 break
-        
+        #compute similarity
         if std_route != None:
-            similarity += route_similarity(std_route, act_routes[i])
-                # print("Route " + str(i) + " similarity: " + str(route_similarity(std_route, act_routes[i])))
+            similarity.update({
+                std_route.id: route_similarity(std_route, act_routes[i])
+            })
+
+            # append similarity to a dicionary where the keys are the drivers
+            if act_routes[i].driver_id in driver_sim:
+                driver_sim[act_routes[i].driver_id].append(similarity)
+            else:
+                driver_sim[act_routes[i].driver_id] = [similarity]
+
         else:
             raise Exception("Standard route not found")
 
-    # print("Count: " + str(count) + " on total: " + str(len(act_routes)))
-    print("Percentage: " + str(similarity / len(act_routes) * 100) + "%")
+    # Convert the dictionary to a list of tuples
+    driver_similarities_list = list(driver_sim.items())
+    return driver_similarities_list 
+
+if __name__ == "__main__":
+
+    results = generate_similarities()
