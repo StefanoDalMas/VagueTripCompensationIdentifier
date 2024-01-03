@@ -42,24 +42,48 @@ def getDrivers() -> List[Driver]:
 # Get the standard routes from the json file
 def getStdRoutes() -> List[StdRoute]:
     # reading sRoutes from json
-    with open("./data/" + params.SROUTES_FILENAME, "r") as driversFile:
-        sRoutesJson = json.load(driversFile)
+    with open("./data/" + params.SROUTES_FILENAME, "r") as std_file:
+        std_routes_json = json.load(std_file)
 
     # Create objects from the data
-    stdRoutes: List[StdRoute] = []
-    for sRouteJson in sRoutesJson:
+    std_routes: List[StdRoute] = []
+    for std_route_json in std_routes_json:
         trips: List[Trip] = []
         # create list of Trip
-        for tripJson in sRouteJson["route"]:
+        for trip_json in std_route_json["route"]:
             trips.append(
-                Trip(tripJson["from"], tripJson["to"], tripJson["merchandise"])
+                Trip(trip_json["from"], trip_json["to"], trip_json["merchandise"])
             )
 
         # create list of StdRoute
-        stdRoutes.append(StdRoute(sRouteJson["id"], trips))
+        std_routes.append(StdRoute(std_route_json["id"], trips))
 
-    return stdRoutes
+    return std_routes
 
+# Get the standard routes from the json file
+def getActRoutes() -> List[ActRoute]:
+    # reading sRoutes from json
+    with open("./data/" + params.AROUTES_FILENAME, "r") as act_file:
+        act_routes_json = json.load(act_file)
+
+    # Create objects from the data
+    act_routes: List[ActRoute] = []
+    for act_route_json in act_routes_json:
+        trips: List[Trip] = []
+        # Create list of Trip
+        for trip_json in act_route_json["route"]:
+            trips.append(
+                Trip(trip_json["from"], trip_json["to"], trip_json["merchandise"])
+            )
+
+        act_id = act_route_json["id"]
+        driver_id = act_route_json["driver"]
+        sroute_id = act_route_json["sroute"]
+
+        # Create list of ActRoute
+        act_routes.append(ActRoute(act_id, driver_id, sroute_id, trips))
+
+    return act_routes
 
 # Generate the cities
 def genCities(

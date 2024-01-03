@@ -36,3 +36,9 @@ class Parameters:
     MIN_PRODUCTS_TO_ADD: int = 1
     MAX_PRODUCTS_TO_ADD: int = 5
     CAP_TO_MODIFY_PRODUCT: int = 60
+
+    # Similarity
+    MERCH_PENALITY = 0.15
+    DELETE_PENALITY = 1.0
+    MODIFY_PENALITY = 0.3
+    MAX_WINDOW_SIZE = 3

@@ -8,8 +8,8 @@ class ActRoute():
 
     def __init__(self, id:str, driver_id:str, sRoute_id:str, aRoute:List[Trip]) -> None:
         self.id = id
-        self.driver_id: driver_id
-        self.sRoute_id: sRoute_id
+        self.driver_id = driver_id
+        self.sRoute_id = sRoute_id
         self.aRoute = aRoute
 
     def __str__(self):

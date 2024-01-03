@@ -9,7 +9,7 @@
             "type": "python",
             "request": "launch",
             "cwd": "${workspaceFolder}/src",
-            "program": "actRoute_generator.py",
+            "program": "similarity.py",
             "console": "integratedTerminal",
             "justMyCode": true
         }

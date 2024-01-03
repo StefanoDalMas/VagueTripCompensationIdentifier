@@ -1,7 +1,10 @@
 import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
 from classes.Trip import Trip
-
+from classes.ActRoute import ActRoute
+from classes.StdRoute import StdRoute
+from tools.parameters import Parameters as params
+from actRoute_generator import getStdRoutes, getActRoutes
 
 def dict_padding(stdTrip: Trip, ActTrip: Trip) -> (Trip, Trip):
     keys_to_ensure = set(stdTrip.merchandise.keys()) | set(ActTrip.merchandise.keys())
@@ -17,8 +20,14 @@ def dict_padding(stdTrip: Trip, ActTrip: Trip) -> (Trip, Trip):
 
 # Calculate the similarity of merch between two trips (cosine similarity)
 def trip_merch_similarity(stdTrip: Trip, actTrip: Trip):
+    stdTrip, actTrip = dict_padding(stdTrip, actTrip)
+
     merchandise1 = np.array(list(stdTrip.merchandise.values()))
     merchandise2 = np.array(list(actTrip.merchandise.values()))
+
+    # check if merchandise2 is an arry of zeros
+    if np.all(merchandise2 == 0):
+        return 1.0
 
     # Sort the merchandise based on the keys
     merchandise1 = merchandise1[np.argsort(list(stdTrip.merchandise.keys()))]
@@ -35,14 +44,71 @@ def trip_merch_similarity(stdTrip: Trip, actTrip: Trip):
 
 
 # Calculate the similarity of routes between two routes
-def route_similarity(stdTrip: Trip, actTrip: Trip):
-    return 0
+def route_similarity(stdRoute: StdRoute, actRoute: ActRoute) -> float:
+    similarity = 0.0
+    penality = 0.0
+
+    route_std = stdRoute.route
+    route_act = actRoute.aRoute
+    i, j = 0, 0
+
+    while i < len(route_std) and j < len(route_act):
+
+        # If the two routes have the same from
+        if route_std[i]._from == route_act[j]._from:
+            similarity += 1 - trip_merch_similarity(route_std[i], route_act[j]) * params.MERCH_PENALITY
+            i += 1
+            j += 1
+
+        else:
+            window_cities = []
+            window_index = j + 1
+            counter = 0
+            while counter < params.MAX_WINDOW_SIZE and window_index < len(route_act):
+                # Keep adding cities to the window until the next city is the same as the city in the standard route
+                if route_std[i]._from != route_act[window_index]._from:
+                    window_cities.append(route_act[window_index]._from)
+                    window_index += 1
+                    counter += 1
+                else:
+                    penality += len(window_cities) * params.MODIFY_PENALITY
+                    # Doesn't make sense because we generate the new city with random values
+                    # similarity += 1 - trip_merch_similarity(route_std[i], route_act[j]) * MERCH_PENALITY
+                    i += 1
+                    j += 1
+                    break
+            
+            if counter == params.MAX_WINDOW_SIZE or window_index == len(route_act):
+                penality += params.DELETE_PENALITY
+                i += 1
+                j += 1
+
+    if len(route_act) > len(route_std):
+        penality += (len(route_act) - len(route_std)) * params.MODIFY_PENALITY
+
+    max = len(route_std) if len(route_std) > len(route_act) else len(route_act)
+
+    return (penality + similarity) / max
 
 
 if __name__ == "__main__":
-    stdTrip = Trip("", "", {"w": 1000, "f": 2, "n": 16, "a": 100})
-    actTrip = Trip("", "", {"w": 1000, "f": 2, "z": 50, "n": 16, "l": 1000})
+    std_routes = getStdRoutes()
+    act_routes = getActRoutes()
 
-    stdTrip, actTrip = dict_padding(stdTrip, actTrip)
+    similarity = 0
+    for i in range(len(act_routes)):
+        id = act_routes[i].sRoute_id
+        std_route = None
+        for j in range(len(std_routes)):
+            if std_routes[j].id == id:
+                std_route = std_routes[j]
+                break
+        
+        if std_route != None:
+            similarity += route_similarity(std_route, act_routes[i])
+                # print("Route " + str(i) + " similarity: " + str(route_similarity(std_route, act_routes[i])))
+        else:
+            raise Exception("Standard route not found")
 
-    print("Similarity: " + str(trip_merch_similarity(stdTrip, actTrip)))
+    # print("Count: " + str(count) + " on total: " + str(len(act_routes)))
+    print("Percentage: " + str(similarity / len(act_routes) * 100) + "%")
