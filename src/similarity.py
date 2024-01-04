@@ -4,7 +4,6 @@ from sklearn.metrics.pairwise import cosine_similarity
 from classes.Trip import Trip
 from classes.ActRoute import ActRoute
 from classes.StdRoute import StdRoute
-from classes.DriverRoutesSimilarity import DriverRoutesSimilarity
 from tools.parameters import Parameters as params
 from actRoute_generator import getStdRoutes, getActRoutes
 
@@ -97,13 +96,11 @@ def route_similarity(stdRoute: StdRoute, actRoute: ActRoute) -> float:
     return (penality + similarity) / max
 
 
-# TODO: save results in dictionary
-# {driver5, {route5:0.9, route6:0.8, route7:0.7}}
-def generate_similarities() -> Dict[str,Dict[str,float]]:
+def generate_similarities() -> params.driver_similarities:
     std_routes: List[StdRoute] = getStdRoutes()
     act_routes: List[ActRoute] = getActRoutes()
 
-    driver_sim: Dict[str,Dict[str,float]] = {}
+    driver_sim: params.driver_similarities = {}
     # find corresponding route
     for i in range(len(act_routes)):
         id = act_routes[i].sRoute_id
