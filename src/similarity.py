@@ -1,4 +1,4 @@
-from typing import List, Dict
+from typing import List, Dict, Tuple
 import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
 from classes.Trip import Trip
@@ -8,7 +8,8 @@ from classes.DriverRoutesSimilarity import DriverRoutesSimilarity
 from tools.parameters import Parameters as params
 from actRoute_generator import getStdRoutes, getActRoutes
 
-def dict_padding(stdTrip: Trip, ActTrip: Trip) -> (Trip, Trip):
+
+def dict_padding(stdTrip: Trip, ActTrip: Trip) -> Tuple[Trip, Trip]:
     keys_to_ensure = set(stdTrip.merchandise.keys()) | set(ActTrip.merchandise.keys())
 
     for key in keys_to_ensure:
@@ -55,10 +56,13 @@ def route_similarity(stdRoute: StdRoute, actRoute: ActRoute) -> float:
     i, j = 0, 0
 
     while i < len(route_std) and j < len(route_act):
-
         # If the two routes have the same from
         if route_std[i]._from == route_act[j]._from:
-            similarity += 1 - trip_merch_similarity(route_std[i], route_act[j]) * params.MERCH_PENALITY
+            similarity += (
+                1
+                - trip_merch_similarity(route_std[i], route_act[j])
+                * params.MERCH_PENALITY
+            )
             i += 1
             j += 1
 
@@ -79,7 +83,7 @@ def route_similarity(stdRoute: StdRoute, actRoute: ActRoute) -> float:
                     i += 1
                     j += 1
                     break
-            
+
             if counter == params.MAX_WINDOW_SIZE or window_index == len(route_act):
                 penality += params.DELETE_PENALITY
                 i += 1
@@ -92,15 +96,15 @@ def route_similarity(stdRoute: StdRoute, actRoute: ActRoute) -> float:
 
     return (penality + similarity) / max
 
-#TODO: save results in dictionary 
-# {driver5, {route5:0.9, route6:0.8, route7:0.7}}
-def generate_similarities () -> List[DriverRoutesSimilarity]:
-    std_routes:List[StdRoute] = getStdRoutes()
-    act_routes:List[ActRoute] = getActRoutes()
 
-    driver_sim: Dict[str, List[Dict[str, float]]] = {}
-    similarity:Dict[str, float] ={}
-    #find corresponding route
+# TODO: save results in dictionary
+# {driver5, {route5:0.9, route6:0.8, route7:0.7}}
+def generate_similarities() -> Dict[str,Dict[str,float]]:
+    std_routes: List[StdRoute] = getStdRoutes()
+    act_routes: List[ActRoute] = getActRoutes()
+
+    driver_sim: Dict[str,Dict[str,float]] = {}
+    # find corresponding route
     for i in range(len(act_routes)):
         id = act_routes[i].sRoute_id
         std_route = None
@@ -108,25 +112,19 @@ def generate_similarities () -> List[DriverRoutesSimilarity]:
             if std_routes[j].id == id:
                 std_route = std_routes[j]
                 break
-        #compute similarity
+        # compute similarity and add it to the list
         if std_route != None:
-            similarity.update({
-                std_route.id: route_similarity(std_route, act_routes[i])
-            })
-
-            # append similarity to a dicionary where the keys are the drivers
             if act_routes[i].driver_id in driver_sim:
-                driver_sim[act_routes[i].driver_id].append(similarity)
+                driver_sim[act_routes[i].driver_id].update({act_routes[i].sRoute_id: route_similarity(std_route, act_routes[i])})
             else:
-                driver_sim[act_routes[i].driver_id] = [similarity]
-
+                driver_sim.update({act_routes[i].driver_id:{act_routes[i].sRoute_id: route_similarity(std_route, act_routes[i])}})
         else:
             raise Exception("Standard route not found")
 
-    # Convert the dictionary to a list of tuples
-    driver_similarities_list = list(driver_sim.items())
-    return driver_similarities_list 
+    # Convert the dictionary to a list of tuple
+    return driver_sim
+
 
 if __name__ == "__main__":
-
     results = generate_similarities()
+    print(results)
