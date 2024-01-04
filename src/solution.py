@@ -39,12 +39,23 @@ def make_driver_json(top_5_dict:params.driver_similarities) -> None:
 
 if __name__ == "__main__":
     #point 2 of the assignment
-    #print the current working directory
-    print(os.getcwd())
+    # utilizza online algorithm (window) per valutare l'esistenza di una città in una route
     sim_drivers_routes:params.driver_similarities = generate_similarities()
     top_5_dict:params.driver_similarities = generate_top_5_similarities(sim_drivers_routes)
     make_driver_json(top_5_dict)
+
+    # point 3
+    # per ogni driver prendiamo le actual e le standard corrispondenti
+    # creiamo un set di città contenente l'intersezione tra le città che gli piacciono
+    # contiamo la frequenza di ogni città all'interno del set (page rank)
+    # guardiamo le lunghezze delle actual e delle standard (?)
+
+    # per il merch
+    # creiamo un set di merch contenente l'intersezione tra i merch std e actual + frequenza
+    # contiamo la lunghezza di ogni basket
+    # ogni trip è un basket, prendiamo tutti i basket di una route e creiamo association rules 
+    # tipo latte -> uova, latte e uova -> pane, ecc
+    # ogni volta che creiamo un basket lo facciamo seguendo la lunghezza media e usiamo le regole per aggiungere prodotti
     
     
     print("yes")
-
