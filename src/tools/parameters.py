@@ -1,12 +1,15 @@
 from tools.cities_products import italian_cities as ic
 from tools.cities_products import shopping_list as sl
+from typing import Dict, List
+from classes.ActRoute import ActRoute
 from typing import Dict
 
 
 class Parameters:
 
     #typedefs
-    driver_similarities = Dict[str,Dict[str,float]]
+    driverSimilarities = Dict[str,Dict[str,float]]
+    driverActuals = Dict[str, List[ActRoute]]
 
     DEBUG: bool = False 
     # Standard routes

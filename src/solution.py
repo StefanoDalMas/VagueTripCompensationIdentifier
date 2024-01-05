@@ -9,7 +9,7 @@ from similarity import generate_similarities
 
 
 
-def compute_mean_similarity(sim_drivers_routes:params.driver_similarities) -> float:
+def compute_mean_similarity(sim_drivers_routes:params.driverSimilarities) -> float:
     pass
 
 def generate_top_5_similarities(sim_drivers_routes: Dict[str, Dict[str, float]]) -> Dict[str, Dict[str, float]]:
@@ -19,7 +19,7 @@ def generate_top_5_similarities(sim_drivers_routes: Dict[str, Dict[str, float]])
         top_5_similarities[driver] = dict(sorted_routes[:5])
     return top_5_similarities
 
-def make_driver_json(top_5_dict:params.driver_similarities) -> None:
+def make_driver_json(top_5_dict:params.driverSimilarities) -> None:
     #print in a file called "driver.json" something like this
     #[
     # {driver:C, routes:[s10, s20, s2, s6, s10}}, 
@@ -40,8 +40,8 @@ def make_driver_json(top_5_dict:params.driver_similarities) -> None:
 if __name__ == "__main__":
     #point 2 of the assignment
     # utilizza online algorithm (window) per valutare l'esistenza di una città in una route
-    sim_drivers_routes:params.driver_similarities = generate_similarities()
-    top_5_dict:params.driver_similarities = generate_top_5_similarities(sim_drivers_routes)
+    sim_drivers_routes:params.driverSimilarities = generate_similarities()
+    top_5_dict:params.driverSimilarities = generate_top_5_similarities(sim_drivers_routes)
     make_driver_json(top_5_dict)
 
     # point 3

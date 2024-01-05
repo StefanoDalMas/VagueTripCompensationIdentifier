@@ -96,11 +96,11 @@ def route_similarity(stdRoute: StdRoute, actRoute: ActRoute) -> float:
     return (penality + similarity) / max
 
 
-def generate_similarities() -> params.driver_similarities:
+def generate_similarities() -> params.driverSimilarities:
     std_routes: List[StdRoute] = getStdRoutes()
     act_routes: List[ActRoute] = getActRoutes()
 
-    driver_sim: params.driver_similarities = {}
+    driver_sim: params.driverSimilarities = {}
     # find corresponding route
     for i in range(len(act_routes)):
         id = act_routes[i].sRoute_id
