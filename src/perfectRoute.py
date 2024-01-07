@@ -1,6 +1,6 @@
 import json
 import os
-from typing import Dict, List
+from typing import Dict, List, Tuple
 from classes.Trip import Trip
 from classes.ActRoute import ActRoute
 from classes.StdRoute import StdRoute
@@ -36,12 +36,13 @@ def get_driver_actuals() -> params.driverActuals:
 
 # vogliamo creare questo
 #  {driver: {città: quantità}}
-def calculate_liked_cities(driver_actuals: params.driverActuals):
+def calculate_liked_cities(driver_actuals: params.driverActuals) -> params.driverCalLikedCities:
     std_routes: List[StdRoute] = getStdRoutes()
-    driver_liked_cities: Dict[str, Dict[str, int]]
+    driver_liked_cities: Dict[str, Dict[str, int]] = {}
 
     actual_dict: Dict[str, int] = {}
     standard_dict: Dict[str, int] = {}
+    calculated_liked_cities: Dict[str, int] = {}
 
     for driver, actual_list in driver_actuals.items():
         for actual in actual_list:
@@ -66,37 +67,55 @@ def calculate_liked_cities(driver_actuals: params.driverActuals):
 
                         standard_dict.update({trip._from: value })
 
-            # facciamo sottrazione tra i dizionari
-            res = dict_difference(actual_dict, standard_dict)
-            print(res)
-            # fai funzione dict_difference
-            # crea threshold per decidere se città è buona o meno
-            # crea threshold partendo da media di numero di città presenti in actual_dict e standard_dict e poi fai media tra le due medie
-            # metti una costante nei parametri che indica la percentuale per calcolare la threshold sulla media risultante
+           
+            # facciamo sottrazione tra i dizionari e la aggiungiamo al totale
+            calculated_liked_cities = update_dict(calculated_liked_cities, dict_difference(actual_dict, standard_dict))
+
+
+
+
+        # crea threshold per decidere se città è buona o meno
+        max_value = max(calculated_liked_cities.values())
+        threshold = int(max_value * params.THRESHOLD_MOLTIPLICATOR)
+
+
+        calc_liked_cities_thr_tuple: Tuple[Dict[str, int], int] = (calculated_liked_cities, threshold)
+            
+        driver_liked_cities.update({driver: calc_liked_cities_thr_tuple})
+
+        threshold = 0
+        actual_dict = {}
+        standard_dict = {}
+        calculated_liked_cities = {}
+        calc_liked_cities_thr_tuple = {}
 
     return driver_liked_cities
 
-def dict_difference(dict1, dict2):
+def dict_difference(dict1: Dict[str, int], dict2: Dict[str, int]) -> Dict[str, int]:
     result = {}
-    all_keys = set(dict1.keys()).union(dict2.keys())
-
-    for key in all_keys:
-        value1 = dict1.get(key, 0)
-        value2 = dict2.get(key, 0)
-        difference = value1 - value2
-        if difference != 0:
-            result[key] = difference
+    for item in dict1:
+        if item in dict2:
+            if dict1.get(item) - dict2.get(item) > 0:
+                result.update({item: dict1.get(item) - dict2.get(item)})
 
     return result
 
-def count_city():
-    std_routes: List[StdRoute] = getStdRoutes()
-    act_routes: List[ActRoute] = getActRoutes()
-
-    for act_route in act_routes:
-        driver = act_route.driver_id
-
+def update_dict(dict1: Dict[str, int], dict2: Dict[str, int]) -> Dict[str, int]:
+    if dict1 == None and dict2 == None:
+        return {}
+    else:
+        if (dict1 == None):
+            return dict2
+        if (dict2 == None):
+            return dict1
+        
+        keys_set = set(dict1) | set(dict2)
+        for key in keys_set:
+            dict1.update({key: (dict1.get(key, 0) + dict2.get(key, 0))})
+        return dict1
 
 
 if __name__ == "__main__":
-    calculate_liked_cities(get_driver_actuals())
+    # dict[0] -> dictionary, dict[1] -> threshold
+    dict = calculate_liked_cities(get_driver_actuals())
+    print("stop")

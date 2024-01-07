@@ -1,6 +1,6 @@
 from tools.cities_products import italian_cities as ic
 from tools.cities_products import shopping_list as sl
-from typing import Dict, List
+from typing import Dict, List, Tuple
 from classes.ActRoute import ActRoute
 from typing import Dict
 
@@ -10,6 +10,7 @@ class Parameters:
     #typedefs
     driverSimilarities = Dict[str,Dict[str,float]]
     driverActuals = Dict[str, List[ActRoute]]
+    driverCalLikedCities = Dict[str, Tuple[Dict[str, int], int]]
 
     DEBUG: bool = False 
     # Standard routes
@@ -49,3 +50,6 @@ class Parameters:
     DELETE_PENALITY = 1.0
     MODIFY_PENALITY = 0.3
     MAX_WINDOW_SIZE = 3
+
+    # Threshold
+    THRESHOLD_MOLTIPLICATOR = 0.38
