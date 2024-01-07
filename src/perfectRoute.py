@@ -1,12 +1,15 @@
 import json
 import os
-from typing import Dict, List, Tuple
+from typing import Dict, List, Tuple, Any
 from classes.Trip import Trip
 from classes.ActRoute import ActRoute
 from classes.StdRoute import StdRoute
 from tools.parameters import Parameters as params
 from similarity import generate_similarities
 from actRoute_generator import getStdRoutes, getActRoutes
+from mlxtend.frequent_patterns import apriori, association_rules
+from mlxtend.preprocessing import TransactionEncoder
+import pandas as pd
 
 # {driver: {città: quantità}}
 
@@ -35,10 +38,9 @@ def get_driver_actuals() -> params.driverActuals:
 
 # vogliamo creare questo
 #  {driver: {città: quantità}}
-#fix return types!!!
 def calculate_liked_cities(
     driver_actuals: params.driverActuals,
-) -> params.driverCalLikedCities:
+) -> Dict[str, List[str]]:
     std_routes: List[StdRoute] = getStdRoutes()
     driver_liked_cities: params.driverCalLikedCities = {}
 
@@ -95,7 +97,7 @@ def calculate_liked_cities(
 
 
 def dict_difference(dict1: Dict[str, int], dict2: Dict[str, int]) -> Dict[str, int]:
-    result : Dict[str,int] = {}
+    result: Dict[str, int] = {}
     for item in dict1:
         if item in dict2:
             if dict1.get(item) - dict2.get(item) > 0:
@@ -118,22 +120,82 @@ def update_dict(dict1: Dict[str, int], dict2: Dict[str, int]) -> Dict[str, int]:
             dict1.update({key: (dict1.get(key, 0) + dict2.get(key, 0))})
         return dict1
 
-def get_favourite_cities_dict(dict:params.driverCalLikedCities) -> Dict[str,List[str]]:
-    res_dict:Dict[str,List[str]] = {}
+
+def get_favourite_cities_dict(
+    dict: params.driverCalLikedCities,
+) -> Dict[str, List[str]]:
+    res_dict: Dict[str, List[str]] = {}
     for driver, tuple in dict.items():
-        res_list : List[str] = []
+        res_list: List[str] = []
         for city, occurrencies in tuple[0].items():
             if occurrencies > tuple[1]:
                 res_list.append(city)
-        res_dict.update({driver:res_list})
+        res_dict.update({driver: res_list})
     return res_dict
+
+
+def calculate_liked_merchandise(
+    driver_actuals: params.driverActuals,
+) -> Dict[str, List[Any]]:
+    dict_all_merch: Dict[str, List[List[str]]] = {}
+    # act_routes_list : List[List[List[str]]] = []
+    route_list: List[List[str]] = []
+    for (
+        driver,
+        actual_list,
+    ) in driver_actuals.items():  # {driver: [ActRoute,ActRoute,...]]}
+        for actual in actual_list:  # [ActRoute,ActRoute,...]
+            trip_list: List[str] = []  # [beer,wine,diapers,nuts,...]
+            for trip in actual.aRoute:  # [Trip,Trip,...]
+                for merch in trip.merchandise.keys():  # [beer,wine,diapers,nuts,...]
+                    trip_list.append(merch)
+                route_list.append(trip_list)  # [[beer,wine,diapers],[chips],...]
+                trip_list = []
+            # act_routes_list.append(route_list)
+            # route_list = []
+        dict_all_merch.update({driver: route_list})
+        route_list = []
+
+    # for each driver apply the apriori to the baskets of all merchandise of all routes taken by him
+    for driver, transactions in dict_all_merch.items():
+        # slice the list to get only the first 20 routes
+        transactions = transactions[:100]
+        te = TransactionEncoder()
+        te_ary = te.fit(transactions).transform(transactions)
+        df = pd.DataFrame(te_ary, columns=te.columns_)
+        frequent_itemsets = apriori(df, min_support=0.1, use_colnames=True)
+
+        # Generate association rules
+        rules = association_rules(
+            frequent_itemsets, metric="confidence", min_threshold=0.7
+        )
+
+        print("Frequent Itemsets:")
+        print(frequent_itemsets)
+
+        print("\nAssociation Rules:")
+        print(rules)
+    #     dict_all_merch.update({driver: rules})
+
+    return dict_all_merch
 
 
 if __name__ == "__main__":
     # dict[0] -> dictionary, dict[1] -> threshold
-    fav_cities : Dict[str,List[str]] = calculate_liked_cities(get_driver_actuals())
+    fav_cities: Dict[str, List[str]] = calculate_liked_cities(get_driver_actuals())
 
-    #next step : get best merchandise for each driver
+    # next step : get best merchandise for each driver
+    # get all actrouts for each driver
+    # for each route, get all trips and convert each merch in a list
+    # make all baskets of a route a list of lists [[beer,wine],[diapers,nuts],...]
+    # use apriori to get best merchandise
 
-    #next step : generate perfect route using fav_cities and fav_merchandise
+    fav_merchandise: Dict[str, List[Any]] = calculate_liked_merchandise(
+        get_driver_actuals()
+    )
+
+    # make me a test matrix with data like this [["milk","wine","beer"],["beer","diapers"],...]
+    # take a lot of things like beer, coke, flour, and so on
+
     print("stop")
+    # next step : generate perfect route using fav_cities and fav_merchandise
