@@ -1,3 +1,5 @@
+import time
+
 from tools.parameters import Parameters as params
 
 import actRoute_generator
@@ -33,9 +35,15 @@ def check_params():
 
 
 if __name__ == "__main__":
+    start = time.time()
     check_params()
     drivers_generator.drivers_generator()
+
+    end = time.time()
+    print(f"driver generation time: {end-start}")
     print("Drivers generated")
+
+    start = time.time()
     stdRoute_generator.stdRoute_generator(
         params.ENTRIES,
         params.MINTRIP,
@@ -44,6 +52,12 @@ if __name__ == "__main__":
         params.MAXPRODUCTS,
         params.SROUTES_FILENAME,
     )
+    end = time.time()
+    print(f"standard generation time: {end-start}")
     print("Standard routes generated")
+
+    start = time.time()
     actRoute_generator.actRoute_generator()
+    end = time.time()
+    print(f"actual generation time: {end-start}")
     print("Actual routes generated")

@@ -138,7 +138,7 @@ def calculate_liked_merchandise(
     driver_actuals: params.driverActuals,
 ) -> Dict[str, List[Any]]:
     dict_all_merch: Dict[str, List[List[str]]] = {}
-    # act_routes_list : List[List[List[str]]] = []
+    act_routes_list : List[List[List[str]]] = []
     route_list: List[List[str]] = []
     for (
         driver,
@@ -151,30 +151,31 @@ def calculate_liked_merchandise(
                     trip_list.append(merch)
                 route_list.append(trip_list)  # [[beer,wine,diapers],[chips],...]
                 trip_list = []
-            # act_routes_list.append(route_list)
-            # route_list = []
-        dict_all_merch.update({driver: route_list})
+            act_routes_list.append(route_list)
+            route_list = []
+        dict_all_merch.update({driver: act_routes_list})
         route_list = []
 
     # for each driver apply the apriori to the baskets of all merchandise of all routes taken by him
-    for driver, transactions in dict_all_merch.items():
+    for driver, routes_list in dict_all_merch.items():
         # slice the list to get only the first 20 routes
-        transactions = transactions[:100]
-        te = TransactionEncoder()
-        te_ary = te.fit(transactions).transform(transactions)
-        df = pd.DataFrame(te_ary, columns=te.columns_)
-        frequent_itemsets = apriori(df, min_support=0.1, use_colnames=True)
+        # transactions = transactions[:100]
+        for transactions in routes_list:
+            te = TransactionEncoder()
+            te_ary = te.fit(transactions).transform(transactions)
+            df = pd.DataFrame(te_ary, columns=te.columns_)
+            frequent_itemsets = apriori(df, min_support=0.05, use_colnames=True,verbose=1,low_memory=True)
 
-        # Generate association rules
-        rules = association_rules(
-            frequent_itemsets, metric="confidence", min_threshold=0.7
-        )
+            # Generate association rules
+            rules = association_rules(
+                frequent_itemsets, metric="confidence", min_threshold=0.1
+            )
 
-        print("Frequent Itemsets:")
-        print(frequent_itemsets)
+            print("Frequent Itemsets:")
+            print(frequent_itemsets)
 
-        print("\nAssociation Rules:")
-        print(rules)
+            print("\nAssociation Rules:")
+            print(rules)
     #     dict_all_merch.update({driver: rules})
 
     return dict_all_merch
