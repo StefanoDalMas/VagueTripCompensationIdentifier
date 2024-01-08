@@ -14,11 +14,11 @@ class Parameters:
 
     DEBUG: bool = False 
     # Standard routes
-    ENTRIES: int = 250
-    MINTRIP: int = 700
-    MAXTRIP: int = 1000
-    MINPRODUCTS: int = 100
-    MAXPRODUCTS: int = 300
+    ENTRIES: int = 20
+    MINTRIP: int = 30
+    MAXTRIP: int = 70
+    MINPRODUCTS: int = 80
+    MAXPRODUCTS: int = 150
     # MIN_RANDOM_VALUE = 2 # Minimum value for every product
     # MAX_RANDOM_VALUE = 30 # Maximum value for every product
 
@@ -37,8 +37,8 @@ class Parameters:
     MAX_DISLIKED_PRODUCTS: int = int(len(sl)*0.3)
 
     # Actual routes
-    MIN_ROUTES_TO_DRIVERS: int = 100
-    MAX_ROUTES_TO_DRIVERS: int = 200
+    MIN_ROUTES_TO_DRIVERS: int = 5
+    MAX_ROUTES_TO_DRIVERS: int = 15
     CAP_ADD_NEW_CITY: int = 70
     #Products
     MIN_PRODUCTS_TO_ADD: int = 100

@@ -157,25 +157,58 @@ def calculate_liked_merchandise(
         route_list = []
 
     # for each driver apply the apriori to the baskets of all merchandise of all routes taken by him
+    dict_rules: Dict[str, List[Any]] = {}
     for driver, routes_list in dict_all_merch.items():
+        rules_route_list: List[Any] = [] #[(antecedent,consequent)]
         # slice the list to get only the first 20 routes
         # transactions = transactions[:100]
         for transactions in routes_list:
             te = TransactionEncoder()
             te_ary = te.fit(transactions).transform(transactions)
             df = pd.DataFrame(te_ary, columns=te.columns_)
-            frequent_itemsets = apriori(df, min_support=0.05, use_colnames=True,verbose=1,low_memory=True)
+            frequent_itemsets = apriori(df, min_support=0.1, use_colnames=True,verbose=0,low_memory=True)
 
             # Generate association rules
             rules = association_rules(
-                frequent_itemsets, metric="confidence", min_threshold=0.1
+                frequent_itemsets, metric="lift", min_threshold=1.5
             )
-
-            print("Frequent Itemsets:")
-            print(frequent_itemsets)
-
-            print("\nAssociation Rules:")
             print(rules)
+
+            antecedents = rules["antecedents"]
+            consequents = rules["consequents"]
+
+            antecedents_tmp = []
+            for antecedent_set in antecedents:
+                antecedents_tmp.append(antecedent_set)
+
+            consequents_tmp = []
+            for consequents_set in consequents:
+                consequents_tmp.append(consequents_set)
+
+            # for antecedent_sub_set in antecedents_tmp:
+            #     #get the values inside the frozen set and turn it into a list
+            #     antecedent_list = list(antecedent_sub_set)
+
+            for i in range(len(antecedents_tmp)):
+                rules_route_list.append((antecedents_tmp[i], consequents_tmp[i]))
+
+            rules_route_list.append((rules["antecedents"], rules["consequents"]))
+
+            # print("Frequent Itemsets:")
+            # print(frequent_itemsets)
+
+            # print("\nAssociation Rules:")
+            # print(rules)
+
+        # dict_all_merch.update({driver: rules_route_list})
+        old_rules = dict_rules.get(driver)
+        #trim all duplicate rules
+
+
+
+        dict_rules.update({driver: rules_route_list})
+        rules_route_list = []
+
     #     dict_all_merch.update({driver: rules})
 
     return dict_all_merch
@@ -183,7 +216,7 @@ def calculate_liked_merchandise(
 
 if __name__ == "__main__":
     # dict[0] -> dictionary, dict[1] -> threshold
-    fav_cities: Dict[str, List[str]] = calculate_liked_cities(get_driver_actuals())
+    # fav_cities: Dict[str, List[str]] = calculate_liked_cities(get_driver_actuals())
 
     # next step : get best merchandise for each driver
     # get all actrouts for each driver
