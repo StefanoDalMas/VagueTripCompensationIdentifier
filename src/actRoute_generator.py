@@ -227,6 +227,8 @@ def modify_merch(
                 new_quantity = quantity - np.random.randint(
                     params.MIN_PRODUCTS_TO_ADD, params.MAX_PRODUCTS_TO_ADD
                 )
+                if new_quantity < 0:
+                    return trip
             trip.merchandise.update({merch: new_quantity})
 
         # Otherwise modify the whole product

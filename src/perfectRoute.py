@@ -341,24 +341,41 @@ def calculate_route_lenght(
     return driver_len_dict
 
 
+def calculate_merch_lenght(driver_actuals: params.driverActuals) -> Dict[str, int]:
+    driver_merch_len: Dict[str, int] = {}
+    for driver, actual_list in driver_actuals.items():
+        avg_route = 0
+        for actual in actual_list:
+            tot_merch = 0
+            for trip in actual.aRoute:
+                tot_merch += len(trip.merchandise)
+            avg_route += int(tot_merch / len(actual.aRoute))
+        driver_merch_len.update({driver: int(avg_route / len(actual_list))})
+
+    return driver_merch_len
+
+
 if __name__ == "__main__":
     # Get all drivers routes
     driver_actuals: params.driverActuals = get_driver_actuals()
 
     # Find favourite cities for each driver
-    fav_cities: Dict[str, List[str]] = calculate_liked_cities(driver_actuals)
+    # fav_cities: Dict[str, List[str]] = calculate_liked_cities(driver_actuals)
 
     # Get average route length for each driver
-    driver_routes_length: Dict[str, int] = calculate_route_lenght(
-        driver_actuals, getStdRoutes()
-    )
-    # print(driver_routes_length)
+    # driver_routes_len: Dict[str, int] = calculate_route_lenght(
+    #     driver_actuals, getStdRoutes()
+    # )
+    # print(driver_routes_len)
 
     # Get merch rules for each driver
-    fav_merchandise: Dict[str, List[Any]] = calculate_liked_merchandise(
-        get_driver_actuals()
-    )
+    # fav_merchandise: Dict[str, List[Any]] = calculate_liked_merchandise(
+    #     get_driver_actuals()
+    # )
     # print(fav_merchandise)
+
+    driver_merch_len: Dict[str, int] = calculate_merch_lenght(driver_actuals)
+    print(driver_merch_len.values())
 
     # next step : generate perfect route using fav_cities and fav_merchandise
     # TODO:
