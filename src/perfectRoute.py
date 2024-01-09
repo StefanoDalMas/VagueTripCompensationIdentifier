@@ -1,8 +1,11 @@
-from typing import Dict, List, Tuple, Any
+import json
+from typing import Dict, List, Tuple, Any, Union
+import numpy as np
 import pandas as pd
 from mlxtend.frequent_patterns import fpgrowth, association_rules
 from mlxtend.preprocessing import TransactionEncoder
 from mlxtend.preprocessing import TransactionEncoder
+from collections import Counter
 
 from classes.Trip import Trip
 from classes.ActRoute import ActRoute
@@ -10,7 +13,7 @@ from classes.StdRoute import StdRoute
 from tools.parameters import Parameters as params
 from similarity import generate_similarities
 from actRoute_generator import getStdRoutes, getActRoutes
-from tools.cities_products import shopping_list as sl
+from tools.cities_products import random_item_value
 
 
 # {driver: {città: quantità}}
@@ -74,9 +77,15 @@ def calculate_liked_cities(
                         standard_dict.update({trip._from: value})
 
             # facciamo sottrazione tra i dizionari e la aggiungiamo al totale
-            calculated_liked_cities = update_dict(
-                calculated_liked_cities, dict_difference(actual_dict, standard_dict)
-            )
+            difference: Dict[str, int] = dict_difference(actual_dict, standard_dict)
+            if difference != {}:
+                calculated_liked_cities = update_dict(
+                    calculated_liked_cities, difference
+                )
+            else:
+                calculated_liked_cities = update_dict(
+                    calculated_liked_cities, actual_dict
+                )
 
         # crea threshold per decidere se città è buona o meno
         max_value = max(calculated_liked_cities.values())
@@ -233,14 +242,12 @@ def find_ass_rules(
 
 def calculate_liked_merchandise(
     driver_actuals: params.driverActuals,
-) -> Dict[str, List[Any]]:
+) -> Dict[str, List[Tuple[str, str]]]:
     # For each driver get all his actual routes and for each route get all trips and convert each merch in a list
     dict_all_merch = get_drivers_merch(driver_actuals)
 
     # For each driver apply the apriori to the baskets of all merchandise of all routes taken by him
-    dict_rules = find_ass_rules(dict_all_merch)
-
-    # MANCA DA CALIBRARE LE COSTANTI DELL'ALGORITMO A NOSTRO PIACIMENTO (FATTO)
+    dict_rules: Dict[str, List[Tuple[str, str]]] = find_ass_rules(dict_all_merch)
 
     # DIREI DI CAMBIARE NOME A QUESTA FUNZIONE TIPO IN calculate_rules PERCHÈ È GIÀ TROPPO GRANDE
     # POI SE NE FA UN'ALTRA DOVE SI PRENDONO LE REGOLE E SI BUTTA FUORI Dict[driver, [liked cities]]
@@ -355,27 +362,142 @@ def calculate_merch_lenght(driver_actuals: params.driverActuals) -> Dict[str, in
     return driver_merch_len
 
 
+def max_merch_to_rules(max_merch: str, rules: List[Union[Tuple[str, str], Tuple[List[str], List[str]]]], new_merch_list: List[str]) -> List[str]:
+
+    while True:
+        old_max_merch = max_merch
+        for rule in rules:
+            if isinstance(rule[0], list):
+                if max_merch in rule[0]:
+                    new_merch_list.extend(rule[1])
+                    max_merch = rule[1][0] if rule[1] else max_merch
+            else:
+                if max_merch == rule[0]:
+                    new_merch_list.append(rule[1])
+                    max_merch = rule[1]
+        if old_max_merch == max_merch:
+            break
+        
+    return list(set(new_merch_list))
+
+
+def find_max_merch(
+    driver_actuals: params.driverActuals,
+) -> Dict[str, List[str]]:
+    
+    res: Dict[str, List[str]] = {}
+    for driver, actual_list in driver_actuals.items():
+        merch_list: List[str] = []
+        for actual in actual_list:
+            for trip in actual.aRoute:
+                for merch in trip.merchandise.keys():
+                    merch_list.append(merch)
+        count = Counter(merch_list)
+        res.update({driver: [merch for merch, freq in count.most_common()]})
+    return res
+
+
+def gen_perfect_route(
+    driver_actuals: params.driverActuals,
+    fav_cities: Dict[str, List[str]],
+    fav_merch: Dict[str, List[Tuple[str, str]]],
+    driver_routes_len: Dict[str, int],
+    driver_merch_len: Dict[str, int],
+) -> Dict[str, StdRoute]:
+    
+    #TODO: da controllare che tutte le lunghezze sono 503
+    max_merch_dict: Dict[str, List[str]] = find_max_merch(driver_actuals)
+
+    drivers_perfect_routes: Dict[str, List[Trip]] = {}
+    for driver, actual_list in driver_actuals.items(): # For each route
+        len_route = driver_routes_len.get(driver)
+        len_merch = driver_merch_len.get(driver)
+        cities = fav_cities.get(driver)
+        merch = fav_merch.get(driver)
+
+        # Generate route
+        route: List[Trip] = []
+        for i in range(len_route): # For each trip
+
+            new_merch_list: List[Tuple[str,int]] = []
+            delta_len : int = 0
+            count: int = 0
+            for j in range(len_merch): #removes 42 elements max_merch_dict[driver]
+                if delta_len != 0:
+                    delta_len -= 1
+                    continue
+                elif delta_len == 0:
+                    # if len(max_merch_dict[driver]) > 0:
+                    if count < len(max_merch_dict[driver]):
+                        max_merch: str = max_merch_dict[driver][count]
+                        # max_merch_dict[driver].remove(max_merch)
+                        count += 1
+                    else:
+                        max_merch: str = merch[np.random.randint(0, len(merch))]
+                # Find the max value of the merch in the actuals
+
+                # get the first element of max_merch_dict[driver] and remove it from the list
+
+                new_merch_list.append(max_merch)
+                old_len : int = len(new_merch_list)
+                new_merch_list = max_merch_to_rules(max_merch, merch, new_merch_list)
+                delta_len : int = len(new_merch_list) - old_len
+
+            print(len(max_merch_dict[driver]))
+            new_new_merch_list: List[Tuple[str,int]] = []
+            for merch in new_merch_list:
+                new_new_merch_list.append((merch, random_item_value()))
+
+            route.append(Trip(cities[np.random.randint(0, len(cities))], cities[np.random.randint(0, len(cities))], new_new_merch_list))
+
+        drivers_perfect_routes.update({driver: route})
+        
+        result = []
+        for driver_id, route_data in drivers_perfect_routes.items():
+            route = []
+            for trip in route_data:
+                route.append(trip.to_dict())
+            result.append({
+                "driver": driver_id,
+                "route": route
+            })
+        #TODO: convertire quadre in graffe
+        with open ("/results/perfectRoute.json", "w") as f:
+            json.dump(result, f, indent=4)
+
+
 if __name__ == "__main__":
     # Get all drivers routes
     driver_actuals: params.driverActuals = get_driver_actuals()
+    print("Done getting drivers routes")
 
     # Find favourite cities for each driver
-    # fav_cities: Dict[str, List[str]] = calculate_liked_cities(driver_actuals)
+    fav_cities: Dict[str, List[str]] = calculate_liked_cities(driver_actuals)
+    print("Done getting favourite cities")
 
     # Get average route length for each driver
-    # driver_routes_len: Dict[str, int] = calculate_route_lenght(
-    #     driver_actuals, getStdRoutes()
-    # )
-    # print(driver_routes_len)
+    driver_routes_len: Dict[str, int] = calculate_route_lenght(
+        driver_actuals, getStdRoutes()
+    )
+    print("Done getting average route length")
 
     # Get merch rules for each driver
-    # fav_merchandise: Dict[str, List[Any]] = calculate_liked_merchandise(
-    #     get_driver_actuals()
-    # )
-    # print(fav_merchandise)
+    fav_merchandise: Dict[str, List[Tuple[str, str]]] = calculate_liked_merchandise(
+        get_driver_actuals()
+    )
+    print("Done getting favourite merchandise")
 
     driver_merch_len: Dict[str, int] = calculate_merch_lenght(driver_actuals)
-    print(driver_merch_len.values())
+    print("Done getting average merchandise length")
 
     # next step : generate perfect route using fav_cities and fav_merchandise
     # TODO:
+    # creare un dizionario che abbia come chiave il driver e come valore la route perfetta
+    # per ogni driver
+    # loop sulla lunghezza media delle route
+    # creare un trip con from e to delle fav_cities
+    # loop su lunghezza del merch
+    # aggiungere un merch dal valore massimo di una actual random e vedere se ci sono delle assRules da applicare
+    gen_perfect_route(
+        driver_actuals, fav_cities, fav_merchandise, driver_routes_len, driver_merch_len
+    )

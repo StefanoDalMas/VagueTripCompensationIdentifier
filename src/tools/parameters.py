@@ -55,5 +55,5 @@ class Parameters:
     THRESHOLD_MOLTIPLICATOR = 0.38
 
     # Point 3 apriori
-    MIN_SUPPORT = 0.05
+    MIN_SUPPORT = 0.03
     MIN_LIFT = 1
