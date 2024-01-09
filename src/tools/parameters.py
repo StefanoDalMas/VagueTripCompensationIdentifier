@@ -16,9 +16,9 @@ class Parameters:
     # Standard routes
     ENTRIES: int = 20
     MINTRIP: int = 30
-    MAXTRIP: int = 70
-    MINPRODUCTS: int = 80
-    MAXPRODUCTS: int = 150
+    MAXTRIP: int = 65
+    MINPRODUCTS: int = 30
+    MAXPRODUCTS: int = 100
     # MIN_RANDOM_VALUE = 2 # Minimum value for every product
     # MAX_RANDOM_VALUE = 30 # Maximum value for every product
 
@@ -41,8 +41,8 @@ class Parameters:
     MAX_ROUTES_TO_DRIVERS: int = 15
     CAP_ADD_NEW_CITY: int = 70
     #Products
-    MIN_PRODUCTS_TO_ADD: int = 100
-    MAX_PRODUCTS_TO_ADD: int = 500
+    MIN_PRODUCTS_TO_ADD: int = 20
+    MAX_PRODUCTS_TO_ADD: int = 80
     CAP_TO_MODIFY_PRODUCT: int = 60
 
     # Similarity
@@ -53,3 +53,7 @@ class Parameters:
 
     # Threshold
     THRESHOLD_MOLTIPLICATOR = 0.38
+
+    # Point 3 apriori
+    MIN_SUPPORT = 0.05
+    MIN_LIFT = 1
