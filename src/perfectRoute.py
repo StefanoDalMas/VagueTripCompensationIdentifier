@@ -482,7 +482,7 @@ def gen_perfect_route(
     fav_merch: Dict[str, List[Tuple[str, str]]],
     driver_routes_len: Dict[str, int],
     driver_merch_len: Dict[str, int],
-) -> None:
+) -> Dict[str, List[Trip]]:
     max_merch_dict: Dict[str, List[str]] = find_max_merch(driver_actuals)
 
     results = gen_drivers_route(
@@ -494,7 +494,7 @@ def gen_perfect_route(
         max_merch_dict,
     )
 
-    save_results(results)
+    return results
 
 
 # Generate point 3
@@ -524,10 +524,14 @@ def point_3() -> None:
     print("  - Done getting average merchandise length")
 
     # Generate perfect route
-    gen_perfect_route(
+    results = gen_perfect_route(
         driver_actuals, fav_cities, fav_merchandise, driver_routes_len, driver_merch_len
     )
     print("  - Done generating perfect route")
+
+    # Save results
+    save_results(results)
+    print("  - Done generating perfectRoute.json")
 
 
 if __name__ == "__main__":

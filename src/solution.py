@@ -4,11 +4,6 @@ from top_similarities import point_2
 from perfectRoute import point_3
 
 
-
-def compute_mean_similarity(sim_drivers_routes: params.driverSimilarities) -> float:
-    pass
-
-
 if __name__ == "__main__":
     # point 1
     print("Started point 1")

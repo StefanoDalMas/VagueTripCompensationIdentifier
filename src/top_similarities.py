@@ -148,7 +148,7 @@ def generate_top_5_similarities(
     return top_5_similarities
 
 
-def make_driver_json(top_5_dict: params.driverSimilarities) -> None:
+def save_results(top_5_dict: params.driverSimilarities) -> None:
     # print in a file called "driver.json" something like this
     # [
     # {driver:C, routes:[s10, s20, s2, s6, s10}},
@@ -175,7 +175,7 @@ def point_2() -> None:
     )
     print("  - Done generating top 5 similarities")
 
-    make_driver_json(top_5_dict)
+    save_results(top_5_dict)
     print("  - Done generating driver.json")
 
 
