@@ -95,86 +95,84 @@ def init_products_dict(std_routes: List[StdRoute], act_routes: List[ActRoute]) -
 def populate_utility_matrix(
     drivers_exp: Dict[str, float],
     std_to_actuals: Dict[str, List[ActRoute]],
-    all_cities: Dict[str, float],
+    items_rank: Dict[str, float],
     is_merch: bool = False,
 ) -> Dict[str, Dict[str, float]]:
     utility_matrix: Dict[str, Dict[str, float]] = {}
     for std_route_id, actual_routes in std_to_actuals.items():
         for actual_route in actual_routes:
             for trip in actual_route.aRoute:
-                #TODO: change names
                 # If we are populating the utility matrix for products, we need to consider the merchandise
                 if is_merch:
                     for product in trip.merchandise:
-                        value = all_cities.get(product) + drivers_exp.get(actual_route.driver_id)
-                        all_cities.update({product: value})
+                        value = items_rank.get(product) + drivers_exp.get(actual_route.driver_id)
+                        items_rank.update({product: value})
                 # If we are populating the utility matrix for cities, we need to consider the cities
                 else:
                     city = trip._from
-                    value = all_cities.get(city) + drivers_exp.get(actual_route.driver_id)
-                    all_cities.update({city: value})
+                    value = items_rank.get(city) + drivers_exp.get(actual_route.driver_id)
+                    items_rank.update({city: value})
 
             if not is_merch:
-                value = all_cities.get(trip.to) + drivers_exp.get(actual_route.driver_id)
-                all_cities.update({trip.to: value})
+                value = items_rank.get(trip.to) + drivers_exp.get(actual_route.driver_id)
+                items_rank.update({trip.to: value})
 
         # Normalize the values between 0 and 5
-        max_value = max(all_cities.values())
-        min_value = min(all_cities.values())
-        for city, value in all_cities.items():
-            value = all_cities.get(city)
+        max_value = max(items_rank.values())
+        min_value = min(items_rank.values())
+        for key, value in items_rank.items():
+            value = items_rank.get(key)
             if value > 0.0:
-                all_cities.update(
-                    {city: (value - min_value) / (max_value - min_value) * 4 + 1}
+                items_rank.update(
+                    {key: (value - min_value) / (max_value - min_value) * 4 + 1}
                 )
 
         # Update the utility matrix
-        utility_matrix.update({std_route_id: all_cities.copy()})
+        utility_matrix.update({std_route_id: items_rank.copy()})
 
         # Init all cities to 0
-        for city in all_cities:
-            all_cities.update({city: 0.0})
+        for key in items_rank:
+            items_rank.update({key: 0.0})
 
     return utility_matrix
 
 
 # The first element of the Tuple is the list of liked cities, the second is the list of disliked cities
-def get_liked_disliked_cities(
+def get_liked_disliked_items(
     utility_matrix: Dict[str, Dict[str, float]]
 ) -> Dict[str, Tuple[List[str], List[str]]]:
-    liked_disliked_cities: Dict[str, Dict[int, List[str]]] = {}
-    for std_route_id, cities in utility_matrix.items():
+    liked_disliked_items: Dict[str, Dict[int, List[str]]] = {}
+    for std_route_id, items in utility_matrix.items():
         dict_rating: Dict[int, List[str]] = {1: [], 2: [], 3: [], 4: [], 5: []}
-        for city, rating in cities.items():
+        for item, rating in items.items():
             # round the rating to the nearest integer
             key = int(round(rating))
             if key == 0:
                 key = 1
-            dict_rating[key].append(city)
-        liked_disliked_cities.update({std_route_id: dict_rating})
+            dict_rating[key].append(item)
+        liked_disliked_items.update({std_route_id: dict_rating})
 
     # now we create the tuple of liked cities for each standard route
     res_dict: Dict[str, Tuple[List[str], List[str]]] = {}
-    for std_route_id, dict_rating in liked_disliked_cities.items():
+    for std_route_id, dict_rating in liked_disliked_items.items():
         liked_list: List[str] = dict_rating.get(5)
-        for city in dict_rating.get(4):
-            liked_list.append(city)
+        for item in dict_rating.get(4):
+            liked_list.append(item)
         disliked_list: List[str] = dict_rating.get(1)
-        for city in dict_rating.get(2):
-            disliked_list.append(city)
+        for item in dict_rating.get(2):
+            disliked_list.append(item)
         res_dict.update({std_route_id: (liked_list, disliked_list)})
 
     return res_dict
 
-
-# TODO: change this function
+# TODO: implement algoritmo furbo rather than inserting random values!
 def complete_utility_matrix(utility_matrix: Dict[str, Dict[str, float]]):
     # If there are cities with value 0, add random values between 1 and 5
-    for std_route_id, cities in utility_matrix.items():
-        for city, value in cities.items():
+    for std_route_id, items in utility_matrix.items():
+        for item, value in items.items():
             if value == 0.0:
-                cities.update({city: np.random.random() * 5})
-        utility_matrix.update({std_route_id: cities})
+                items.update({item: np.random.random() * 5})
+        utility_matrix.update({std_route_id: items})
 
     return utility_matrix
 
@@ -225,12 +223,11 @@ def cities(
     # the first element of the Tuple is the list of liked cities, the second is the list of disliked cities
     liked_disliked_cities: Dict[
         str, Tuple[List[str], List[str]]
-    ] = get_liked_disliked_cities(complete_matrix)
+    ] = get_liked_disliked_items(complete_matrix)
     print("  - Done creating the dict liked and disliked cities")
 
     return liked_disliked_cities
 
-#TODO: è tutta sbalgiata
 def products(
     std_routes: List[StdRoute],
     act_routes: List[ActRoute],
@@ -255,7 +252,7 @@ def products(
     # the first element of the Tuple is the list of liked cities, the second is the list of disliked cities
     liked_disliked_cities: Dict[
         str, Tuple[List[str], List[str]]
-    ] = get_liked_disliked_cities(complete_matrix)
+    ] = get_liked_disliked_items(complete_matrix)
     print("  - Done creating the dict liked and disliked cities")
 
     return liked_disliked_cities
@@ -266,7 +263,7 @@ def point_1() -> None:
     std_routes, act_routes, drivers_exp, std_to_actuals = common_fn_call()
 
     liked_disliked_cities: Dict[str, Tuple[List[str], List[str]]] = cities(std_routes, act_routes, drivers_exp, std_to_actuals)
-    liked_disliked_merch = products(std_routes, act_routes, drivers_exp, std_to_actuals)
+    liked_disliked_merch: Dict[str, Tuple[List[str], List[str]]] = products(std_routes, act_routes, drivers_exp, std_to_actuals)
     print(liked_disliked_merch)
 
     # modifica la std route e ogni volta che trova una città che non ci piace la sostituisce con una città che ci piace di più
