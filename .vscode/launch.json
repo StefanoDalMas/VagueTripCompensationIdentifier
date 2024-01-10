@@ -9,7 +9,7 @@
             "type": "python",
             "request": "launch",
             "cwd": "${workspaceFolder}/src",
-            "program": "perfectRoute.py",
+            "program": "recStandard.py",
             "console": "integratedTerminal",
             "justMyCode": true
         }

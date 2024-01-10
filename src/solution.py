@@ -1,5 +1,5 @@
 from tools.parameters import Parameters as params
-from RecStandard import point_1
+from recStandard import point_1
 from top_similarities import point_2
 from perfectRoute import point_3
 
