@@ -3,8 +3,11 @@ from typing import List, Dict, Tuple
 import numpy as np
 
 class Trip():
+    _from :str = ""
+    to :str = ""
+    merchandise : Dict[str, int] = {}
 
-    def __init__(self, _from:str, to:str, merchandise:dict) -> None:
+    def __init__(self, _from:str, to:str, merchandise: Dict[str, int]) -> None:
         self._from = _from
         self.to = to
         self.merchandise = merchandise

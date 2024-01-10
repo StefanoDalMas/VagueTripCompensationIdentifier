@@ -6,6 +6,7 @@ from classes.ActRoute import ActRoute
 from classes.StdRoute import StdRoute
 from tools.parameters import Parameters as params
 from similarity import generate_similarities
+from perfectRoute import point_3
 
 
 
@@ -45,17 +46,6 @@ if __name__ == "__main__":
     make_driver_json(top_5_dict)
 
     # point 3
-    # per ogni driver prendiamo le actual e le standard corrispondenti
-    # creiamo un set di città contenente l'intersezione tra le città che gli piacciono
-    # contiamo la frequenza di ogni città all'interno del set (page rank)
-    # guardiamo le lunghezze delle actual e delle standard (?)
-
-    # per il merch
-    # creiamo un set di merch contenente l'intersezione tra i merch std e actual + frequenza
-    # contiamo la lunghezza di ogni basket
-    # ogni trip è un basket, prendiamo tutti i basket di una route e creiamo association rules 
-    # tipo latte -> uova, latte e uova -> pane, ecc
-    # ogni volta che creiamo un basket lo facciamo seguendo la lunghezza media e usiamo le regole per aggiungere prodotti
-    
-    
-    print("yes")
+    print("Started point 3")
+    point_3()
+    print("Finished point 3")
