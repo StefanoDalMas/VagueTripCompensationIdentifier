@@ -11,7 +11,7 @@ from classes.StdRoute import StdRoute
 from actRoute_generator import getStdRoutes, getActRoutes
 
 
-def get_std_act_actuals():
+def get_std_act_routes() -> Tuple[List[StdRoute], List[ActRoute]]:
     return getStdRoutes(), getActRoutes()
 
 
@@ -72,22 +72,51 @@ def init_cities_dict(
 
     return dict_cities
 
+def init_products_dict(std_routes: List[StdRoute], act_routes: List[ActRoute]) -> Dict[str, float]:
+    products = set()
+    dict_products: Dict[str, float] = {}
 
-def popluate_utility_matrix(
+    for std_route in std_routes:
+        for trip in std_route.route:
+            for product in trip.merchandise:
+                products.add(product)
+
+    for act_route in act_routes:
+        for trip in act_route.aRoute:
+            for product in trip.merchandise:
+                products.add(product)
+
+    for product in products:
+        dict_products.update({product: 0.0})
+
+    return dict_products
+
+
+def populate_utility_matrix(
     drivers_exp: Dict[str, float],
     std_to_actuals: Dict[str, List[ActRoute]],
     all_cities: Dict[str, float],
+    is_merch: bool = False,
 ) -> Dict[str, Dict[str, float]]:
     utility_matrix: Dict[str, Dict[str, float]] = {}
     for std_route_id, actual_routes in std_to_actuals.items():
         for actual_route in actual_routes:
             for trip in actual_route.aRoute:
-                city = trip._from
-                value = all_cities.get(city) + drivers_exp.get(actual_route.driver_id)
-                all_cities.update({city: value})
+                #TODO: change names
+                # If we are populating the utility matrix for products, we need to consider the merchandise
+                if is_merch:
+                    for product in trip.merchandise:
+                        value = all_cities.get(product) + drivers_exp.get(actual_route.driver_id)
+                        all_cities.update({product: value})
+                # If we are populating the utility matrix for cities, we need to consider the cities
+                else:
+                    city = trip._from
+                    value = all_cities.get(city) + drivers_exp.get(actual_route.driver_id)
+                    all_cities.update({city: value})
 
-            value = all_cities.get(trip.to) + drivers_exp.get(actual_route.driver_id)
-            all_cities.update({trip.to: value})
+            if not is_merch:
+                value = all_cities.get(trip.to) + drivers_exp.get(actual_route.driver_id)
+                all_cities.update({trip.to: value})
 
         # Normalize the values between 0 and 5
         max_value = max(all_cities.values())
@@ -134,7 +163,7 @@ def get_liked_disliked_cities(
         for city in dict_rating.get(2):
             disliked_list.append(city)
         res_dict.update({std_route_id: (liked_list, disliked_list)})
-    
+
     return res_dict
 
 
@@ -150,44 +179,95 @@ def complete_utility_matrix(utility_matrix: Dict[str, Dict[str, float]]):
     return utility_matrix
 
 
-def cities() -> Dict[str, Tuple[List[str], List[str]]]:
+def common_fn_call() -> (
+    Tuple[List[StdRoute], List[ActRoute], Dict[str, float], Dict[str, List[ActRoute]]]
+):
     # Get standard and actual routes from dataset
-    std_routes, act_routes = get_std_act_actuals()
+    (
+        std_routes,
+        act_routes,
+    ) = get_std_act_routes()  # Return type: Tuple[List[StdRoute], List[ActRoute]]
 
     # Get for each driver its experience (how much actual routes he has done)
-    drivers_exp = get_drivers_experience(act_routes)
+    drivers_exp: Dict[str, float] = get_drivers_experience(act_routes)
     print("  - Done creating the dict driver experience")
 
     # Get for each standard route, all its actual routes
-    std_to_actuals = std_to_actuals_dict(std_routes, act_routes)
+    std_to_actuals: Dict[str, List[ActRoute]] = std_to_actuals_dict(
+        std_routes, act_routes
+    )
     print("  - Done creating the dict standard routes to actual routes")
 
+    return std_routes, act_routes, drivers_exp, std_to_actuals
+
+
+def cities(
+    std_routes: List[StdRoute],
+    act_routes: List[ActRoute],
+    drivers_exp: Dict[str, float],
+    std_to_actuals: Dict[str, List[ActRoute]],
+) -> Dict[str, Tuple[List[str], List[str]]]:
     # Get all cities ever visited
-    all_cities = init_cities_dict(std_routes, act_routes)
+    all_cities: Dict[str, float] = init_cities_dict(std_routes, act_routes)
     print("  - Done creating the dict all cities")
 
     # Populate the utility matrix for reccomendation system
-    utility_matrix = popluate_utility_matrix(drivers_exp, std_to_actuals, all_cities)
+    utility_matrix: Dict[str, Dict[str, float]] = populate_utility_matrix(
+        drivers_exp, std_to_actuals, all_cities
+    )
     print("  - Done creating the utility matrix")
 
-    complete_matrix = complete_utility_matrix(utility_matrix)
+    complete_matrix: Dict[str, Dict[str, float]] = complete_utility_matrix(
+        utility_matrix
+    )
     print("  - Done completing the utility matrix")
 
     # the first element of the Tuple is the list of liked cities, the second is the list of disliked cities
-    liked_disliked_cities = get_liked_disliked_cities(complete_matrix)
+    liked_disliked_cities: Dict[
+        str, Tuple[List[str], List[str]]
+    ] = get_liked_disliked_cities(complete_matrix)
+    print("  - Done creating the dict liked and disliked cities")
+
+    return liked_disliked_cities
+
+#TODO: è tutta sbalgiata
+def products(
+    std_routes: List[StdRoute],
+    act_routes: List[ActRoute],
+    drivers_exp: Dict[str, float],
+    std_to_actuals: Dict[str, List[ActRoute]],
+):
+    # Get all cities ever visited
+    all_products: Dict[str, float] = init_products_dict(std_routes, act_routes)
+    print("  - Done creating the dict all cities")
+
+    # Populate the utility matrix for reccomendation system
+    utility_matrix: Dict[str, Dict[str, float]] = populate_utility_matrix(
+        drivers_exp, std_to_actuals, all_products, True
+    )
+    print("  - Done creating the utility matrix")
+
+    complete_matrix: Dict[str, Dict[str, float]] = complete_utility_matrix(
+        utility_matrix
+    )
+    print("  - Done completing the utility matrix")
+
+    # the first element of the Tuple is the list of liked cities, the second is the list of disliked cities
+    liked_disliked_cities: Dict[
+        str, Tuple[List[str], List[str]]
+    ] = get_liked_disliked_cities(complete_matrix)
     print("  - Done creating the dict liked and disliked cities")
 
     return liked_disliked_cities
 
 
-def products():
-    pass
-
-
 def point_1() -> None:
-    
-    liked_disliked_cities = cities()
-    liked_disliked_merch = products()
+    # Some common function calls
+    std_routes, act_routes, drivers_exp, std_to_actuals = common_fn_call()
+
+    liked_disliked_cities: Dict[str, Tuple[List[str], List[str]]] = cities(std_routes, act_routes, drivers_exp, std_to_actuals)
+    liked_disliked_merch = products(std_routes, act_routes, drivers_exp, std_to_actuals)
+    print(liked_disliked_merch)
 
     # modifica la std route e ogni volta che trova una città che non ci piace la sostituisce con una città che ci piace di più
     # salva la rec standard in un file json
