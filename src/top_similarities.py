@@ -1,3 +1,5 @@
+import json
+import os
 from typing import List, Dict, Tuple
 import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
@@ -112,9 +114,23 @@ def generate_similarities() -> params.driverSimilarities:
         # compute similarity and add it to the list
         if std_route != None:
             if act_routes[i].driver_id in driver_sim:
-                driver_sim[act_routes[i].driver_id].update({act_routes[i].sRoute_id: route_similarity(std_route, act_routes[i])})
+                driver_sim[act_routes[i].driver_id].update(
+                    {
+                        act_routes[i].sRoute_id: route_similarity(
+                            std_route, act_routes[i]
+                        )
+                    }
+                )
             else:
-                driver_sim.update({act_routes[i].driver_id:{act_routes[i].sRoute_id: route_similarity(std_route, act_routes[i])}})
+                driver_sim.update(
+                    {
+                        act_routes[i].driver_id: {
+                            act_routes[i].sRoute_id: route_similarity(
+                                std_route, act_routes[i]
+                            )
+                        }
+                    }
+                )
         else:
             raise Exception("Standard route not found")
 
@@ -122,6 +138,46 @@ def generate_similarities() -> params.driverSimilarities:
     return driver_sim
 
 
+def generate_top_5_similarities(
+    sim_drivers_routes: Dict[str, Dict[str, float]]
+) -> Dict[str, Dict[str, float]]:
+    top_5_similarities = {}
+    for driver, routes in sim_drivers_routes.items():
+        sorted_routes = sorted(routes.items(), key=lambda x: x[1], reverse=True)
+        top_5_similarities[driver] = dict(sorted_routes[:5])
+    return top_5_similarities
+
+
+def make_driver_json(top_5_dict: params.driverSimilarities) -> None:
+    # print in a file called "driver.json" something like this
+    # [
+    # {driver:C, routes:[s10, s20, s2, s6, s10}},
+    # {driver:A, routes:[s1, s2, s22, s61, s102]},
+    # ….
+    # ]
+    result = []
+    for driver_id, route_data in top_5_dict.items():
+        result.append({"driver": driver_id, "routes": list(route_data.keys())})
+    if not os.path.exists("./results"):
+        os.makedirs("./results")
+    with open("./results/driver.json", "w") as f:
+        json.dump(result, f, indent=4)
+
+
+# Point 2 of the assignment
+def point_2() -> None:
+    # Use online algorithm (window) to evaluate the existence of a city in a route
+    sim_drivers_routes: params.driverSimilarities = generate_similarities()
+    print("  - Done generating similarities")
+
+    top_5_dict: params.driverSimilarities = generate_top_5_similarities(
+        sim_drivers_routes
+    )
+    print("  - Done generating top 5 similarities")
+
+    make_driver_json(top_5_dict)
+    print("  - Done generating driver.json")
+
+
 if __name__ == "__main__":
-    results = generate_similarities()
-    print(results)
+    point_2()

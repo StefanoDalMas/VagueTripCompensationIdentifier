@@ -13,7 +13,7 @@ from classes.Trip import Trip
 from classes.ActRoute import ActRoute
 from classes.StdRoute import StdRoute
 from tools.parameters import Parameters as params
-from similarity import generate_similarities
+from top_similarities import generate_similarities
 from actRoute_generator import getStdRoutes, getActRoutes
 from tools.cities_products import random_item_value
 
@@ -496,37 +496,38 @@ def gen_perfect_route(
 
     save_results(results)
 
+
 # Generate point 3
 def point_3() -> None:
     # Get all drivers routes
     driver_actuals: params.driverActuals = get_driver_actuals()
-    print("  Done getting drivers routes")
+    print("  - Done getting drivers routes")
 
     # Find favourite cities for each driver
     fav_cities: Dict[str, List[str]] = calculate_liked_cities(driver_actuals)
-    print("  Done getting favourite cities")
+    print("  - Done getting favourite cities")
 
     # Get average route length for each driver
     driver_routes_len: Dict[str, int] = calculate_route_lenght(
         driver_actuals, getStdRoutes()
     )
-    print("  Done getting average route length")
+    print("  - Done getting average route length")
 
     # Get merch rules for each driver
     fav_merchandise: Dict[str, List[Tuple[str, str]]] = calculate_liked_merchandise(
         get_driver_actuals()
     )
-    print("  Done getting favourite merchandise")
+    print("  - Done getting favourite merchandise")
 
     # Get average merch length for each driver
     driver_merch_len: Dict[str, int] = calculate_merch_lenght(driver_actuals)
-    print("  Done getting average merchandise length")
+    print("  - Done getting average merchandise length")
 
     # Generate perfect route
     gen_perfect_route(
         driver_actuals, fav_cities, fav_merchandise, driver_routes_len, driver_merch_len
     )
-    print("  Done generating perfect route")
+    print("  - Done generating perfect route")
 
 
 if __name__ == "__main__":
