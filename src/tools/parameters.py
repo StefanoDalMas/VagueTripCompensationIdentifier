@@ -60,3 +60,4 @@ class Parameters:
 
     # Point 1 Truncated SVD
     N_ITERS = 5 # Number of iterations for the truncated SVD
+    PROD_VALUE_MULTIPLICATOR = 0.3 # Multiplicator for the product value

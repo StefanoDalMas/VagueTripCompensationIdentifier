@@ -17,5 +17,5 @@ class StdRoute():
     def to_dict(self):
         return {
             "id": self.id,
-            "route": self.route,
+            "route": [trip.to_dict() for trip in self.route],
         }

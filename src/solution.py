@@ -1,6 +1,5 @@
 import time
 
-from tools.parameters import Parameters as params
 from point_1.rec_standard import point_1
 from point_2.top_similarities import point_2
 from point_3.perfectRoute import point_3

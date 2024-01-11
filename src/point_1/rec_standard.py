@@ -1,15 +1,20 @@
 import json
 import os
 import numpy as np
-from typing import List, Dict, Tuple
+from typing import List, Dict, Set, Tuple
 from numpy import ndarray
 from sklearn.decomposition import TruncatedSVD
 from scipy.sparse import csr_matrix
+from classes.Trip import Trip
 
 from tools.parameters import Parameters as params
 from classes.ActRoute import ActRoute
 from classes.StdRoute import StdRoute
 from dataset_generator.actRoute_generator import getStdRoutes, getActRoutes
+
+# Tuple liked_disliked
+LIKED = 0
+DISLIKED = 1
 
 
 # Returns a tuple of two lists: the first one contains all the standard routes, the second one contains all the actual routes
@@ -348,37 +353,171 @@ def products(
 
     return liked_disliked_cities
 
-#TODO: farla
-def generate_rec_std(
+
+def change_city(
+    trip: Trip,
+    std_route: StdRoute,
+    tmp_liked_cities: List[str],
+    i: int,
+    std_id: str,
     liked_disliked_cities: Dict[str, Tuple[List[str], List[str]]],
+):
+    liked_city = ""
+    # Increment the counter until we find a city that we like
+    count = 0
+    # While the city is the same as the "to" or the previous "_from" city or it's empty
+    while (
+        liked_city == trip.to
+        or liked_city == std_route.route[i - 1]._from
+        or liked_city == ""
+    ):
+        # If we have already checked all the liked cities we take a random liked city
+        if count >= len(tmp_liked_cities):
+            index = np.random.randint(0, len(liked_disliked_cities.get(std_id)[LIKED]))
+            liked_city = liked_disliked_cities.get(std_id)[LIKED][index]
+
+        # Get a liked city
+        else:
+            liked_city = tmp_liked_cities[count]
+            count += 1
+
+    # If we took a liked city from tmp, we remove it from the list
+    if count < len(tmp_liked_cities):
+        tmp_liked_cities.remove(liked_city)
+
+    # Change the city
+    trip._from = liked_city
+
+    # If it's not the first trip, change the previous trip's destination
+    if i != 0:
+        std_route.route[i - 1].to = liked_city
+
+    return trip, std_route, tmp_liked_cities
+
+
+# Change the products for each trip
+def change_products(
+    trip: Trip,
+    disliked_prod_set: Set[str],
     liked_disliked_merch: Dict[str, Tuple[List[str], List[str]]],
-) -> None:
-    pass
+    std_id: str,
+) -> Dict[str, int]:
+    # Create the set of current products
+    current_prod_set: Set[str] = set(trip.merchandise)
+    # Remove the disliked products from the current products
+    set_diff: Set[str] = current_prod_set - disliked_prod_set
+    # Calculate the difference between the two sets
+    len_diff = len(current_prod_set) - len(set_diff)
+    # Counter for the liked products list
+    prod_count = 0
+    # For each removed product
+    for _ in range(len_diff):
+        liked_product = ""
+        # If we have already checked all the liked products just break
+        if prod_count >= len(liked_disliked_merch.get(std_id)[LIKED]):
+            break
+        else:
+            # Get a liked product
+            liked_product = liked_disliked_merch.get(std_id)[LIKED][prod_count]
+            prod_count += 1
+
+        # Add the liked product to the set
+        set_diff.add(liked_product)
+
+    # Calculate the avg prod values
+    avg_prod_value = round(sum(trip.merchandise.values()) / len(trip.merchandise))
+
+    # Convert the set to the original dict
+    new_prod_merch: Dict[str, int] = {}
+    for prod in set_diff:
+        if prod in trip.merchandise:
+            new_prod_merch.update({prod: trip.merchandise.get(prod)})
+        else:
+            new_value = avg_prod_value + np.random.randint(
+                int(-(avg_prod_value * params.PROD_VALUE_MULTIPLICATOR)), int((avg_prod_value * params.PROD_VALUE_MULTIPLICATOR))
+            )
+            new_prod_merch.update({prod: new_value})
+
+    return new_prod_merch
+
+
+def generate_rec_std_routes(
+    std_routes: List[StdRoute],
+    liked_disliked_cities: Dict[
+        str, Tuple[List[str], List[str]]
+    ],  # std -> (liked, disliked)
+    liked_disliked_merch: Dict[
+        str, Tuple[List[str], List[str]]
+    ],  # std -> (liked, disliked)
+) -> List[StdRoute]:
+    # Cerchiamo una città che non ci piace nella std e la sostituiamo con una città che ci piace di più
+    # Per il prodotto è uguale
+
+    for std_route in std_routes:
+        std_id = std_route.id
+        # Copy the list of liked cities
+        tmp_liked_cities = liked_disliked_cities.get(std_id)[LIKED].copy()
+        # Create the set of disliked products
+        disliked_prod_set: Set[str] = set(liked_disliked_merch.get(std_id)[DISLIKED])
+
+        for i, trip in enumerate(std_route.route):
+            # If we don't like the city
+            # We alwasy look to trip._from
+            if trip._from in liked_disliked_cities.get(std_id)[DISLIKED]:
+                # Handle the city change (very difficult)
+                trip, std_route, tmp_liked_cities = change_city(
+                    trip, std_route, tmp_liked_cities, i, std_id, liked_disliked_cities
+                )
+
+            # Change products
+            new_prod_merch: Dict[str, int] = change_products(
+                trip, disliked_prod_set, liked_disliked_merch, std_id
+            )
+            trip.merchandise = new_prod_merch
+
+        if trip.to in liked_disliked_cities.get(std_id)[DISLIKED]:
+            # Handle the city change (very difficult)
+            trip, std_route, tmp_liked_cities = change_city(
+                trip, std_route, tmp_liked_cities, i, std_id, liked_disliked_cities
+            )
+
+    return std_routes
+
+
+def save_results(rec_std_routes: List[StdRoute]) -> None:
+    # Save the rec standard routes to a json file
+    if not os.path.exists("./results"):
+        os.makedirs("./results")
+    with open("./results/recStandard.json", "w") as f:
+        json.dump([route.to_dict() for route in rec_std_routes], f, indent=4)
 
 
 def point_1() -> None:
     # Some common function calls
     std_routes, act_routes, drivers_exp, std_to_actuals = common_fn_call()
 
+    # Get liked and disliked cities with SVD
     liked_disliked_cities: Dict[str, Tuple[List[str], List[str]]] = cities(
         std_routes, act_routes, drivers_exp, std_to_actuals
     )
     print("  - Done liked disliked cities")
 
+    # Get liked and disliked products with SVD
     liked_disliked_merch: Dict[str, Tuple[List[str], List[str]]] = products(
         std_routes, act_routes, drivers_exp, std_to_actuals
     )
     print("  - Done liked disliked merch")
 
-    # modifica la std route e ogni volta che trova una città che non ci piace la sostituisce con una città che ci piace di più
-    # salva la rec standard in un file json
-    generate_rec_std(liked_disliked_cities, liked_disliked_merch)
-    print("  - Done generating recstandard.json")
+    # Generate the rec standard routes
+    rec_std_routes = generate_rec_std_routes(
+        std_routes, liked_disliked_cities, liked_disliked_merch
+    )
+    print("  - Done generating rec standard routes")
+
+    # Save the rec standard routes to a json file
+    save_results(rec_std_routes)
+    print("  - Done saving recStandard.json")
 
 
 if __name__ == "__main__":
     point_1()
-
-    # prendiamo per ogni standard, tutte le sue actual e contiamo le occorrenze delle città e creiamo una matrice standardRoute x città
-    # scegliamo le n città più frequenti e le k meno frequenti e le aggiungiamo / togliamo alla standard route per tenerla di lunghezza simile
-    # Per i prodotti è uguale

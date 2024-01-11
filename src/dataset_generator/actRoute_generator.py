@@ -86,6 +86,27 @@ def getActRoutes() -> List[ActRoute]:
 
     return act_routes
 
+# Get the standard routes from the json file
+def getRecStdRoutes() -> List[StdRoute]:
+    # reading sRoutes from json
+    with open("./results/" + "recStandard.json", "r") as std_file:
+        std_routes_json = json.load(std_file)
+
+    # Create objects from the data
+    std_routes: List[StdRoute] = []
+    for std_route_json in std_routes_json:
+        trips: List[Trip] = []
+        # create list of Trip
+        for trip_json in std_route_json["route"]:
+            trips.append(
+                Trip(trip_json["from"], trip_json["to"], trip_json["merchandise"])
+            )
+
+        # create list of StdRoute
+        std_routes.append(StdRoute(std_route_json["id"], trips))
+
+    return std_routes
+
 
 # Generate the cities
 def genCities(
