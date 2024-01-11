@@ -373,7 +373,7 @@ def point_1() -> None:
     # modifica la std route e ogni volta che trova una città che non ci piace la sostituisce con una città che ci piace di più
     # salva la rec standard in un file json
     generate_rec_std(liked_disliked_cities, liked_disliked_merch)
-    print("  - Done generating rec standard")
+    print("  - Done generating recstandard.json")
 
 
 if __name__ == "__main__":
