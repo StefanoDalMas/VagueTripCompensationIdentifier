@@ -1,8 +1,10 @@
 import json
 import os
-from typing import List, Dict, Tuple
 import numpy as np
-
+from typing import List, Dict, Tuple
+from numpy import ndarray
+from sklearn.decomposition import TruncatedSVD
+from scipy.sparse import csr_matrix
 
 from tools.parameters import Parameters as params
 from classes.ActRoute import ActRoute
@@ -179,16 +181,99 @@ def get_liked_disliked_items(
     return res_dict
 
 
-# TODO: implement algoritmo furbo rather than inserting random values!
-def complete_utility_matrix(utility_matrix: Dict[str, Dict[str, float]]):
-    # If there are cities with value 0, add random values between 1 and 5
-    for std_route_id, items in utility_matrix.items():
-        for item, value in items.items():
-            if value == 0.0:
-                items.update({item: np.random.random() * 5})
-        utility_matrix.update({std_route_id: items})
+def enumerate_cities_products(
+    utility_matrix: Dict[str, Dict[str, float]]
+) -> Dict[int, str]:
+    col_map_dict: Dict[int, str] = {}
+    route: Dict[str, float] = utility_matrix.get("s0")
+    for i, item in enumerate(route):
+        col_map_dict.update({i: item})
 
-    return utility_matrix
+    return col_map_dict
+
+
+def matrix_dict_to_list(
+    utility_matrix: Dict[str, Dict[str, float]]
+) -> List[List[float]]:
+    matrix: List[List[float]] = []
+    for route, merch_dict in utility_matrix.items():
+        row: List[float] = []
+        for merch, value in merch_dict.items():
+            row.append(value)
+        matrix.append(row)
+
+    return matrix
+
+
+def compute_svd_reconstruct_matrix(res_matrix) -> ndarray:
+    # Apply SVD
+    svd = TruncatedSVD(n_components=2, n_iter=params.N_ITERS, random_state=42)
+    svd.fit(res_matrix)
+    res_matrix = svd.transform(res_matrix)
+
+    # Reconstruct the matrix
+    return np.dot(res_matrix, svd.components_)
+
+
+def complete_reconstructed_matrix(
+    np_matrix: ndarray, reconstructed_matrix: ndarray
+) -> ndarray:
+    filled_matrix = np_matrix.copy()
+    # Iterate through the original matrix and replace missing values with corresponding values from the reconstructed matrix
+    for i in range(np_matrix.shape[0]):
+        for j in range(np_matrix.shape[1]):
+            if np_matrix[i, j] == 0:  # Assuming 0 represents a missing value
+                filled_matrix[i, j] = reconstructed_matrix[i, j]
+
+    abs_matrix: ndarray = np.abs(filled_matrix)
+
+    return abs_matrix
+
+
+# Takes the completed matrix (by SVD) and converts it to a dictionary
+def list_to_ditc_matrix(
+    filled_matrix: List[List[float]], col_map_dict: Dict[int, str]
+) -> Dict[str, Dict[str, float]]:
+    complete_utility_matrix: Dict[str, Dict[str, float]] = {}
+    for i, row in enumerate(filled_matrix):
+        dict_row: Dict[str, float] = {}
+        for j, value in enumerate(row):
+            dict_row.update({col_map_dict.get(j): value})
+        complete_utility_matrix.update({f"s{i}": dict_row})
+
+    return complete_utility_matrix
+
+
+# Takes in a utility matrix as input, applies Singular Value
+# Decomposition (SVD) to reconstruct the matrix, fills in missing values in the reconstructed matrix,
+# and returns the completed utility matrix as a dictionary.
+def complete_utility_matrix(
+    utility_matrix: Dict[str, Dict[str, float]]
+) -> Dict[str, Dict[str, float]]:
+    # Mapping string to int for the columns
+    col_map_dict: Dict[int, str] = enumerate_cities_products(utility_matrix)
+
+    # Create a matrix containg the values of the utility matrix
+    matrix: List[List[float]] = matrix_dict_to_list(utility_matrix)
+
+    # Convert the matrix to a numpy array
+    np_matrix = np.array(matrix)
+
+    # Convert np array to csr matrix (compressed sparse row matrix)
+    res_matrix = csr_matrix(np_matrix)
+
+    # Apply SVD and reconstruct the matrix
+    reconstructed_matrix: ndarray = compute_svd_reconstruct_matrix(res_matrix)
+
+    # Fill the missing values in the reconstructed matrix
+    filled_matrix: List[List[float]] = complete_reconstructed_matrix(
+        np_matrix, reconstructed_matrix
+    )
+
+    # Convert the matrix to a dictionary
+    complete_utility_matrix = list_to_ditc_matrix(filled_matrix, col_map_dict)
+
+    return complete_utility_matrix
 
 
 # Common functions for cities and products

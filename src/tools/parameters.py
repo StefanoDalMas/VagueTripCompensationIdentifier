@@ -57,3 +57,6 @@ class Parameters:
     # Point 3 apriori
     MIN_SUPPORT = 0.03
     MIN_LIFT = 1
+
+    # Point 1 Truncated SVD
+    N_ITERS = 5 # Number of iterations for the truncated SVD
