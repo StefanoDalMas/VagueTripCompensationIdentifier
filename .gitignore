@@ -3,5 +3,6 @@
 *.DS_Store/
 src/.DS_Store/
 **__pycache__/
-src/data/*
+src/data/*.json
 src/tests/operations/*
+src/results/*.json
