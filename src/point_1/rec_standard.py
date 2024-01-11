@@ -231,7 +231,7 @@ def complete_reconstructed_matrix(
 
 
 # Takes the completed matrix (by SVD) and converts it to a dictionary
-def list_to_ditc_matrix(
+def list_to_dict_matrix(
     filled_matrix: List[List[float]], col_map_dict: Dict[int, str]
 ) -> Dict[str, Dict[str, float]]:
     complete_utility_matrix: Dict[str, Dict[str, float]] = {}
@@ -271,7 +271,7 @@ def complete_utility_matrix(
     )
 
     # Convert the matrix to a dictionary
-    complete_utility_matrix = list_to_ditc_matrix(filled_matrix, col_map_dict)
+    complete_utility_matrix = list_to_dict_matrix(filled_matrix, col_map_dict)
 
     return complete_utility_matrix
 
