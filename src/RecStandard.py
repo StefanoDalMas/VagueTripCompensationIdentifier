@@ -348,6 +348,13 @@ def products(
 
     return liked_disliked_cities
 
+#TODO: farla
+def generate_rec_std(
+    liked_disliked_cities: Dict[str, Tuple[List[str], List[str]]],
+    liked_disliked_merch: Dict[str, Tuple[List[str], List[str]]],
+) -> None:
+    pass
+
 
 def point_1() -> None:
     # Some common function calls
@@ -365,6 +372,8 @@ def point_1() -> None:
 
     # modifica la std route e ogni volta che trova una città che non ci piace la sostituisce con una città che ci piace di più
     # salva la rec standard in un file json
+    generate_rec_std(liked_disliked_cities, liked_disliked_merch)
+    print("  - Done generating rec standard")
 
 
 if __name__ == "__main__":
