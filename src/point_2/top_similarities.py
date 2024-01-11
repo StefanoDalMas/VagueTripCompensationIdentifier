@@ -7,7 +7,7 @@ from classes.Trip import Trip
 from classes.ActRoute import ActRoute
 from classes.StdRoute import StdRoute
 from tools.parameters import Parameters as params
-from actRoute_generator import getStdRoutes, getActRoutes
+from dataset_generator.actRoute_generator import getStdRoutes, getActRoutes
 
 
 def dict_padding(stdTrip: Trip, ActTrip: Trip) -> Tuple[Trip, Trip]:

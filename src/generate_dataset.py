@@ -2,9 +2,9 @@ import time
 
 from tools.parameters import Parameters as params
 
-import actRoute_generator
-import stdRoute_generator
-import drivers_generator
+from dataset_generator import actRoute_generator
+from dataset_generator import stdRoute_generator
+from dataset_generator import drivers_generator
 
 
 def check_params():

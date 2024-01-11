@@ -1,9 +1,9 @@
 import time
 
 from tools.parameters import Parameters as params
-from recStandard import point_1
-from top_similarities import point_2
-from perfectRoute import point_3
+from point_1.rec_standard import point_1
+from point_2.top_similarities import point_2
+from point_3.perfectRoute import point_3
 
 
 if __name__ == "__main__":

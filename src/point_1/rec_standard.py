@@ -9,7 +9,7 @@ from scipy.sparse import csr_matrix
 from tools.parameters import Parameters as params
 from classes.ActRoute import ActRoute
 from classes.StdRoute import StdRoute
-from actRoute_generator import getStdRoutes, getActRoutes
+from dataset_generator.actRoute_generator import getStdRoutes, getActRoutes
 
 
 # Returns a tuple of two lists: the first one contains all the standard routes, the second one contains all the actual routes

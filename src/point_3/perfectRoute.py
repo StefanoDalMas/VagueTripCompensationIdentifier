@@ -13,8 +13,8 @@ from classes.Trip import Trip
 from classes.ActRoute import ActRoute
 from classes.StdRoute import StdRoute
 from tools.parameters import Parameters as params
-from top_similarities import generate_similarities
-from actRoute_generator import getStdRoutes, getActRoutes
+from point_2.top_similarities import generate_similarities
+from dataset_generator.actRoute_generator import getStdRoutes, getActRoutes
 from tools.cities_products import random_item_value
 
 

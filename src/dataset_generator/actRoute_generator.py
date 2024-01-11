@@ -60,6 +60,7 @@ def getStdRoutes() -> List[StdRoute]:
 
     return std_routes
 
+
 # Get the standard routes from the json file
 def getActRoutes() -> List[ActRoute]:
     # reading sRoutes from json
@@ -84,6 +85,7 @@ def getActRoutes() -> List[ActRoute]:
         act_routes.append(ActRoute(act_id, driver_id, sroute_id, trips))
 
     return act_routes
+
 
 # Generate the cities
 def genCities(
@@ -116,7 +118,9 @@ def genCities(
                 file.write("I come from a city that sucks! Remove it!\n")
             if i > 0:
                 if actualRoute.aRoute[i - 1]._from != stdTrip.to:
-                    actualRoute.aRoute[i - 1].to = stdTrip.to  # update({"to": stdTrip.to})
+                    actualRoute.aRoute[
+                        i - 1
+                    ].to = stdTrip.to  # update({"to": stdTrip.to})
                 else:
                     # actualTrip.update({"from": stdTrip._from})
                     # actualTrip.update({"to": stdTrip.to})
@@ -249,15 +253,13 @@ def genMerchandise(
     file,
 ) -> Tuple[Trip, Trip]:
     # COULD BE USEFUL likedProducts = np.random.choice(sl, size=np.random.randint(0, params.MAX_LIKED_PRODUCTS), replace=False)
-    if (actualTripCityAdded.is_empty()):
+    if actualTripCityAdded.is_empty():
         for merch, quantity in stdTrip.merchandise.items():
             if len(stdTrip.merchandise) >= params.MAXPRODUCTS:
                 break
             # We want to change the products
             if np.random.randint(0, 101) <= driver.productsCrazyness:
-                actualTrip = modify_merch(
-                    merch, quantity, driver, actualTrip
-                )
+                actualTrip = modify_merch(merch, quantity, driver, actualTrip)
 
             # We don't have to change anything :P
             else:
@@ -275,10 +277,11 @@ def genMerchandise(
             # We don't have to change anything :P
             else:
                 actualTripCityAdded.merchandise.update({merch: quantity})
-        
-        # create a totally new merchandise dictionary for the new city
-        actualTrip.merchandise.update(merch_maker(params.MINPRODUCTS, params.MAXPRODUCTS))
 
+        # create a totally new merchandise dictionary for the new city
+        actualTrip.merchandise.update(
+            merch_maker(params.MINPRODUCTS, params.MAXPRODUCTS)
+        )
 
     return actualTrip, actualTripCityAdded
 
@@ -317,8 +320,8 @@ def generateActualRoute(std_route: StdRoute, driver: Driver) -> ActRoute:
                     file.write("\n\n")
                 continue
 
-             # For now we just skip the trip if the from and to are the same
-            if actualTrip._from == "" and  actualTrip.to == "":
+            # For now we just skip the trip if the from and to are the same
+            if actualTrip._from == "" and actualTrip.to == "":
                 continue
 
             """ PRODUCTS """  # TODO it's not complete
