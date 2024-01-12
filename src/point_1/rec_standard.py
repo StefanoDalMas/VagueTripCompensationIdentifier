@@ -6,6 +6,7 @@ from numpy import ndarray
 from sklearn.decomposition import TruncatedSVD
 from scipy.sparse import csr_matrix
 from classes.Trip import Trip
+from tools.cities_products import random_city
 
 from tools.parameters import Parameters as params
 from classes.ActRoute import ActRoute
@@ -366,6 +367,8 @@ def change_city(
     # Increment the counter until we find a city that we like
     count = 0
     # While the city is the same as the "to" or the previous "_from" city or it's empty
+    if len(liked_disliked_cities.get(std_id)[LIKED]) < 4:
+        liked_disliked_cities.get(std_id)[LIKED].append(random_city())
     while (
         liked_city == trip.to
         or liked_city == std_route.route[i - 1]._from

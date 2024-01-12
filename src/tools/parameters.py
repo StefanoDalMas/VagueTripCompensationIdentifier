@@ -17,8 +17,8 @@ class Parameters:
     ENTRIES: int = 20
     MINTRIP: int = 30
     MAXTRIP: int = 65
-    MINPRODUCTS: int = 30
-    MAXPRODUCTS: int = 100
+    MINPRODUCTS: int = 100
+    MAXPRODUCTS: int = 300
     # MIN_RANDOM_VALUE = 2 # Minimum value for every product
     # MAX_RANDOM_VALUE = 30 # Maximum value for every product
 
@@ -28,7 +28,7 @@ class Parameters:
     DRIVERS_FILENAME: str = "drivers.json"
 
     # Drivers
-    N_DRIVERS = 40
+    N_DRIVERS = 30
     MAX_LIKED_CITIES: int = int(len(ic)*0.3)
     MIN_LIKED_CITIES: int = 4 # do not lower this value under 4!!!
     MIN_CITIES: int = 4 # do not lower this value under 4!!!
@@ -55,9 +55,9 @@ class Parameters:
     THRESHOLD_MOLTIPLICATOR = 0.38
 
     # Point 3 apriori
-    MIN_SUPPORT = 0.03
+    MIN_SUPPORT = 0.1
     MIN_LIFT = 1
 
     # Point 1 Truncated SVD
     N_ITERS = 5 # Number of iterations for the truncated SVD
-    PROD_VALUE_MULTIPLICATOR = 0.3 # Multiplicator for the product value
+    PROD_VALUE_MULTIPLICATOR = 0.3 # Multiplicator for the merch value

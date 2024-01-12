@@ -228,16 +228,20 @@ def find_ass_rules(
             df, min_support=params.MIN_SUPPORT, use_colnames=True
         )  # Adjust min_support
 
-        if frequent_itemsets.empty:
-            continue
+        if not frequent_itemsets.empty:
+            
+            # Generate association rules
+            rules = association_rules(
+                frequent_itemsets, metric="lift", min_threshold=params.MIN_LIFT
+            )
 
-        # Generate association rules
-        rules = association_rules(
-            frequent_itemsets, metric="lift", min_threshold=params.MIN_LIFT
-        )
+            # For each driver we have a list of rules [(antecedents, consequents), ...]
+            dict_rules.update({driver: rules_to_dict(rules)})
 
-        # For each driver we have a list of rules [(antecedents, consequents), ...]
-        dict_rules.update({driver: rules_to_dict(rules)})
+            if rules.empty:
+                print("    - Driver " + str(driver) + " has no rules")
+            else:
+                print("    - Driver " + str(driver) + " done")
 
     return dict_rules
 
@@ -371,6 +375,8 @@ def max_merch_to_rules(
 ) -> List[str]:
     while True:
         old_max_merch = max_merch
+        if not rules:
+            break
         for rule in rules:
             if isinstance(rule[0], list):
                 if max_merch in rule[0]:
