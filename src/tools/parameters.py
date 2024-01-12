@@ -16,10 +16,10 @@ class Parameters:
     DEBUG: bool = False 
     # Standard routes
     ENTRIES: int = 60
-    MINTRIP: int = 100
-    MAXTRIP: int = 200
-    MINPRODUCTS: int = 100
-    MAXPRODUCTS: int = 200
+    MINTRIP: int = 70
+    MAXTRIP: int = 150
+    MINPRODUCTS: int = 40
+    MAXPRODUCTS: int = 100
     # MIN_RANDOM_VALUE = 2 # Minimum value for every product
     # MAX_RANDOM_VALUE = 30 # Maximum value for every product
 
@@ -30,7 +30,7 @@ class Parameters:
 
     # Drivers
     N_DRIVERS = 50
-    crazyness = np.random.randint(0, 101) # Default 0, 101
+    crazyness = np.random.randint(80, 91) # Default 0, 101
     CITY_CRAZINESS = crazyness # Default 0, 101
     PRODUCT_CRAZINESS = crazyness # Default 0, 101
     MAX_LIKED_CITIES: int = int(len(ic)*0.3)

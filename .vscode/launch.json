@@ -9,7 +9,7 @@
             "type": "python",
             "request": "launch",
             "cwd": "${workspaceFolder}/src",
-            "program": "solution.py",
+            "program": "generate_dataset.py",
             "console": "integratedTerminal",
             "justMyCode": true
         }

@@ -173,6 +173,13 @@ def calc_mean_sim(sim_drivers_routes: params.driverSimilarities) -> float:
         drivers_sim += routes_sim / len(routes)
     return drivers_sim / len(sim_drivers_routes)
 
+def test_rec_sim() -> float:
+    sim_drivers_routes: params.driverSimilarities = generate_similarities()
+    print("  - (TEST) Done generating similarities")
+
+    mean_sim: float = calc_mean_sim(sim_drivers_routes)
+
+    return mean_sim
 
 # Point 2 of the assignment
 def point_2() -> None:
@@ -188,7 +195,7 @@ def point_2() -> None:
     save_results(top_5_dict)
     print("  - Done generating driver.json")
 
-    mean_sim = calc_mean_sim(sim_drivers_routes)
+    mean_sim:float = calc_mean_sim(sim_drivers_routes)
     print("  - Mean similarity: ", mean_sim)
 
 

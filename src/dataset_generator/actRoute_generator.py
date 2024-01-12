@@ -40,9 +40,15 @@ def getDrivers() -> List[Driver]:
 
 
 # Get the standard routes from the json file
-def getStdRoutes() -> List[StdRoute]:
+def getStdRoutes(is_rec_std: bool = False) -> List[StdRoute]:
     # reading sRoutes from json
-    with open("./data/" + params.SROUTES_FILENAME, "r") as std_file:
+    file_path = ""
+    if(is_rec_std):
+        file_path = "./results/recStandard.json"
+    else:
+        file_path = "./data/" + params.SROUTES_FILENAME
+
+    with open(file_path, "r") as std_file:
         std_routes_json = json.load(std_file)
 
     # Create objects from the data
@@ -364,10 +370,10 @@ def generateActualRoute(std_route: StdRoute, driver: Driver) -> ActRoute:
         return actualRoute
 
 
-def actRoute_generator() -> List[ActRoute]:
+def actRoute_generator(is_rec_std: bool = False) -> List[ActRoute]:
     # Create objects from the data
     drivers: List[Driver] = getDrivers()
-    stdRoutes: List[StdRoute] = getStdRoutes()
+    stdRoutes: List[StdRoute] = getStdRoutes(is_rec_std)
     actualRoutes: List[ActRoute] = []
     selected_stdRoutes: List[str] = []
     selected_route: StdRoute
