@@ -23,7 +23,7 @@ def drivers_generator() -> List[Driver]:
         id = n
 
         # cities-related values
-        citiesCrazyness = np.random.randint(0, 101)
+        citiesCrazyness = params.CITY_CRAZINESS
         likedCities = np.random.choice(
             ic,
             size=np.random.randint(params.MIN_LIKED_CITIES, params.MAX_LIKED_CITIES),
@@ -40,7 +40,7 @@ def drivers_generator() -> List[Driver]:
         dislikedCities = list(dislikedCities_set)
 
         # product-related values
-        productCrazyness = np.random.randint(0, 101)
+        productCrazyness = params.PRODUCT_CRAZINESS
         likedProducts = np.random.choice(
             sl, size=np.random.randint(0, params.MAX_LIKED_PRODUCTS), replace=False
         )

@@ -164,6 +164,16 @@ def save_results(top_5_dict: params.driverSimilarities) -> None:
         json.dump(result, f, indent=4)
 
 
+def calc_mean_sim(sim_drivers_routes: params.driverSimilarities) -> float:
+    drivers_sim = 0
+    for driver, routes in sim_drivers_routes.items():
+        routes_sim = 0
+        for route, sim in routes.items():
+            routes_sim += sim
+        drivers_sim += routes_sim / len(routes)
+    return drivers_sim / len(sim_drivers_routes)
+
+
 # Point 2 of the assignment
 def point_2() -> None:
     # Use online algorithm (window) to evaluate the existence of a city in a route
@@ -177,6 +187,9 @@ def point_2() -> None:
 
     save_results(top_5_dict)
     print("  - Done generating driver.json")
+
+    mean_sim = calc_mean_sim(sim_drivers_routes)
+    print("  - Mean similarity: ", mean_sim)
 
 
 if __name__ == "__main__":

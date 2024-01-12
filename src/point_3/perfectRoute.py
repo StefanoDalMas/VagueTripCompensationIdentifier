@@ -15,7 +15,7 @@ from classes.StdRoute import StdRoute
 from tools.parameters import Parameters as params
 from point_2.top_similarities import generate_similarities
 from dataset_generator.actRoute_generator import getStdRoutes, getActRoutes
-from tools.cities_products import random_item_value
+from tools.cities_products import random_city, random_item_value
 
 
 # {driver: {città: quantità}}
@@ -489,7 +489,9 @@ def gen_drivers_route(
                 new_new_merch_list.update({merch: new_value})
             
 
-            # this approach work great if there are always 3 or more liked cities
+            # This approach work great if there are always 3 or more liked cities
+            if len(cities) < 3:
+                cities.append(random_city())
             new_from = ""
             new_to = ""
             if not route:
