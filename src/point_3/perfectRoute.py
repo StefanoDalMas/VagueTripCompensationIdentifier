@@ -255,9 +255,6 @@ def calculate_liked_merchandise(
     # For each driver apply the apriori to the baskets of all merchandise of all routes taken by him
     dict_rules: Dict[str, List[Tuple[str, str]]] = find_ass_rules(dict_all_merch)
 
-    # DIREI DI CAMBIARE NOME A QUESTA FUNZIONE TIPO IN calculate_rules PERCHÈ È GIÀ TROPPO GRANDE
-    # POI SE NE FA UN'ALTRA DOVE SI PRENDONO LE REGOLE E SI BUTTA FUORI Dict[driver, [liked cities]]
-
     return dict_rules
 
 
@@ -424,6 +421,25 @@ def save_results(drivers_perfect_routes: Dict[str, List[Trip]]) -> None:
     with open("./results/perfectRoute.json", "w") as f:
         json.dump(result, f, indent=4)
 
+# function that returns, for each driver, the average amount of his products
+def get_driver_avg_merch_amount(driver_actuals: Dict[str, List[ActRoute]]) -> Dict[str, int]:
+    dict_all_merch_amount: Dict[str, int] = {}
+    total_amount = 0
+    products_counter = 0
+    for (
+        driver,
+        actual_list,
+    ) in driver_actuals.items():
+        for actual in actual_list:
+            for trip in actual.aRoute:
+                for amount in trip.merchandise.values():
+                    total_amount += amount
+                    products_counter += 1
+        dict_all_merch_amount.update({driver: int(total_amount/products_counter)})
+        total_amount = 0
+        products_counter = 0
+
+    return dict_all_merch_amount
 
 def gen_drivers_route(
     driver_actuals: params.driverActuals,
@@ -431,12 +447,14 @@ def gen_drivers_route(
     fav_merch: Dict[str, List[Tuple[str, str]]],
     driver_routes_len: Dict[str, int],
     driver_merch_len: Dict[str, int],
+    dict_all_merch_amount: Dict[str, int],
     max_merch_dict: Dict[str, List[str]],
 ) -> Dict[str, List[Trip]]:
     drivers_perfect_routes: Dict[str, List[Trip]] = {}
     for driver, actual_list in driver_actuals.items():  # For each route
         len_route = driver_routes_len.get(driver)
         len_merch = driver_merch_len.get(driver)
+        avg_merch_amount = dict_all_merch_amount.get(driver)
         cities = fav_cities.get(driver)
         merch = fav_merch.get(driver)
 
@@ -467,14 +485,26 @@ def gen_drivers_route(
 
             new_new_merch_list: Dict[str, int] = {}
             for merch in new_merch_list:
-                new_new_merch_list.update({merch: random_item_value()})
+                new_value = avg_merch_amount + np.random.randint(int(-(avg_merch_amount * params.PROD_VALUE_MULTIPLICATOR)), int((avg_merch_amount * params.PROD_VALUE_MULTIPLICATOR)))
+                new_new_merch_list.update({merch: new_value})
+            
+
+            # this approach work great if there are always 3 or more liked cities
+            new_from = ""
+            new_to = ""
+            if not route:
+                # empty route (first trip)
+                new_from = cities[np.random.randint(0, len(cities))]
+                while(new_to == new_from or new_to == "" ):
+                    new_to = cities[np.random.randint(0, len(cities))]
+            else:
+                # route not empty
+                new_from = route[i-1].to
+                while(new_to == new_from or new_to == "" ):
+                    new_to = cities[np.random.randint(0, len(cities))]
 
             route.append(
-                Trip(
-                    cities[np.random.randint(0, len(cities))],
-                    cities[np.random.randint(0, len(cities))],
-                    new_new_merch_list,
-                )
+                Trip(new_from, new_to, new_new_merch_list)
             )
 
         drivers_perfect_routes.update({driver: route})
@@ -488,6 +518,7 @@ def gen_perfect_route(
     fav_merch: Dict[str, List[Tuple[str, str]]],
     driver_routes_len: Dict[str, int],
     driver_merch_len: Dict[str, int],
+    dict_all_merch_amount: Dict[str, int]
 ) -> Dict[str, List[Trip]]:
     max_merch_dict: Dict[str, List[str]] = find_max_merch(driver_actuals)
 
@@ -497,7 +528,8 @@ def gen_perfect_route(
         fav_merch,
         driver_routes_len,
         driver_merch_len,
-        max_merch_dict,
+        dict_all_merch_amount,
+        max_merch_dict
     )
 
     return results
@@ -529,9 +561,13 @@ def point_3() -> None:
     driver_merch_len: Dict[str, int] = calculate_merch_lenght(driver_actuals)
     print("  - Done getting average merchandise length")
 
+    # Get average product amount for each driver
+    dict_all_merch_amount: Dict[str, int] = get_driver_avg_merch_amount(driver_actuals)
+    print("  - Done getting average product amount ")
+
     # Generate perfect route
     results = gen_perfect_route(
-        driver_actuals, fav_cities, fav_merchandise, driver_routes_len, driver_merch_len
+        driver_actuals, fav_cities, fav_merchandise, driver_routes_len, driver_merch_len, dict_all_merch_amount
     )
     print("  - Done generating perfect route")
 
