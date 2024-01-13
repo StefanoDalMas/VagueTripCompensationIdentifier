@@ -48,11 +48,15 @@ def trip_merch_similarity(stdTrip: Trip, actTrip: Trip):
 
 
 # Calculate the similarity of routes between two routes
-def route_similarity(stdRoute: StdRoute, actRoute: ActRoute) -> float:
+def route_similarity(stdRoute: StdRoute, actRoute: ActRoute, is_perfect_route: bool = False) -> float:
     similarity = 0.0
     penality = 0.0
 
-    route_std = stdRoute.route
+    if is_perfect_route:
+        route_std = stdRoute
+    else:
+        route_std = stdRoute.route
+        
     route_act = actRoute.aRoute
     i, j = 0, 0
 
