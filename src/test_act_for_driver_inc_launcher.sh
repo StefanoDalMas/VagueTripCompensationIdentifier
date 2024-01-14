@@ -17,12 +17,9 @@ echo "+ soluzioni calcolate"
 
 echo "+ copio cartelle e rimuovo tmp"
 # Esegui i comandi copy
-# mkdir /media/lorenzo/Volume/DataMining/ACT_FOR_DRIVER_INCREMENTATION/$folder_name
+mkdir /media/lorenzo/Volume/DataMining/ACT_FOR_DRIVER_INCREMENTATION/$folder_name
 cp -r /home/lorenzo/Desktop/VagueTripCompensationIdentifier/src/results /media/lorenzo/Volume/DataMining/ACT_FOR_DRIVER_INCREMENTATION/$folder_name 
-rm /media/lorenzo/Volume/DataMining/ACT_FOR_DRIVER_INCREMENTATION/$folder_name/results/tmp.txt
 cp -r /home/lorenzo/Desktop/VagueTripCompensationIdentifier/src/data /media/lorenzo/Volume/DataMining/ACT_FOR_DRIVER_INCREMENTATION/$folder_name
-rm /media/lorenzo/Volume/DataMining/ACT_FOR_DRIVER_INCREMENTATION/$folder_name/data/tmp.txt
-
 echo "+ cartelle copiate e tmp rimossi"
 
 echo "+ calcolo values"
