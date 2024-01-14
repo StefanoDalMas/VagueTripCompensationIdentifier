@@ -456,6 +456,10 @@ def generate_rec_std_routes(
 ) -> List[StdRoute]:
     for std_route in std_routes:
         std_id = std_route.id
+
+        if liked_disliked_cities.get(std_id) == None or liked_disliked_merch.get(std_id) == None:
+            continue
+
         # Copy the list of liked cities
         tmp_liked_cities = liked_disliked_cities.get(std_id)[LIKED].copy()
         # Create the set of disliked products
