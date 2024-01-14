@@ -130,8 +130,6 @@ def genCities(
     ):  # We want to change the city
         # If the city is liked, we keep it
         if stdTrip._from in driver.likedCities:
-            if params.DEBUG:
-                file.write("but I like the city I come from! I won't change anything\n")
             actualTrip._from = stdTrip._from
             actualTrip.to = stdTrip.to
 
@@ -186,8 +184,6 @@ def genCities(
 
     # We don't have to change anything :P
     else:
-        if params.DEBUG:
-            file.write("first dice is FALSE -> I'm not going to modify anithyng\n")
         actualTrip._from = stdTrip._from
         actualTrip.to = stdTrip.to
 
@@ -330,9 +326,6 @@ def generateActualRoute(std_route: StdRoute, driver: Driver, is_perfect_route: b
             actualRoute.aRoute.append(actualTripCityAdded)
             i += 1
         i += 1
-
-            if params.DEBUG:
-                file.write("\n\n")
 
         return actualRoute
 
