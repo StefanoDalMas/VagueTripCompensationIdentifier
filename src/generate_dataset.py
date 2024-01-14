@@ -1,4 +1,5 @@
 import time
+import os
 
 from tools.parameters import Parameters as params
 
@@ -37,6 +38,10 @@ def check_params():
 if __name__ == "__main__":
     start = time.time()
     check_params()
+
+    if not os.path.exists("./data/"):
+        os.makedirs("./data/")
+
     drivers_generator.drivers_generator()
 
     end = time.time()

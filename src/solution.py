@@ -1,4 +1,5 @@
 import time
+import os
 
 from point_1.rec_standard import point_1
 from point_2.top_similarities import point_2
@@ -6,6 +7,9 @@ from point_3.perfectRoute import point_3
 
 
 if __name__ == "__main__":
+    if not os.path.exists("./results/"):
+        os.makedirs("./results/")
+
     # point 1
     p1 = time.time()
     print("Started point 1")
