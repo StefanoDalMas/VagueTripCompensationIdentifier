@@ -11,9 +11,6 @@ src/
 │  ├── StdRoute.py
 │  └── Trip.py
 ├── data # Dataset
-│  ├── actual.json
-│  ├── drivers.json
-│  └── standard.json
 ├── dataset_generator
 │  ├── actRoute_generator.py
 │  ├── drivers_generator.py
@@ -27,9 +24,6 @@ src/
 │  └── perfectRoute.py
 ├── README.txt
 ├── results # Generated results
-│  ├── driver.json
-│  ├── perfectRoute.json
-│  └── recStandard.json
 ├── solution.py # File that generates results
 ├── some_dataset_tests.py
 ├── test_act_for_driver_inc_launcher.sh
@@ -89,7 +83,7 @@ cd src/
     2. <a id="use_external_dataset"></a> Copy your `actual.json` and `standard.json` files in the `data` folder.
     You can use the command:
     ```bash
-    cp -r your_data_folder_path ./
+    cp -r <your_data_folder_path> ./
     ```
 
 3. run the following command to calculate the solutions on the given dataset
