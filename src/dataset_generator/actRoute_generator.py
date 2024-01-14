@@ -121,7 +121,6 @@ def genCities(
     stdTrip: Trip,
     actualRoute: ActRoute,
     i: int,
-    file,
 ) -> Tuple[Trip, Trip]:
     actualTrip = Trip("", "", {})
     actualTripCityAdded = Trip("", "", {})
@@ -129,8 +128,6 @@ def genCities(
     if (
         np.random.randint(0, 101) <= driver.citiesCrazyness
     ):  # We want to change the city
-        if params.DEBUG:
-            file.write("first dice is TRUE -> let's modify!\n")
         # If the city is liked, we keep it
         if stdTrip._from in driver.likedCities:
             if params.DEBUG:
@@ -140,8 +137,6 @@ def genCities(
 
         # If it's disliked we remove it
         elif stdTrip._from in driver.dislikedCities:
-            if params.DEBUG:
-                file.write("I come from a city that sucks! Remove it!\n")
             if i > 0:
                 if actualRoute.aRoute[i - 1]._from != stdTrip.to:
                     actualRoute.aRoute[i - 1].to = stdTrip.to
@@ -151,8 +146,6 @@ def genCities(
 
         # Otherwise, add a new city
         else:
-            if params.DEBUG:
-                file.write("let's add a city\n")
             if (
                 np.random.randint(0, 101) <= params.CAP_ADD_NEW_CITY
             ):  # Check if we want to create a liked city or a normal one
@@ -172,10 +165,6 @@ def genCities(
                 actualTripCityAdded._from = stdTrip._from
                 actualTripCityAdded.to = stdTrip.to
 
-                if params.DEBUG:
-                    file.write(
-                        f"second dice is TRUE -> let's add an awsome city: {new_city}\n"
-                    )
 
             else:
                 # Create a normal city
@@ -194,10 +183,6 @@ def genCities(
                 actualTripCityAdded._from = stdTrip._from
                 actualTripCityAdded.to = stdTrip.to
 
-                if params.DEBUG:
-                    file.write(
-                        f"second dice is FALSE -> let's add a normal city: {new_city}\n"
-                    )
 
     # We don't have to change anything :P
     else:
@@ -294,7 +279,7 @@ def genMerchandise(
     return actualTrip, actualTripCityAdded
 
 
-def generateActualRoute(std_route: StdRoute, driver: Driver) -> ActRoute:
+def generateActualRoute(std_route: StdRoute, driver: Driver, is_perfect_route: bool = False) -> ActRoute:
     global act_route_counter
     # Create actual route
     actualRoute: ActRoute = ActRoute("", "", "", [])
@@ -302,43 +287,49 @@ def generateActualRoute(std_route: StdRoute, driver: Driver) -> ActRoute:
     act_route_counter += 1
     actualRoute.id = id
     actualRoute.driver_id = driver.id
-    actualRoute.sRoute_id = std_route.id
+
+    if is_perfect_route:
+        actualRoute.id = "from_perfect"
+        actualRoute.sRoute_id = "from_perfect"
+    else:
+        actualRoute.id = id
+        actualRoute.sRoute_id = std_route.id
+
     actualRoute.aRoute = []
 
-    if not os.path.exists("./tests/operations/driver_" + str(driver.id)):
-        os.makedirs("./tests/operations/driver_" + str(driver.id))
-    with open(f"./tests/operations/driver_{driver.id}/{std_route.id}.txt", "w") as file:
-        i = 0
-        for stdTrip in std_route.route:
-            if params.DEBUG:
-                file.write(f"ciclo numero {i}, driver numero {driver.id}\n")
 
-            """ CITIES """
-            actualTrip, actualTripCityAdded = genCities(
-                driver, stdTrip, actualRoute, i, file
-            )
+    i = 0
+    route: List[Trip] = []
+    if is_perfect_route:
+        route = std_route
+    else:
+        route = std_route.route
 
-            # If we removed the city skip products
-            if actualTrip == {}:
-                if params.DEBUG:
-                    file.write("\n\n")
-                continue
+    for stdTrip in route:
+        """ CITIES """
+        actualTrip, actualTripCityAdded = genCities(
+            driver, stdTrip, actualRoute, i
+        )
 
-            # For now we just skip the trip if the from and to are the same
-            if actualTrip._from == "" and actualTrip.to == "":
-                continue
+        # If we removed the city skip products
+        if actualTrip == {}:
+            continue
 
-            """ PRODUCTS """  # TODO it's not complete
-            actualTrip, actualTripCityAdded = genMerchandise(
-                driver, stdTrip, actualTrip, actualTripCityAdded, file
-            )
+        # For now we just skip the trip if the from and to are the same
+        if actualTrip._from == "" and actualTrip.to == "":
+            continue
 
-            # Add the trip to the route
-            actualRoute.aRoute.append(actualTrip)
-            if not actualTripCityAdded.is_empty():
-                actualRoute.aRoute.append(actualTripCityAdded)
-                i += 1
+        """ PRODUCTS """  # TODO it's not complete
+        actualTrip, actualTripCityAdded = genMerchandise(
+            driver, stdTrip, actualTrip, actualTripCityAdded
+        )
+
+        # Add the trip to the route
+        actualRoute.aRoute.append(actualTrip)
+        if not actualTripCityAdded.is_empty():
+            actualRoute.aRoute.append(actualTripCityAdded)
             i += 1
+        i += 1
 
             if params.DEBUG:
                 file.write("\n\n")

@@ -28,3 +28,22 @@ result = dataset + result
 - (no result) driver crazyness e come cambia sim -> fatto
 - (no result) cambia dim window in WINDOW_TEST. Mostra risultato con win_size = 80
 - (yes result) fare i due test sopra 
+
+
+per ogni driver, actuals in driver-actuals:
+    counter = 0
+    per ogni actual in actuals:
+        actual_total_lenght += len(actual)
+        if (len(actual) - len(standard)) >= 0:
+            counter++
+        else:
+            counter--
+        diff += (len(actual) - len(standard)) / min(len(standard.route), len(actual.aRoute))  // diviso min() perchè in questo modo riusciamo a calcolare un valore migliore
+    
+    mean_len = actual_total_lenght / len(actual_list)
+    mean_dif = abs(diff/len(actuals))
+
+    if counter >= 0:
+        len = mean_len + mean_len*mean_dif
+    else:
+        len = mean_len - mean_len*mean_dif
