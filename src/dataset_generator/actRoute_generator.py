@@ -40,10 +40,10 @@ def getDrivers() -> List[Driver]:
 
 
 # Get the standard routes from the json file
-def getStdRoutes(is_rec_std: bool = False) -> List[StdRoute]:
+def getStdRoutes(std_is_rec: bool = False) -> List[StdRoute]:
     # Reading sRoutes from json
     file_path = ""
-    if is_rec_std:
+    if std_is_rec:
         file_path = "./results/recStandard.json"
     else:
         file_path = "./data/" + params.SROUTES_FILENAME
@@ -275,16 +275,15 @@ def genMerchandise(
     return actualTrip, actualTripCityAdded
 
 
-def generateActualRoute(std_route: StdRoute, driver: Driver, is_perfect_route: bool = False) -> ActRoute:
+def generateActualRoute(std_route: StdRoute, driver: Driver, std_is_perfect: bool = False) -> ActRoute:
     global act_route_counter
     # Create actual route
     actualRoute: ActRoute = ActRoute("", "", "", [])
     id: int = "a" + str(act_route_counter)
     act_route_counter += 1
-    actualRoute.id = id
     actualRoute.driver_id = driver.id
 
-    if is_perfect_route:
+    if std_is_perfect:
         actualRoute.id = "from_perfect"
         actualRoute.sRoute_id = "from_perfect"
     else:
@@ -296,7 +295,7 @@ def generateActualRoute(std_route: StdRoute, driver: Driver, is_perfect_route: b
 
     i = 0
     route: List[Trip] = []
-    if is_perfect_route:
+    if std_is_perfect:
         route = std_route
     else:
         route = std_route.route
@@ -307,15 +306,10 @@ def generateActualRoute(std_route: StdRoute, driver: Driver, is_perfect_route: b
             driver, stdTrip, actualRoute, i
         )
 
-        # If we removed the city skip products
-        if actualTrip == {}:
+        if actualTrip.is_empty():
             continue
 
-        # For now we just skip the trip if the from and to are the same
-        if actualTrip._from == "" and actualTrip.to == "":
-            continue
-
-        """ PRODUCTS """  # TODO it's not complete
+        """ PRODUCTS """
         actualTrip, actualTripCityAdded = genMerchandise(
             driver, stdTrip, actualTrip, actualTripCityAdded
         )
@@ -327,13 +321,13 @@ def generateActualRoute(std_route: StdRoute, driver: Driver, is_perfect_route: b
             i += 1
         i += 1
 
-        return actualRoute
+    return actualRoute
 
 
-def actRoute_generator(is_rec_std: bool = False) -> List[ActRoute]:
+def actRoute_generator(std_is_rec: bool = False) -> List[ActRoute]:
     # Create objects from the data
     drivers: List[Driver] = getDrivers()
-    stdRoutes: List[StdRoute] = getStdRoutes(is_rec_std)
+    stdRoutes: List[StdRoute] = getStdRoutes(std_is_rec)
     actualRoutes: List[ActRoute] = []
     selected_stdRoutes: List[str] = []
     selected_route: StdRoute

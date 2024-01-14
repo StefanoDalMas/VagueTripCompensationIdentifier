@@ -260,9 +260,12 @@ def calculate_route_lenght(
             std_id = actual.sRoute_id
             for standard in std_routes:
                 if standard.id == std_id:
-                    perc_diff = (len(actual.aRoute) - len(standard.route)) / min(
-                        len(standard.route), len(actual.aRoute)
-                    )
+                    if len(actual.aRoute) == 0:
+                        perc_diff = (len(actual.aRoute) - len(standard.route)) / 1
+                    else:
+                        perc_diff = (len(actual.aRoute) - len(standard.route)) / min(
+                            len(standard.route), len(actual.aRoute)
+                        )
                     # if perc_diff positive -> actual is bigger
                     # if perc_diff negative -> actual is smaller
                     if perc_diff >= 0:

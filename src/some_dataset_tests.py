@@ -23,7 +23,7 @@ def crazyness_incrementation() -> None:
 
     # generate act_routes from rec_std_routes
     print(" - regenerating actual based on rec_std")
-    actRoute_generator(is_rec_std = True)
+    actRoute_generator(std_is_rec = True)
     print(" - Done")
     
     # calculate mean similarity from rec_std_routes
@@ -74,7 +74,7 @@ def actual_for_driver_incrementation() -> None:
         # search for the correct driver in local_drivers
         for local_driver in local_drivers:
             if local_driver.id == driver: 
-                new_actual = generateActualRoute(perfect_route, local_driver, is_perfect_route = True)
+                new_actual = generateActualRoute(perfect_route, local_driver, std_is_perfect = True)
         driver_new_actual.update({driver: new_actual})
 
     # calculate for each driver the similarity between his perfect and new_actual
@@ -122,7 +122,7 @@ def actual_for_driver_window_incrementation() -> None:
     # for each rec_route associate the mean sim difference
     # sim(perfect[better_driver], rec_route) - sim(perfect[worst_driver], rec_route)
     driver_perfect = getPerfectRoutes()
-    rec_routes = getStdRoutes(is_rec_std = True)
+    rec_routes = getStdRoutes(std_is_rec = True)
     total_difference: float = 0.0
     for standard, better_worst_tuple in std_better_worst_drivers.items():
         # search for the corresponding rec_route
