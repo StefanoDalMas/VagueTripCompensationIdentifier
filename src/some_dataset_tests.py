@@ -2,11 +2,9 @@ import json
 import sys
 from typing import Dict, List, Tuple
 from classes.ActRoute import ActRoute
-from classes.Driver import Driver
-from classes.StdRoute import StdRoute
 from classes.Trip import Trip
 from point_2.top_similarities import test_rec_sim, route_similarity
-from point_1.rec_standard import point_1, common_fn_call
+from point_1.rec_standard import common_fn_call
 from dataset_generator.actRoute_generator import actRoute_generator, generateActualRoute, getDrivers, getStdRoutes
 
 
@@ -19,31 +17,24 @@ def crazyness_incrementation() -> None:
 
     print(" (TEST) crazyness_incrementation() has been called")
 
-
     # calculate mean similarity from std_routes
     mean_std_sim: float = test_rec_sim()
     print(" - With std: " + str(mean_std_sim))
-
-    # generate rec_std_rouotes
-    # point_1()
 
     # generate act_routes from rec_std_routes
     print(" - regenerating actual based on rec_std")
     actRoute_generator(is_rec_std = True)
     print(" - Done")
     
-
     # calculate mean similarity from rec_std_routes
     mean_rec_sim: float = test_rec_sim()
     print(" - With rec_std: " + str(mean_rec_sim))
 
-    with open("/home/lorenzo/Desktop/CRAZY_INCREMENTATION/inc_crazyness_tmp.txt", 'w') as file:
-        # Scrivi la stringa nel file
+    with open("/media/lorenzo/Volume/DataMining/CRAZY_INCREMENTATION/inc_crazyness_tmp.txt", 'w') as file:
+        # write string on file
         file.write(str(mean_std_sim)+" "+str(mean_rec_sim))
     
     print(" (TEST) crazyness_incrementation() done")
-
-
 
 
 
@@ -67,8 +58,8 @@ def getPerfectRoutes() -> Dict[int, List[Trip]]:
     
     return driver_perfect_list
 
-    # small number of drivers (15)
-    # big crazyness (70-80)
+    # small number of drivers
+    # big crazyness
 def actual_for_driver_incrementation() -> None:
 
     print(" (TEST) actual_for_driver_incrementation() has been called")
@@ -94,14 +85,14 @@ def actual_for_driver_incrementation() -> None:
     # calculate mean similarity between all drivers
     mean_sim = sum(perfect_new_act_sim.values()) / len(perfect_new_act_sim)
 
-    with open("/home/lorenzo/Desktop/ACT_FOR_DRIVER_INCREMENTATION/act_for_driver_inc_tmp.txt", 'w') as file:
+    with open("/media/lorenzo/Volume/DataMining/ACT_FOR_DRIVER_INCREMENTATION/act_for_driver_inc_tmp.txt", 'w') as file:
         # write similarity value to file for bash script
         file.write(str(mean_sim))
     
     print(" (TEST) actual_for_driver_incrementation() done")
 
 
-
+# --------------------------- THIRD ----------------------------
 def actual_for_driver_window_incrementation() -> None:
 
     print(" (TEST) actual_for_driver_window_incrementation() has been called")
@@ -132,7 +123,6 @@ def actual_for_driver_window_incrementation() -> None:
     # sim(perfect[better_driver], rec_route) - sim(perfect[worst_driver], rec_route)
     driver_perfect = getPerfectRoutes()
     rec_routes = getStdRoutes(is_rec_std = True)
-    rec_mean_sim_diff: Dict[str, float]
     total_difference: float = 0.0
     for standard, better_worst_tuple in std_better_worst_drivers.items():
         # search for the corresponding rec_route
@@ -169,6 +159,7 @@ if __name__ == "__main__":
             # test with incremental actual routes for each driver
             actual_for_driver_incrementation()
         elif test_controller == "3":
+            # test with incremental actual routes window for each driver
             actual_for_driver_window_incrementation()
         else:
             print("Wrong argument: use \n- 1 for crazyness_incrementation()\n- 2 for actual_for_driver_incrementation()\n- 3 for actual_for_driver_window_incrementation()")

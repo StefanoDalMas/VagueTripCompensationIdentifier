@@ -17,11 +17,11 @@ echo "+ soluzioni calcolate"
 
 echo "+ copio cartelle e rimuovo tmp"
 # Esegui i comandi copy
-mkdir /home/lorenzo/Desktop/ACT_FOR_DRIVER_INCREMENTATION/$folder_name
-cp -r /home/lorenzo/Desktop/VagueTripCompensationIdentifier/src/results /home/lorenzo/Desktop/ACT_FOR_DRIVER_INCREMENTATION/$folder_name 
-rm /home/lorenzo/Desktop/ACT_FOR_DRIVER_INCREMENTATION/$folder_name/results/tmp.txt
-cp -r /home/lorenzo/Desktop/VagueTripCompensationIdentifier/src/data /home/lorenzo/Desktop/ACT_FOR_DRIVER_INCREMENTATION/$folder_name
-rm /home/lorenzo/Desktop/ACT_FOR_DRIVER_INCREMENTATION/$folder_name/data/tmp.txt
+# mkdir /media/lorenzo/Volume/DataMining/ACT_FOR_DRIVER_INCREMENTATION/$folder_name
+cp -r /home/lorenzo/Desktop/VagueTripCompensationIdentifier/src/results /media/lorenzo/Volume/DataMining/ACT_FOR_DRIVER_INCREMENTATION/$folder_name 
+rm /media/lorenzo/Volume/DataMining/ACT_FOR_DRIVER_INCREMENTATION/$folder_name/results/tmp.txt
+cp -r /home/lorenzo/Desktop/VagueTripCompensationIdentifier/src/data /media/lorenzo/Volume/DataMining/ACT_FOR_DRIVER_INCREMENTATION/$folder_name
+rm /media/lorenzo/Volume/DataMining/ACT_FOR_DRIVER_INCREMENTATION/$folder_name/data/tmp.txt
 
 echo "+ cartelle copiate e tmp rimossi"
 
@@ -30,6 +30,6 @@ python3 /home/lorenzo/Desktop/VagueTripCompensationIdentifier/src/some_dataset_t
 echo "+ values calcolati"
 
 echo "leggo da file i values"
-read -r mean_sim < "/home/lorenzo/Desktop/ACT_FOR_DRIVER_INCREMENTATION/act_for_driver_inc_tmp.txt"
-echo -e "mean_sim: $mean_sim" > /home/lorenzo/Desktop/ACT_FOR_DRIVER_INCREMENTATION/$folder_name/sim_value.txt
+read -r mean_sim < "/media/lorenzo/Volume/DataMining/ACT_FOR_DRIVER_INCREMENTATION/act_for_driver_inc_tmp.txt"
+echo -e "mean_sim: $mean_sim" > /media/lorenzo/Volume/DataMining/ACT_FOR_DRIVER_INCREMENTATION/$folder_name/sim_value.txt
 echo "+ values salvati sul file"
