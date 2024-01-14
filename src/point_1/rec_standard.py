@@ -166,7 +166,7 @@ def get_liked_disliked_items(
     for std_route_id, items in utility_matrix.items():
         dict_rating: Dict[int, List[str]] = {1: [], 2: [], 3: [], 4: [], 5: []}
         for item, rating in items.items():
-            # round the rating to the nearest integer
+            # Round the rating to the nearest integer
             key = int(round(rating))
             if key == 0:
                 key = 1
@@ -321,7 +321,7 @@ def cities(
         utility_matrix
     )
 
-    # the first element of the Tuple is the list of liked cities, the second is the list of disliked cities
+    # The first element of the Tuple is the list of liked cities, the second is the list of disliked cities
     liked_disliked_cities: Dict[
         str, Tuple[List[str], List[str]]
     ] = get_liked_disliked_items(complete_matrix)
@@ -347,7 +347,7 @@ def products(
         utility_matrix
     )
 
-    # the first element of the Tuple is the list of liked cities, the second is the list of disliked cities
+    # The first element of the Tuple is the list of liked cities, the second is the list of disliked cities
     liked_disliked_cities: Dict[
         str, Tuple[List[str], List[str]]
     ] = get_liked_disliked_items(complete_matrix)
@@ -437,7 +437,8 @@ def change_products(
             new_prod_merch.update({prod: trip.merchandise.get(prod)})
         else:
             new_value = avg_prod_value + np.random.randint(
-                int(-(avg_prod_value * params.PROD_VALUE_MULTIPLICATOR)), int((avg_prod_value * params.PROD_VALUE_MULTIPLICATOR))
+                int(-(avg_prod_value * params.PROD_VALUE_MULTIPLICATOR)),
+                int((avg_prod_value * params.PROD_VALUE_MULTIPLICATOR)),
             )
             new_prod_merch.update({prod: new_value})
 
@@ -453,9 +454,6 @@ def generate_rec_std_routes(
         str, Tuple[List[str], List[str]]
     ],  # std -> (liked, disliked)
 ) -> List[StdRoute]:
-    # Cerchiamo una città che non ci piace nella std e la sostituiamo con una città che ci piace di più
-    # Per il prodotto è uguale
-
     for std_route in std_routes:
         std_id = std_route.id
         # Copy the list of liked cities

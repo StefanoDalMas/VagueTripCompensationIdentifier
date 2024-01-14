@@ -1,7 +1,6 @@
-import heapq
 import json
 import os
-from typing import Dict, List, Tuple, Any, Union
+from typing import Dict, List, Tuple, Union
 import numpy as np
 import pandas as pd
 from mlxtend.frequent_patterns import fpgrowth, association_rules
@@ -13,19 +12,11 @@ from classes.Trip import Trip
 from classes.ActRoute import ActRoute
 from classes.StdRoute import StdRoute
 from tools.parameters import Parameters as params
-from point_2.top_similarities import generate_similarities
 from dataset_generator.actRoute_generator import getStdRoutes, getActRoutes
 from tools.cities_products import random_city, random_item_value
 
 
-# {driver: {città: quantità}}
-
-# funzine che restituisca un dizionario con le città e i corrispondenti contatori
-# funzione che fa la differenza tra due oggetti descritti sopra
-
-
-# volgiamo creare una struttura dati che sia così
-# {driver: List[ActRoute]}
+# For each driver get all his actual routes
 def get_driver_actuals() -> params.driverActuals:
     act_routes: List[ActRoute] = getActRoutes()
 
@@ -43,8 +34,6 @@ def get_driver_actuals() -> params.driverActuals:
     return driver_actuals
 
 
-# vogliamo creare questo
-#  {driver: {città: quantità}}
 def calculate_liked_cities(
     driver_actuals: params.driverActuals,
 ) -> Dict[str, List[str]]:
@@ -57,7 +46,7 @@ def calculate_liked_cities(
 
     for driver, actual_list in driver_actuals.items():
         for actual in actual_list:
-            # contiamo le città per una actual
+            # Count cities in actual route
             for trip in actual.aRoute:
                 value = 1
                 if trip._from in actual_dict:
@@ -66,7 +55,7 @@ def calculate_liked_cities(
 
                 actual_dict.update({trip._from: value})
 
-            # contiamo le città della standard associata
+            # Count cities in standard route
             std_id = actual.sRoute_id
             for standard in std_routes:
                 if standard.id == std_id:
@@ -78,7 +67,7 @@ def calculate_liked_cities(
 
                         standard_dict.update({trip._from: value})
 
-            # facciamo sottrazione tra i dizionari e la aggiungiamo al totale
+            # Calculate difference between actual and standard
             difference: Dict[str, int] = dict_difference(actual_dict, standard_dict)
             if difference != {}:
                 calculated_liked_cities = update_dict(
@@ -89,7 +78,7 @@ def calculate_liked_cities(
                     calculated_liked_cities, actual_dict
                 )
 
-        # crea threshold per decidere se città è buona o meno
+        # Calculate threshold
         max_value = max(calculated_liked_cities.values())
         threshold = int(max_value * params.THRESHOLD_MOLTIPLICATOR)
 
@@ -199,9 +188,7 @@ def rules_to_dict(rules: List[Tuple[str, str]]) -> Dict[str, List[Tuple[str, str
     for i in range(len(antecedents_list)):
         rule = (antecedents_list[i], consequents_list[i])
         # Check that the rule is not already in the list
-        if (
-            rule not in rules_driver_list
-        ):  # MANCA DA CAPIRE COME CONTROLLARE E TOGLIERE I DUPLICATI (FATTO)
+        if rule not in rules_driver_list:
             rules_driver_list.append(rule)
 
     return rules_driver_list
@@ -229,7 +216,6 @@ def find_ass_rules(
         )  # Adjust min_support
 
         if not frequent_itemsets.empty:
-            
             # Generate association rules
             rules = association_rules(
                 frequent_itemsets, metric="lift", min_threshold=params.MIN_LIFT
@@ -238,10 +224,10 @@ def find_ass_rules(
             # For each driver we have a list of rules [(antecedents, consequents), ...]
             dict_rules.update({driver: rules_to_dict(rules)})
 
-            if rules.empty:
-                print("    - Driver " + str(driver) + " has no rules")
-            else:
-                print("    - Driver " + str(driver) + " done")
+            # if rules.empty:
+            #     print("    - Driver " + str(driver) + " has no rules")
+            # else:
+            #     print("    - Driver " + str(driver) + " done")
 
     return dict_rules
 
@@ -261,18 +247,11 @@ def calculate_liked_merchandise(
 def calculate_route_lenght(
     driver_actuals: params.driverActuals, std_routes: List[StdRoute]
 ) -> Dict[str, int]:
-    # contatore che tiene traccia di quante volte aumenta dimensione (o diminuisce)
-    # calcola per ogni coppia actual-standard la percentuale di aumento/diminuzione
-    # fai la media tra tutte le percentuali di aumento/diminuzione per ogni driver
-    # se aumenta più volte, allora aggiungi alla media la percentuale risultante, se no sottraila
-
-    # if positive -> bigger number of increasing routes
-    # if negative -> bigger number of decreasing routes
     driver_len_dict: Dict[str, int] = {}
     counter = 0
     perc_diff = 0
     total_perc_diff = 0
-    actual_total_lenght = 0  # used to calculate the base distance. Then we add/substract the mean difference between actual and standard
+    actual_total_lenght = 0  # Used to calculate the base distance. Then we add/substract the mean difference between actual and standard
     total_perc_diff_mean = 0
     actual_mean_lenght = 0
     for driver, actual_list in driver_actuals.items():
@@ -281,22 +260,6 @@ def calculate_route_lenght(
             std_id = actual.sRoute_id
             for standard in std_routes:
                 if standard.id == std_id:
-                    # DA LEGGERE
-                    # nel calcolo di perc_diff ho messo .. / min() per contrastare il problema che vi dicevo nell'audio
-                    # esempio
-                    #       len(actual)     len(standard)
-                    # 1        200               50
-                    # 2         50              200
-                    # in questo esempio mi aspetto che la media dei cambiamenti sia 0 ma
-                    # se uso il calcolo corretto per trovare la differenza percentuale ottengo
-                    #
-                    #     1:   ( 200 - 50 ) / 50 = 150 / 50 = 3
-                    #     2:   ( 50 - 200 ) / 200 = -150 / 200 = -0.75
-                    #  media = ( 3 + (-0.75) ) / 2 = 2.25 / 2 = 1.125 -> != 0
-
-                    # visto che noi abbiamo la stessa modifica vogliamo una media di 0 in questo caso, ma otteniamo != 0
-                    # per fare 0 basta dividere sempre per il numero più piccolo, e basterà il segno a bilanciare la media
-
                     perc_diff = (len(actual.aRoute) - len(standard.route)) / min(
                         len(standard.route), len(actual.aRoute)
                     )
@@ -309,20 +272,10 @@ def calculate_route_lenght(
 
                     total_perc_diff += perc_diff
 
-        # faccio la media delle lunghezze delle actual
+        # Mean lenght of the actual routes ->
         actual_mean_lenght = int(actual_total_lenght / len(actual_list))
-        # faccio la media delle percentuali ->
+        # Mean difference between actual and standard ->
         total_perc_diff_mean = abs(total_perc_diff / len(actual_list))
-
-        # DA LEGGERE
-        # qua c'è un altro "problema"
-        # Non è scontato che dopo la sottrazione della differenza media dal valore di partenza si ottenga un numero positivo (ovviamente vale sono per il caso di sottrazione)
-        # Ci sono diversi approcci seguibili:
-        #   - prendere il valore assoluto (non lo considererei molto perchè a volte ci sono anche degli 0 o comunque numeri bassi
-        #       e questo non risolverebbe questi casi)
-        #   - non considerare la modifica e tenere la lunghezza media calcolata (actual_mean_lenght) che non è malvagio secondo me (ho implementato questa per ora)
-        #   - mettere un valore di default (bah)
-        #   - mettere un valore sotto il quale non si può andare (bah)
 
         driver_len_variation = int(actual_mean_lenght * total_perc_diff_mean)
         if counter > 0:
@@ -336,10 +289,6 @@ def calculate_route_lenght(
                 driver_len_dict.update(
                     {driver: int(actual_mean_lenght - driver_len_variation)}
                 )
-
-        # DA LEGGERE
-        # alla fine con i dati che ho io vedo quasi sempre che la lunghezza della actual diminuisce rispetto alla standard.
-        # Questo dipende dal dataset però.. probabilmente nel nostro dataset è molto più probabile rimuovere una città che aggiungerne una.
 
         counter = 0
         perc_diff = 0
@@ -421,8 +370,11 @@ def save_results(drivers_perfect_routes: Dict[str, List[Trip]]) -> None:
     with open("./results/perfectRoute.json", "w") as f:
         json.dump(result, f, indent=4)
 
-# function that returns, for each driver, the average amount of his products
-def get_driver_avg_merch_amount(driver_actuals: Dict[str, List[ActRoute]]) -> Dict[str, int]:
+
+# Function that returns, for each driver, the average amount of his products
+def get_driver_avg_merch_amount(
+    driver_actuals: Dict[str, List[ActRoute]]
+) -> Dict[str, int]:
     dict_all_merch_amount: Dict[str, int] = {}
     total_amount = 0
     products_counter = 0
@@ -435,11 +387,12 @@ def get_driver_avg_merch_amount(driver_actuals: Dict[str, List[ActRoute]]) -> Di
                 for amount in trip.merchandise.values():
                     total_amount += amount
                     products_counter += 1
-        dict_all_merch_amount.update({driver: int(total_amount/products_counter)})
+        dict_all_merch_amount.update({driver: int(total_amount / products_counter)})
         total_amount = 0
         products_counter = 0
 
     return dict_all_merch_amount
+
 
 def gen_drivers_route(
     driver_actuals: params.driverActuals,
@@ -474,9 +427,6 @@ def gen_drivers_route(
                         count += 1
                     else:
                         max_merch: str = merch[np.random.randint(0, len(merch))]
-                # Find the max value of the merch in the actuals
-
-                # get the first element of max_merch_dict[driver] and remove it from the list
 
                 new_merch_list.append(max_merch)
                 old_len: int = len(new_merch_list)
@@ -485,29 +435,28 @@ def gen_drivers_route(
 
             new_new_merch_list: Dict[str, int] = {}
             for merch in new_merch_list:
-                new_value = avg_merch_amount + np.random.randint(int(-(avg_merch_amount * params.PROD_VALUE_MULTIPLICATOR)), int((avg_merch_amount * params.PROD_VALUE_MULTIPLICATOR)))
+                new_value = avg_merch_amount + np.random.randint(
+                    int(-(avg_merch_amount * params.PROD_VALUE_MULTIPLICATOR)),
+                    int((avg_merch_amount * params.PROD_VALUE_MULTIPLICATOR)),
+                )
                 new_new_merch_list.update({merch: new_value})
-            
 
-            # This approach work great if there are always 3 or more liked cities
             if len(cities) < 3:
                 cities.append(random_city())
             new_from = ""
             new_to = ""
             if not route:
-                # empty route (first trip)
+                # Empty route (first trip)
                 new_from = cities[np.random.randint(0, len(cities))]
-                while(new_to == new_from or new_to == "" ):
+                while new_to == new_from or new_to == "":
                     new_to = cities[np.random.randint(0, len(cities))]
             else:
-                # route not empty
-                new_from = route[i-1].to
-                while(new_to == new_from or new_to == "" ):
+                # Route not empty
+                new_from = route[i - 1].to
+                while new_to == new_from or new_to == "":
                     new_to = cities[np.random.randint(0, len(cities))]
 
-            route.append(
-                Trip(new_from, new_to, new_new_merch_list)
-            )
+            route.append(Trip(new_from, new_to, new_new_merch_list))
 
         drivers_perfect_routes.update({driver: route})
 
@@ -520,7 +469,7 @@ def gen_perfect_route(
     fav_merch: Dict[str, List[Tuple[str, str]]],
     driver_routes_len: Dict[str, int],
     driver_merch_len: Dict[str, int],
-    dict_all_merch_amount: Dict[str, int]
+    dict_all_merch_amount: Dict[str, int],
 ) -> Dict[str, List[Trip]]:
     max_merch_dict: Dict[str, List[str]] = find_max_merch(driver_actuals)
 
@@ -531,7 +480,7 @@ def gen_perfect_route(
         driver_routes_len,
         driver_merch_len,
         dict_all_merch_amount,
-        max_merch_dict
+        max_merch_dict,
     )
 
     return results
@@ -569,7 +518,12 @@ def point_3() -> None:
 
     # Generate perfect route
     results = gen_perfect_route(
-        driver_actuals, fav_cities, fav_merchandise, driver_routes_len, driver_merch_len, dict_all_merch_amount
+        driver_actuals,
+        fav_cities,
+        fav_merchandise,
+        driver_routes_len,
+        driver_merch_len,
+        dict_all_merch_amount,
     )
     print("  - Done generating perfect route")
 

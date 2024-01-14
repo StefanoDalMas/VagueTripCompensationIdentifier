@@ -1,5 +1,5 @@
 import json
-from typing import List, Dict, Tuple
+from typing import List, Tuple
 import numpy as np
 import os
 
@@ -16,7 +16,7 @@ act_route_counter: int = 0  # For the id of the actual routes
 
 # Get the drivers from the json file
 def getDrivers() -> List[Driver]:
-    # reading drivers from json
+    # Reading drivers from json
     with open("./data/" + params.DRIVERS_FILENAME, "r") as driversFile:
         driversJson = json.load(driversFile)
 
@@ -41,9 +41,9 @@ def getDrivers() -> List[Driver]:
 
 # Get the standard routes from the json file
 def getStdRoutes(is_rec_std: bool = False) -> List[StdRoute]:
-    # reading sRoutes from json
+    # Reading sRoutes from json
     file_path = ""
-    if(is_rec_std):
+    if is_rec_std:
         file_path = "./results/recStandard.json"
     else:
         file_path = "./data/" + params.SROUTES_FILENAME
@@ -55,13 +55,13 @@ def getStdRoutes(is_rec_std: bool = False) -> List[StdRoute]:
     std_routes: List[StdRoute] = []
     for std_route_json in std_routes_json:
         trips: List[Trip] = []
-        # create list of Trip
+        # Create list of Trip
         for trip_json in std_route_json["route"]:
             trips.append(
                 Trip(trip_json["from"], trip_json["to"], trip_json["merchandise"])
             )
 
-        # create list of StdRoute
+        # Create list of StdRoute
         std_routes.append(StdRoute(std_route_json["id"], trips))
 
     return std_routes
@@ -92,9 +92,10 @@ def getActRoutes() -> List[ActRoute]:
 
     return act_routes
 
+
 # Get the standard routes from the json file
 def getRecStdRoutes() -> List[StdRoute]:
-    # reading sRoutes from json
+    # Reading sRoutes from json
     with open("./results/" + "recStandard.json", "r") as std_file:
         std_routes_json = json.load(std_file)
 
@@ -102,13 +103,13 @@ def getRecStdRoutes() -> List[StdRoute]:
     std_routes: List[StdRoute] = []
     for std_route_json in std_routes_json:
         trips: List[Trip] = []
-        # create list of Trip
+        # Create list of Trip
         for trip_json in std_route_json["route"]:
             trips.append(
                 Trip(trip_json["from"], trip_json["to"], trip_json["merchandise"])
             )
 
-        # create list of StdRoute
+        # Create list of StdRoute
         std_routes.append(StdRoute(std_route_json["id"], trips))
 
     return std_routes
@@ -134,8 +135,6 @@ def genCities(
         if stdTrip._from in driver.likedCities:
             if params.DEBUG:
                 file.write("but I like the city I come from! I won't change anything\n")
-            # actualTrip.update({"from": stdTrip._from})
-            # actualTrip.update({"to": stdTrip.to})
             actualTrip._from = stdTrip._from
             actualTrip.to = stdTrip.to
 
@@ -145,15 +144,10 @@ def genCities(
                 file.write("I come from a city that sucks! Remove it!\n")
             if i > 0:
                 if actualRoute.aRoute[i - 1]._from != stdTrip.to:
-                    actualRoute.aRoute[
-                        i - 1
-                    ].to = stdTrip.to  # update({"to": stdTrip.to})
+                    actualRoute.aRoute[i - 1].to = stdTrip.to
                 else:
-                    # actualTrip.update({"from": stdTrip._from})
-                    # actualTrip.update({"to": stdTrip.to})
                     actualTrip._from = stdTrip._from
                     actualTrip.to = stdTrip.to
-            # TODO se non si può eliminare lasciamo così o sostituiamo?
 
         # Otherwise, add a new city
         else:
@@ -172,13 +166,9 @@ def genCities(
                     new_city = np.random.choice(driver.likedCities)
 
                 if i > 0:
-                    actualRoute.aRoute[i - 1].to = new_city  # update({"to": new_city})
-                # actualTrip.update({"from": new_city})
-                # actualTrip.update({"to": stdTrip._from})
+                    actualRoute.aRoute[i - 1].to = new_city
                 actualTrip._from = new_city
                 actualTrip.to = stdTrip._from
-                # actualTripCityAdded.update({"from": stdTrip._from})
-                # actualTripCityAdded.update({"to": stdTrip.to})
                 actualTripCityAdded._from = stdTrip._from
                 actualTripCityAdded.to = stdTrip.to
 
@@ -198,13 +188,9 @@ def genCities(
                     new_city = np.random.choice(driver.cities)
 
                 if i > 0:
-                    actualRoute.aRoute[i - 1].to = new_city  # update({"to": new_city})
-                # actualTrip.update({"from": new_city})
-                # actualTrip.update({"to": stdTrip._from})
+                    actualRoute.aRoute[i - 1].to = new_city
                 actualTrip._from = new_city
                 actualTrip.to = stdTrip._from
-                # actualTripCityAdded.update({"from": stdTrip._from})
-                # actualTripCityAdded.update({"to": stdTrip.to})
                 actualTripCityAdded._from = stdTrip._from
                 actualTripCityAdded.to = stdTrip.to
 
@@ -217,8 +203,6 @@ def genCities(
     else:
         if params.DEBUG:
             file.write("first dice is FALSE -> I'm not going to modify anithyng\n")
-        # actualTrip.update({"from": stdTrip._from})
-        # actualTrip.update({"to": stdTrip.to})
         actualTrip._from = stdTrip._from
         actualTrip.to = stdTrip.to
 
@@ -230,7 +214,6 @@ def modify_merch(
     quantity: int,
     driver: Driver,
     trip: Trip,
-    # stdTrip: Trip,
 ) -> Tuple[Trip, Trip]:
     # If the product is liked we add more
     if merch in driver.likedProducts:
@@ -277,9 +260,7 @@ def genMerchandise(
     stdTrip: Trip,
     actualTrip: Trip,
     actualTripCityAdded: Trip,
-    file,
 ) -> Tuple[Trip, Trip]:
-    # COULD BE USEFUL likedProducts = np.random.choice(sl, size=np.random.randint(0, params.MAX_LIKED_PRODUCTS), replace=False)
     if actualTripCityAdded.is_empty():
         for merch, quantity in stdTrip.merchandise.items():
             if len(stdTrip.merchandise) >= params.MAXPRODUCTS:
@@ -305,7 +286,7 @@ def genMerchandise(
             else:
                 actualTripCityAdded.merchandise.update({merch: quantity})
 
-        # create a totally new merchandise dictionary for the new city
+        # Create a totally new merchandise dictionary for the new city
         actualTrip.merchandise.update(
             merch_maker(params.MINPRODUCTS, params.MAXPRODUCTS)
         )
@@ -319,10 +300,6 @@ def generateActualRoute(std_route: StdRoute, driver: Driver) -> ActRoute:
     actualRoute: ActRoute = ActRoute("", "", "", [])
     id: int = "a" + str(act_route_counter)
     act_route_counter += 1
-    # actualRoute.update({"id": id})
-    # actualRoute.update({"driver": driver.id})
-    # actualRoute.update({"sroute:": std_route.id})
-    # actualRoute.update({"route": []})
     actualRoute.id = id
     actualRoute.driver_id = driver.id
     actualRoute.sRoute_id = std_route.id
@@ -366,7 +343,6 @@ def generateActualRoute(std_route: StdRoute, driver: Driver) -> ActRoute:
             if params.DEBUG:
                 file.write("\n\n")
 
-        # to_dict() so it's serializable
         return actualRoute
 
 
@@ -394,7 +370,7 @@ def actRoute_generator(is_rec_std: bool = False) -> List[ActRoute]:
                 actualRoutes.append(generateActualRoute(selected_route, driver))
         selected_stdRoutes.clear()
 
-    # cast all elements to dictionary
+    # Cast all elements to dictionary
     actRoutes_list_dict = [actRoute.to_dict() for actRoute in actualRoutes]
     # Save the actual routes on a json file
     with open("./data/" + params.AROUTES_FILENAME, "w") as f:

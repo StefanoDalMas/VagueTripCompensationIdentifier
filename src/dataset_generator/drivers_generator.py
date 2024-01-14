@@ -1,4 +1,4 @@
-from typing import List, Dict, Tuple
+from typing import List
 import numpy as np
 from tools.cities_products import italian_cities as ic
 from tools.cities_products import shopping_list as sl
@@ -8,7 +8,7 @@ from classes.Driver import Driver
 from tools.parameters import Parameters as params
 
 
-# used to cast ndarrays in lists
+# Used to cast ndarrays in lists
 class NumpyEncoder(json.JSONEncoder):
     def default(self, obj):
         if isinstance(obj, np.ndarray):
@@ -19,10 +19,10 @@ class NumpyEncoder(json.JSONEncoder):
 def drivers_generator() -> List[Driver]:
     drivers: List[Driver] = []
     for n in range(params.N_DRIVERS):
-        # driver id
+        # Driver id
         id = n
 
-        # cities-related values
+        # Cities-related values
         citiesCrazyness = params.CITY_CRAZINESS
         likedCities = np.random.choice(
             ic,
@@ -39,7 +39,7 @@ def drivers_generator() -> List[Driver]:
         dislikedCities_set = set(icMinusLiked) - set(cities)
         dislikedCities = list(dislikedCities_set)
 
-        # product-related values
+        # Product-related values
         productCrazyness = params.PRODUCT_CRAZINESS
         likedProducts = np.random.choice(
             sl, size=np.random.randint(0, params.MAX_LIKED_PRODUCTS), replace=False
@@ -54,7 +54,7 @@ def drivers_generator() -> List[Driver]:
         products_set = set(slMinusLiked) - set(dislikedProducts)
         products = list(products_set)
 
-        # driver creation
+        # Driver creation
         driver = Driver(
             id,
             citiesCrazyness,
@@ -68,14 +68,10 @@ def drivers_generator() -> List[Driver]:
         )
         drivers.append(driver)
 
-        # print(f"-DRIVER {n}-")
-        # print(f"CITIES\n likedCities={len(likedCities)}\n dislikedCities={len(dislikedCities)}\n cities={len(cities)}\n")
-        # print(f"PRODUCTS\n likedProducts={len(likedProducts)}\n dislikedProducts={len(dislikedProducts)}\n products={len(products)}\n")
-
-    # cast all elements to dictionary
+    # Cast all elements to dictionary
     driver_list_dict = [driver.to_dict() for driver in drivers]
 
-    # print to file
+    # Print to file
     if not os.path.exists("./data"):
         os.makedirs("./data")
     with open("./data/" + params.DRIVERS_FILENAME, "w") as f:

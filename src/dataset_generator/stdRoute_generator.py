@@ -1,9 +1,9 @@
-# system imports
+# System imports
 import random
 import json
-from typing import List, Dict, Tuple
+from typing import List
 
-# custom imports
+# Custom imports
 from tools import cities_products as cp
 from tools.parameters import Parameters as params
 from classes.StdRoute import StdRoute
@@ -17,7 +17,7 @@ def stdRoute_generator(
     maxProducts: int,
     fileName: str,
 ) -> List[StdRoute]:
-    # open "data/standard.json, if it's not there, create it"
+    # Open "data/standard.json, if it's not there, create it"
     try:
         with open("data/" + fileName, "w") as f:
             json_array = []
@@ -26,7 +26,7 @@ def stdRoute_generator(
                 trips_number = random.randint(minTrip, maxTrip)
                 route = []
                 last = None
-                for trip in range(trips_number):
+                for _ in range(trips_number):
                     json_trip = {}
                     if last != None:
                         start = last
@@ -44,7 +44,6 @@ def stdRoute_generator(
                     length = 0
                     for _ in route:
                         length += 1
-                    # print length of route
 
                 json_data.update({"id": "s" + str(entry)})
                 json_data.update({"route": route})

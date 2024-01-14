@@ -29,7 +29,7 @@ def trip_merch_similarity(stdTrip: Trip, actTrip: Trip):
     merchandise1 = np.array(list(stdTrip.merchandise.values()))
     merchandise2 = np.array(list(actTrip.merchandise.values()))
 
-    # check if merchandise2 is an arry of zeros
+    # Check if merchandise2 is an arry of zeros
     if np.all(merchandise2 == 0):
         return 1.0
 
@@ -79,8 +79,6 @@ def route_similarity(stdRoute: StdRoute, actRoute: ActRoute) -> float:
                     counter += 1
                 else:
                     penality += len(window_cities) * params.MODIFY_PENALITY
-                    # Doesn't make sense because we generate the new city with random values
-                    # similarity += 1 - trip_merch_similarity(route_std[i], route_act[j]) * MERCH_PENALITY
                     i += 1
                     j += 1
                     break
@@ -103,7 +101,7 @@ def generate_similarities() -> params.driverSimilarities:
     act_routes: List[ActRoute] = getActRoutes()
 
     driver_sim: params.driverSimilarities = {}
-    # find corresponding route
+    # Find corresponding route
     for i in range(len(act_routes)):
         id = act_routes[i].sRoute_id
         std_route = None
@@ -111,7 +109,7 @@ def generate_similarities() -> params.driverSimilarities:
             if std_routes[j].id == id:
                 std_route = std_routes[j]
                 break
-        # compute similarity and add it to the list
+        # Compute similarity and add it to the list
         if std_route != None:
             if act_routes[i].driver_id in driver_sim:
                 driver_sim[act_routes[i].driver_id].update(
@@ -149,12 +147,6 @@ def generate_top_5_similarities(
 
 
 def save_results(top_5_dict: params.driverSimilarities) -> None:
-    # print in a file called "driver.json" something like this
-    # [
-    # {driver:C, routes:[s10, s20, s2, s6, s10}},
-    # {driver:A, routes:[s1, s2, s22, s61, s102]},
-    # ….
-    # ]
     result = []
     for driver_id, route_data in top_5_dict.items():
         result.append({"driver": driver_id, "routes": list(route_data.keys())})
@@ -173,6 +165,7 @@ def calc_mean_sim(sim_drivers_routes: params.driverSimilarities) -> float:
         drivers_sim += routes_sim / len(routes)
     return drivers_sim / len(sim_drivers_routes)
 
+
 def test_rec_sim() -> float:
     sim_drivers_routes: params.driverSimilarities = generate_similarities()
     print("  - (TEST) Done generating similarities")
@@ -180,6 +173,7 @@ def test_rec_sim() -> float:
     mean_sim: float = calc_mean_sim(sim_drivers_routes)
 
     return mean_sim
+
 
 # Point 2 of the assignment
 def point_2() -> None:
@@ -195,7 +189,7 @@ def point_2() -> None:
     save_results(top_5_dict)
     print("  - Done generating driver.json")
 
-    mean_sim:float = calc_mean_sim(sim_drivers_routes)
+    mean_sim: float = calc_mean_sim(sim_drivers_routes)
     print("  - Mean similarity: ", mean_sim)
 
 

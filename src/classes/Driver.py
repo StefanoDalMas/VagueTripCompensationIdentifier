@@ -1,8 +1,19 @@
-from typing import List, Dict, Tuple 
+from typing import List
 
-class Driver():
 
-    def __init__(self, id:int, citiesCrazyness:int, productsCrazyness:int, likedCities:List[str], likedProducts:List[str], dislikedCities:List[str], dislikedProducts:List[str], cities:List[str], products:List[str]) -> None:
+class Driver:
+    def __init__(
+        self,
+        id: int,
+        citiesCrazyness: int,
+        productsCrazyness: int,
+        likedCities: List[str],
+        likedProducts: List[str],
+        dislikedCities: List[str],
+        dislikedProducts: List[str],
+        cities: List[str],
+        products: List[str],
+    ) -> None:
         self.id = id
         self.citiesCrazyness = citiesCrazyness
         self.productsCrazyness = productsCrazyness
@@ -26,5 +37,5 @@ class Driver():
             "dislikedCities": self.dislikedCities,
             "dislikedProducts": self.dislikedProducts,
             "cities": self.cities,
-            "products": self.products
+            "products": self.products,
         }
