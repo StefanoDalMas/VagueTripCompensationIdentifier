@@ -50,10 +50,10 @@ src/
 
 2. Setup virtual environment:
 
-    # Create virtual enviroment venv
+    # Create virtual enviroment
     python3 -m venv .venv
 
-    # Activate virtual enviroment venv
+    # Activate virtual enviroment
     source .venv/bin/activate
 
 3. Install dependencies:
@@ -75,7 +75,8 @@ src/
 
     b. Copy your `actual.json` and `standard.json` files in the `data` folder.
     You can use the command:
-    cp -r <your_data_folder_path> ./
+    
+        cp -r <your_data_folder_path> ./
 
 3. run the following command to calculate the solutions on the given dataset:
 

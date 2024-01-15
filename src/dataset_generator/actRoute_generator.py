@@ -69,7 +69,7 @@ def getStdRoutes(std_is_rec: bool = False) -> List[StdRoute]:
 
 # Get the standard routes from the json file
 def getActRoutes() -> List[ActRoute]:
-    # reading sRoutes from json
+    # Reading sRoutes from json
     with open("./data/" + params.AROUTES_FILENAME, "r") as act_file:
         act_routes_json = json.load(act_file)
 

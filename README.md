@@ -53,10 +53,10 @@ cd VagueTripCompensationIdentifier/
 
 2. Setup virtual environment
 ``` bash
-# Create virtual enviroment venv
+# Create virtual enviroment
 python3 -m venv .venv
 
-# Activate virtual enviroment venv
+# Activate virtual enviroment
 source .venv/bin/activate
 ```
 
