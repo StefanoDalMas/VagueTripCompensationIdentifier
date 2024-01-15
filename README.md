@@ -48,7 +48,7 @@ src/
 ``` bash
 git clone https://github.comStefanoDalMasVagueTripCompensationIdentifier.git
 
-cd VagueTripCompensationIdentifier/
+cd VagueTripCompensationIdentifier/src
 ```
 
 2. Setup virtual environment
@@ -67,12 +67,7 @@ pip install -r requirements.txt
 
 ## How to start the program
 
-1. Enter src folder
-``` bash
-cd src/
-```
-
-2. At this point it is possible to create the dataset with our generator([i.](#gen_dataset)) or you can insert yours in the data folder([ii.](#use_external_dataset))
+1. At this point it is possible to create the dataset with our generator([i.](#gen_dataset)) or you can insert yours in the data folder([ii.](#use_external_dataset)):
 
     1. <a id="gen_dataset"></a> It is possible to play with some parameters that guide our generator to create the dataset. You can find them in the `tools/parameters.py` file.
     To launch the generator run
@@ -86,7 +81,7 @@ cd src/
     cp -r <your_data_folder_path> ./
     ```
 
-3. run the following command to calculate the solutions on the given dataset
+2. run the following command to calculate the solutions on the given dataset
 ```bash
 python3 solution.py
 ```

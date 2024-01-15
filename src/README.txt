@@ -46,7 +46,7 @@ src/
 
     git clone https://github.comStefanoDalMasVagueTripCompensationIdentifier.git
 
-    cd VagueTripCompensationIdentifier/
+    cd VagueTripCompensationIdentifier/src
 
 2. Setup virtual environment:
 
@@ -62,22 +62,18 @@ src/
 
 ## How to start the program
 
-1. Enter src folder:
+1. At this point it is possible to create the dataset with our generator(a.) or you can insert yours in the data folder(b.)
 
-    cd src/
-
-2. At this point it is possible to create the dataset with our generator(a.) or you can insert yours in the data folder(b.)
-
-    a. It's possible to play with some parameters that guide our generator to create the dataset. You can find them in the `tools/parameters.py` file.
+    i. It's possible to play with some parameters that guide our generator to create the dataset. You can find them in the `tools/parameters.py` file.
     To launch the generator run:
 
         python3 generate_dataset.py
 
-    b. Copy your `actual.json` and `standard.json` files in the `data` folder.
+    ii. Copy your `actual.json` and `standard.json` files in the `data` folder.
     You can use the command:
     
         cp -r <your_data_folder_path> ./
 
-3. run the following command to calculate the solutions on the given dataset:
+2. run the following command to calculate the solutions on the given dataset:
 
     python3 solution.py
