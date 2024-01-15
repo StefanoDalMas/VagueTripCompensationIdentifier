@@ -92,59 +92,6 @@ def actual_for_driver_incrementation() -> None:
     print(" (TEST) actual_for_driver_incrementation() done")
 
 
-# --------------------------- THIRD ----------------------------
-def actual_for_driver_window_incrementation() -> None:
-
-    print(" (TEST) actual_for_driver_window_incrementation() has been called")
-
-    # get {drivers: exp} and {std: act}
-    std_routes, act_routes, drivers_exp, std_to_actuals = common_fn_call()
-    # create {std: {driver: exp}}
-    std_driver_exp: Dict[str, Dict[int, float]] = {}
-    for standard, actuals in std_to_actuals.items():
-        for actual in actuals:
-            act_driver = actual.driver_id
-            for driver, exp in drivers_exp.items():
-                if driver == act_driver:
-                    if standard in std_driver_exp:
-                        std_driver_exp.get(standard).update({driver: exp})
-                    else:
-                        std_driver_exp.update({standard: {driver: exp}})
-
-    # create {std, (best_driver, worst_driver)}
-    std_better_worst_drivers: Dict[str, Tuple[int, int]] = {}
-    for standard, driver_dict in std_driver_exp.items():
-        better_driver = max(driver_dict, key=driver_dict.get)
-        worst_driver = min(driver_dict, key=driver_dict.get)
-        std_better_worst_drivers.update({standard: (better_driver, worst_driver)})
-    
-
-    # for each rec_route associate the mean sim difference
-    # sim(perfect[better_driver], rec_route) - sim(perfect[worst_driver], rec_route)
-    driver_perfect = getPerfectRoutes()
-    rec_routes = getStdRoutes(std_is_rec = True)
-    total_difference: float = 0.0
-    for standard, better_worst_tuple in std_better_worst_drivers.items():
-        # search for the corresponding rec_route
-        for rec_route in rec_routes:
-            if rec_route.id == standard:
-                better_sim = route_similarity(rec_route, driver_perfect.get(better_worst_tuple[0]),act_is_perfect = True)
-                worst_sim = route_similarity(rec_route, driver_perfect.get(better_worst_tuple[1]),act_is_perfect = True)
-                print(str(better_sim) + " : " + str(worst_sim))
-                total_difference += better_sim - worst_sim
-    
-    mean_difference: float = total_difference / len(rec_routes)
-    print(mean_difference)
-
-    with open("/media/lorenzo/Volume/DataMining/ACT_FOR_DRIVER_WIN_INCREMENTATION/act_for_driver_win_inc_tmp.txt", 'w') as file:
-        # write similarity value to file for bash script
-        file.write(str(mean_difference))
-
-    print(" (TEST) actual_for_driver_window_incrementation() done")
-
-
-
-
 if __name__ == "__main__":
 
     num_arguments = len(sys.argv) - 1
@@ -158,12 +105,9 @@ if __name__ == "__main__":
         elif test_controller == "2":
             # test with incremental actual routes for each driver
             actual_for_driver_incrementation()
-        elif test_controller == "3":
-            # test with incremental actual routes window for each driver
-            actual_for_driver_window_incrementation()
         else:
-            print("Wrong argument: use \n- 1 for crazyness_incrementation()\n- 2 for actual_for_driver_incrementation()\n- 3 for actual_for_driver_window_incrementation()")
+            print("Wrong argument: use \n- 1 for crazyness_incrementation()\n- 2 for actual_for_driver_incrementation()")
 
     else:
-        print("use \n- 1 for crazyness_incrementation()\n- 2 for actual_for_driver_incrementation()\n- 3 for actual_for_driver_window_incrementation()")
+        print("use \n- 1 for crazyness_incrementation()\n- 2 for actual_for_driver_incrementation()")
     
